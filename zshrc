@@ -1,20 +1,43 @@
 source  ~/.dotfiles/antigen/antigen.zsh
 
+
+## EXPORT
 # change the size of history files
 export HISTSIZE=32768;
 export HISTFILESIZE=$HISTSIZE;
 export HISTTIMEFORMAT="[%d.%m.%y] %T   "
+export TERM=xterm-256color
+export CLICOLOR=1
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin"
 
-export TERM="xterm-256color"
+# Enable color in grep
+export GREP_OPTIONS='--color=auto'
+export GREP_COLOR='3;33'
 
-#export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin"
-alias postfixlog='pflogsumm -d today --verbose_msg_detail /var/log/maillog'
+
+export LESS='--ignore-case --raw-control-chars'
+export PAGER='most'
+export EDITOR='vim'
+
+## ALIAS
 alias top2="glances"
-alias cmdir='pushd /usr/local/src/centminmod'
 
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
+
+# Colorize output, add file type indicator, and put sizes in human readable format
+alias ls='ls -GFh'
+
+# Same as above, but in long listing format
+alias ll='ls -GFhl'
+
+# Centminmod
+alias cmdir='pushd /usr/local/src/centminmod'
+alias postfixlog='pflogsumm -d today --verbose_msg_detail /var/log/maillog'
+
+# git
+alias update-submodules="git submodule foreach 'git checkout master && git pull origin master'"
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
@@ -41,7 +64,7 @@ voronkovich/mysql.plugin.zsh
 oldratlee/hacker-quotes
 
 zsh-users/zsh-syntax-highlighting
-zsh-users/zsh-history-substring-search
+zsh-users/zsh-users/zsh-history-substring-search ./zsh-history-substring-search.zsh
 
 mafredri/zsh-async
 
@@ -62,9 +85,21 @@ elif [[ $CURRENT_OS == 'Cygwin' ]]; then
     antigen bundle cygwin
 fi
 
+# Fish-like suggestions bundle
+antigen bundle tarruda/zsh-autosuggestions
+
+# Right arrow to the entire suggestion
+AUTOSUGGESTION_ACCEPT_RIGHT_ARROW=1
+
+# Enable autosuggestions automatically
+zle-line-init() {
+    zle autosuggest-start
+}
+zle -N zle-line-init
+
+
 # Load the theme.
 #antigen theme bhilburn/powerlevel9k powerlevel9k
-#antigen bundle sindresorhus/pure
 #antigen theme halfo/lambda-mod-zsh-theme lambda-mod
 #antigen theme sindresorhus/pure pure
 antigen bundle sindresorhus/pure
@@ -72,7 +107,13 @@ antigen bundle sindresorhus/pure
 # Tell antigen that you're done.
 antigen apply
 
-# keybindings Linux ssh home/end/...
+# KEYBINDING
+
+# use ctrl+t to toggle autosuggestions(hopefully this wont be needed as
+# zsh-autosuggestions is designed to be unobtrusive
+bindkey '^T' autosuggest-toggle
+
+# Keybindings home/end/...
 bindkey '\e[1~'   beginning-of-line  # Linux console
 bindkey '\e[H'    beginning-of-line  # xterm
 bindkey '\eOH'    beginning-of-line  # gnome-terminal
@@ -82,7 +123,14 @@ bindkey '\e[4~'   end-of-line        # Linux console
 bindkey '\e[F'    end-of-line        # xterm
 bindkey '\eOF'    end-of-line        # gnome-terminal
 
-# bind UP and DOWN arrow keys
+# Bind UP and DOWN arrow keys
 zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
+
+bindkey '^R' zaw-history
+
+# Source a local zshrc if it exists.
+if [ -f ~/.zshrc_local ]; then
+    source ~/.zshrc_local
+fi
