@@ -19,6 +19,6 @@ Run the oneline installer to have them installed if needed. Supports yum & apt-g
 
 # Update
 ```
-cd ~/.dotfiles                                                                                                       [0:13:18]
+cd ~/.dotfiles
 git pull
 ```
