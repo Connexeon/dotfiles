@@ -1,5 +1,11 @@
 source ~/.antigen/antigen.zsh
 
+if [ -z ${ZSH_CACHE_DIR} ]; then
+    ZSH_CACHE_DIR="${HOME}/.cache"
+fi
+
+setopt HIST_IGNORE_DUPS
+
 ## EXPORT
 # change the size of history files
 export HISTSIZE=32768;
@@ -52,6 +58,7 @@ git
 pip
 command-not-found
 autojump
+colorize
 common-aliases
 compleat
 git-extras
@@ -61,16 +68,23 @@ web-search
 n98-magerun
 z
 yum
-#sysadmin
+systemadmin
 rsync
 cp
 djui/alias-tips
 voronkovich/mysql.plugin.zsh
 oldratlee/hacker-quotes
-
+tugboat
 mafredri/zsh-async
 unixorn/autoupdate-antigen.zshplugin
 
+composer
+laravel
+laravel5
+symfony2
+
+systemd
+redis-cli
 EOBUNDLES
 
 # OS specific plugins
