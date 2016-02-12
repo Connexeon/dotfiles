@@ -41,7 +41,6 @@ alias ll="ls -GFhl"
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 
-
 # Centminmod
 alias cmdir='pushd /usr/local/src/centminmod'
 alias postfixlog='pflogsumm -d today --verbose_msg_detail /var/log/maillog'
@@ -54,37 +53,35 @@ antigen use oh-my-zsh
 
 # Bundles from the default repo declared above.
 antigen bundles <<EOBUNDLES
-git
-pip
-command-not-found
-autojump
-colorize
-common-aliases
-compleat
-git-extras
-git-flow
-history
-web-search
-n98-magerun
-z
-yum
-systemadmin
-rsync
-cp
-djui/alias-tips
-voronkovich/mysql.plugin.zsh
-oldratlee/hacker-quotes
-tugboat
-mafredri/zsh-async
-unixorn/autoupdate-antigen.zshplugin
-
-composer
-laravel
-laravel5
-symfony2
-
-systemd
-redis-cli
+    oldratlee/hacker-quotes
+    git
+    pip
+    compleat
+    git-extras
+    git-flow
+    web-search
+    n98-magerun
+    voronkovich/mysql.plugin.zsh
+    tugboat
+    mafredri/zsh-async
+    unixorn/autoupdate-antigen.zshplugin
+    composer
+    laravel
+    laravel5
+    symfony2
+    systemd
+    history
+    djui/alias-tips
+    z
+    yum
+    systemadmin
+    rsync
+    cp
+    command-not-found
+    autojump
+    colorize
+    common-aliases
+    redis-cli
 EOBUNDLES
 
 # OS specific plugins
