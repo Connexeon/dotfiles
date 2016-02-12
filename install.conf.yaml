@@ -1,7 +1,14 @@
 - clean: ['~']
 
+- shell:
+  - [mkdir -p ~/.zsh, Creating .zsh directory]
+
 - link:
     ~/.zshrc: zshrc
+    ~/.antigen: antigen
+    ~/.zsh/zsh-history-substring-search: zsh-history-substring-search
+    ~/.zsh/zsh-autosuggestions: zsh-autosuggestions
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
+
