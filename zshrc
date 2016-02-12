@@ -13,7 +13,6 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin"
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='3;33'
 
-
 export LESS='--ignore-case --raw-control-chars'
 export PAGER='most'
 export EDITOR='vim'
@@ -62,9 +61,6 @@ djui/alias-tips
 voronkovich/mysql.plugin.zsh
 oldratlee/hacker-quotes
 
-zsh-users/zsh-syntax-highlighting
-zsh-users/zsh-users/zsh-history-substring-search ./zsh-history-substring-search.zsh
-
 mafredri/zsh-async
 
 EOBUNDLES
@@ -84,6 +80,8 @@ elif [[ $CURRENT_OS == 'Cygwin' ]]; then
     antigen bundle cygwin
 fi
 
+antigen bundle zsh-users/zsh-syntax-highlighting
+
 # Fish-like suggestions bundle
 antigen bundle tarruda/zsh-autosuggestions
 
@@ -96,6 +94,7 @@ zle-line-init() {
 }
 zle -N zle-line-init
 
+antigen bundle zsh-users/zsh-history-substring-search
 
 # Load the theme.
 #antigen theme bhilburn/powerlevel9k powerlevel9k
