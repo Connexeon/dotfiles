@@ -1,4 +1,4 @@
-source  ~/.dotfiles/antigen/antigen.zsh
+source ~/.antigen/antigen.zsh
 
 ## EXPORT
 # change the size of history files
@@ -15,20 +15,26 @@ export GREP_COLOR='3;33'
 
 export LESS='--ignore-case --raw-control-chars'
 export PAGER='most'
-export EDITOR='vim'
+export EDITOR='nano'
 
 ## ALIAS
 alias top2="glances"
+alias nn="nano"
 
-alias rm='rm -i'
-alias cp='cp -i'
-alias mv='mv -i'
+alias rm="rm -i"
+alias cp="cp -i"
+alias mv="mv -i"
 
 # Colorize output, add file type indicator, and put sizes in human readable format
-alias ls='ls -GFh'
+alias ls="ls -GFh"
 
 # Same as above, but in long listing format
-alias ll='ls -GFhl'
+alias ll="ls -GFhl"
+
+# IP addresses
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
+
 
 # Centminmod
 alias cmdir='pushd /usr/local/src/centminmod'
@@ -56,12 +62,14 @@ n98-magerun
 z
 yum
 #sysadmin
+rsync
 cp
 djui/alias-tips
 voronkovich/mysql.plugin.zsh
 oldratlee/hacker-quotes
 
 mafredri/zsh-async
+unixorn/autoupdate-antigen.zshplugin
 
 EOBUNDLES
 
@@ -80,21 +88,12 @@ elif [[ $CURRENT_OS == 'Cygwin' ]]; then
     antigen bundle cygwin
 fi
 
-antigen bundle zsh-users/zsh-syntax-highlighting
 
 # Fish-like suggestions bundle
-antigen bundle tarruda/zsh-autosuggestions
-
-# Right arrow to the entire suggestion
-AUTOSUGGESTION_ACCEPT_RIGHT_ARROW=1
-
-# Enable autosuggestions automatically
-zle-line-init() {
-    zle autosuggest-start
-}
-zle -N zle-line-init
-
+#antigen bundle tarruda/zsh-autosuggestions
+antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-history-substring-search
+antigen bundle zsh-users/zaw
 
 # Load the theme.
 #antigen theme bhilburn/powerlevel9k powerlevel9k
@@ -104,6 +103,14 @@ antigen bundle sindresorhus/pure
 
 # Tell antigen that you're done.
 antigen apply
+
+source ~/.zsh/zsh-autosuggestions/dist/autosuggestions.zsh
+ZSH_AUTOSUGGEST_CLEAR_WIDGETS=("${(@)ZSH_AUTOSUGGEST_CLEAR_WIDGETS:#(up|down)-line-or-history}")
+ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down)
+
+autosuggest_start
+
+
 
 # KEYBINDING
 
