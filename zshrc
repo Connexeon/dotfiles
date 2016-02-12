@@ -143,6 +143,7 @@ bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
 
 bindkey '^R' zaw-history
+bindkey '^X' zaw
 
 # Source a local zshrc if it exists.
 if [ -f ~/.zshrc_local ]; then
