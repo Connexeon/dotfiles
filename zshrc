@@ -101,9 +101,10 @@ fi
 
 
 # Fish-like suggestions bundle
-#antigen bundle tarruda/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-history-substring-search
+antigen bundle tarruda/zsh-autosuggestions
+
 antigen bundle zsh-users/zaw
 
 # Load the theme.
@@ -115,7 +116,9 @@ antigen bundle sindresorhus/pure
 # Tell antigen that you're done.
 antigen apply
 
-source ~/.zsh/zsh-autosuggestions/dist/autosuggestions.zsh
+#source ~/.zsh/zsh-autosuggestions/dist/autosuggestions.zsh
+#source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
+
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS=("${(@)ZSH_AUTOSUGGEST_CLEAR_WIDGETS:#(up|down)-line-or-history}")
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down)
 
