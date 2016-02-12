@@ -1,6 +1,5 @@
 source  ~/.dotfiles/antigen/antigen.zsh
 
-
 ## EXPORT
 # change the size of history files
 export HISTSIZE=32768;
