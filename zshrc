@@ -82,6 +82,7 @@ antigen bundles <<EOBUNDLES
     colorize
     common-aliases
     redis-cli
+    supercrabtree/k
 EOBUNDLES
 
 # OS specific plugins
