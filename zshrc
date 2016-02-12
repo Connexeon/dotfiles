@@ -110,8 +110,6 @@ ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-se
 
 autosuggest_start
 
-
-
 # KEYBINDING
 
 # use ctrl+t to toggle autosuggestions(hopefully this wont be needed as
