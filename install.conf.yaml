@@ -8,6 +8,7 @@
     ~/.antigen: antigen
     ~/.zsh/zsh-history-substring-search: zsh-history-substring-search
     ~/.zsh/zsh-autosuggestions: zsh-autosuggestions
+    ~/.my.cnf: my.cnf
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
