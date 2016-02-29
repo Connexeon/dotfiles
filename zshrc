@@ -138,10 +138,7 @@ antigen apply
 source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 
-ZSH_AUTOSUGGEST_CLEAR_WIDGETS=("${(@)ZSH_AUTOSUGGEST_CLEAR_WIDGETS:#(up|down)-line-or-history}")
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down)
-
-autosuggest_start
 
 # KEYBINDING
 
