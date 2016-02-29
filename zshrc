@@ -47,6 +47,23 @@ alias postfixlog='pflogsumm -d today --verbose_msg_detail /var/log/maillog'
 # git
 alias update-submodules="git submodule foreach 'git checkout master && git pull origin master'"
 
+# chmod
+alias rw-='chmod 600'
+alias rwx='chmod 700'
+alias r--='chmod 644'
+alias r-x='chmod 755'
+
+
+## FUNCTIONS
+function console {
+  if [[ $# > 0 ]]; then
+    query=$(echo "$*" | tr -s ' ' '|')
+    tail -f /var/log/messages|grep -i --color=auto -E "$query"
+  else
+    tail -f /var/log/messages
+  fi
+}
+
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
 
