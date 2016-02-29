@@ -23,6 +23,8 @@ export PAGER='less'
 export EDITOR='nano'
 
 ## ALIAS
+alias updot="cd ~/.dotfiles && git pull origin master && git submodule update --remote  --recursive"
+
 alias top2="glances"
 alias nn="nano"
 
@@ -134,7 +136,7 @@ antigen bundle sindresorhus/pure
 antigen apply
 
 source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
-source ~/.zsh/zsh-autosuggestions/dist/autosuggestions.zsh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS=("${(@)ZSH_AUTOSUGGEST_CLEAR_WIDGETS:#(up|down)-line-or-history}")
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down)
