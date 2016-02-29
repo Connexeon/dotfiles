@@ -21,4 +21,4 @@ Run the oneline installer to have them installed if needed. Supports yum & apt-g
 ```
 cd ~/.dotfiles && git pull origin master && git submodule update --remote  --recursive
 ```
-or just use the alias `updot`
+or just use the alias `updot`.
