@@ -23,7 +23,7 @@ export PAGER='less'
 export EDITOR='nano'
 
 ## ALIAS
-alias updot="cd ~/.dotfiles && git pull origin master && git submodule update --remote  --recursive"
+alias updot="cd ~/.dotfiles && git pull origin master && ./install"
 
 alias top2="glances"
 alias nn="nano"
