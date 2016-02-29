@@ -9,6 +9,7 @@
     ~/.zsh/zsh-history-substring-search: zsh-history-substring-search
     ~/.zsh/zsh-autosuggestions: zsh-autosuggestions
     ~/.my.cnf: my.cnf
+    /etc/cron.daily/updot: cron.updot
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
