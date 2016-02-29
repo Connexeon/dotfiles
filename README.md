@@ -1,5 +1,5 @@
 # dotfiles
-dotfiles zsh + antigen for sysadmins
+dotfiles zsh + antigen for (CentOS) sysadmins
 
 # Installation
 ```
@@ -19,6 +19,6 @@ Run the oneline installer to have them installed if needed. Supports yum & apt-g
 
 # Update
 ```
-cd ~/.dotfiles
-git pull
+cd ~/.dotfiles && git pull origin master && git submodule update --remote  --recursive
 ```
+or just use the alias `updot`
