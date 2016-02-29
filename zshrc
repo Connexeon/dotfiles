@@ -13,8 +13,7 @@ export HISTFILESIZE=$HISTSIZE;
 export HISTTIMEFORMAT="[%d.%m.%y] %T   "
 export TERM=xterm-256color
 export CLICOLOR=1
-export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin:/bin"
-
+export PATH=$PATH:$HOME/bin
 # Enable color in grep
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='3;33'
