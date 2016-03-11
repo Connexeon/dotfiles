@@ -53,12 +53,24 @@ printf ""$BD"\nInstalling using "$YE"dotbot"$N"\n"
 cd .dotfiles && ./install && cd ~ && printf "$OK\n" || ( printf " $WA" ) 
 
 # Changing shell
-printf ""$BD"Changing shell to "$YE"zsh"$N"\n"
-chsh -s $(which zsh) && cd ~ && printf "$OK\n" || ( printf " $FL" ; exit 1 ) 
+
+# If this user's login shell is not already "zsh", attempt to switch.
+TEST_CURRENT_SHELL=$(expr "$SHELL" : '.*/\(.*\)')
+if [ "$TEST_CURRENT_SHELL" != "zsh" ]; then
+    # If this platform provides a "chsh" command (not Cygwin), do it, man!
+    if hash chsh >/dev/null 2>&1; then
+      printf ""$BD"Changing shell to "$YE"zsh"$N"\n"
+      chsh -s $(grep /zsh$ /etc/shells | tail -1)
+      printf "$OK\n"
+    # Else, suggest the user do so manually.
+    else
+      printf ""$WA"I can't change your shell automatically because this system does not have "$YE"chsh"$N."\n"
+      printf ""$BD"Please manually change your default shell to zsh!$N\n"
+    fi
+fi
 
 # Copying valueable bash history
 printf ""$BD"Copying "$YE".bash_history"$N" to "$YE".zsh_history"$N"\n"
 cat .bash_history > .zsh_history && printf "$OK\n" || ( printf " $FL" ; exit 1 ) 
 printf "$BD""FINISHED ^^\n\nPlease reconnect your session now to complete installation.\n" || ( printf " $FL" ; exit 1 ) 
 printf "$BD""SSH terminal session encoding should be set to UTF-8, recommended font is DejaVu Sans Mono for Powerline.\n$N"
-
