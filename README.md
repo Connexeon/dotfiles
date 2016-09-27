@@ -10,7 +10,7 @@ cd .dotfiles
 ```
 Or even better, run this oneliner, it checks & installs requirements first.
 ```
-curl -sSL https://gist.github.com/hannesbe/9bc71c527b5cd20a45bf/raw/install-dotfiles.sh | bash -s
+curl -sSL https://raw.githubusercontent.com/hannesbe/dotfiles/master/bootstrap | bash -s
 ```
 
 # Requirements
