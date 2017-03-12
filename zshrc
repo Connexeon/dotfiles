@@ -83,7 +83,6 @@ antigen bundles <<EOBUNDLES
     tugboat
     mafredri/zsh-async
     unixorn/autoupdate-antigen.zshplugin
-    composer
     laravel
     laravel5
     symfony2
