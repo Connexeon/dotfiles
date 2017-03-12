@@ -114,6 +114,8 @@ elif [[ $CURRENT_OS == 'Linux' ]]; then
     # None so far...
     if [[ $DISTRO == 'CentOS' ]]; then
         antigen bundle centos
+    elif [[ $DISTRO == 'Ubuntu' ]]; then
+        antigen bundle ubuntu
     fi
 elif [[ $CURRENT_OS == 'Cygwin' ]]; then
     antigen bundle cygwin
