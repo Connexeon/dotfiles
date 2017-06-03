@@ -132,7 +132,8 @@ antigen bundle zsh-users/zaw
 #antigen theme bhilburn/powerlevel9k powerlevel9k
 #antigen theme halfo/lambda-mod-zsh-theme lambda-mod
 #antigen theme sindresorhus/pure pure
-antigen bundle sindresorhus/pure
+#antigen bundle sindresorhus/pure
+antigen theme https://github.com/denysdovhan/spaceship-zsh-theme spaceship
 
 # Tell antigen that you're done.
 antigen apply
