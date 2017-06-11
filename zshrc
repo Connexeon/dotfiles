@@ -131,9 +131,10 @@ antigen bundle zsh-users/zaw
 # Load the theme.
 #antigen theme bhilburn/powerlevel9k powerlevel9k
 #antigen theme halfo/lambda-mod-zsh-theme lambda-mod
-antigen theme sindresorhus/pure pure
-antigen bundle sindresorhus/pure
 #antigen theme https://github.com/denysdovhan/spaceship-zsh-theme spaceship
+
+antigen bundle mafredri/zsh-async
+antigen bundle sindresorhus/pure
 
 # Tell antigen that you're done.
 antigen apply
