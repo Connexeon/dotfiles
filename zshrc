@@ -83,7 +83,6 @@ antigen bundles <<EOBUNDLES
     tugboat
     mafredri/zsh-async
     unixorn/autoupdate-antigen.zshplugin
-    composer
     laravel
     laravel5
     symfony2
@@ -114,6 +113,8 @@ elif [[ $CURRENT_OS == 'Linux' ]]; then
     # None so far...
     if [[ $DISTRO == 'CentOS' ]]; then
         antigen bundle centos
+    elif [[ $DISTRO == 'Ubuntu' ]]; then
+        antigen bundle ubuntu
     fi
 elif [[ $CURRENT_OS == 'Cygwin' ]]; then
     antigen bundle cygwin
@@ -130,7 +131,9 @@ antigen bundle zsh-users/zaw
 # Load the theme.
 #antigen theme bhilburn/powerlevel9k powerlevel9k
 #antigen theme halfo/lambda-mod-zsh-theme lambda-mod
-#antigen theme sindresorhus/pure pure
+#antigen theme https://github.com/denysdovhan/spaceship-zsh-theme spaceship
+
+antigen bundle mafredri/zsh-async
 antigen bundle sindresorhus/pure
 
 # Tell antigen that you're done.
