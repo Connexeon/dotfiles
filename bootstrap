@@ -71,6 +71,6 @@ fi
 
 # Copying valueable bash history
 printf ""$BD"Copying "$YE".bash_history"$N" to "$YE".zsh_history"$N"\n"
-sudo cat .bash_history > .zsh_history && printf "$OK\n" || ( printf " $FL" ; exit 1 ) 
+cat ~/.bash_history > ~/.zsh_history && printf "$OK\n" || ( printf " $FL" ; exit 1 ) 
 printf "$BD""FINISHED ^^\n\nPlease reconnect your session now to complete installation.\n" || ( printf " $FL" ; exit 1 ) 
 printf "$BD""SSH terminal session encoding should be set to UTF-8, recommended font is DejaVu Sans Mono for Powerline.\n$N"
