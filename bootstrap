@@ -1,56 +1,66 @@
-#!/usr/bin/env bash
 #
-# Shell script to install dotfiles & requirements
+# Shell script to bootstrap Connexeon dotfiles config, dotbot & requirements
+#    attempts to install missing dependencies, so you can sit back & relax ^^
 #
-# Requires zsh, git, python, python, python-yaml, python-argparse
+#    Connexeon dotfiles are put together with one goal in mind:
+#    making shell work much efficient & easy for system engineers.
 #
+#    There are many clever tools & tricks put together to make you fly through
+#    shell lightningfast and more accurate as ever before, with minimal typing
+#    efforts.  Stop typing your ass all day & run this right now:
+#
+#         sudo curl -sSL http://connexeon.link/dotfiles-bootstrap | bash -s
+#
+
 # Some output definitions
 N=$(tput sgr0) ; BD=$(tput bold) ; GR=$(tput setaf 2; tput bold) ; YE=$(tput setaf 3) ; R=$(tput setaf 1)
 OK="[$GR OK $N]\n" ; FL="[$R FAILED $N]\n"; WA="[$R WARNING $N]\n"
 
 ZSHRC=".zshrc"
-cd ~ 
+ZSH_HISTORY="~/.zsh_history"
+BASH_HISTORY="~/.bash_history"
+cd ~/
 
-# Installing requirements 
+# Installing requirements
 printf ""$BD"\nInstalling requirements"$N"\n"
 YUM_PACK="zsh git python python-yaml python-argparse"
 APT_PACK="zsh git python python-yaml python-argparse"
 
-# Package 
+# Package
 APT=`command -v apt-get`
 YUM=`command -v yum`
 GIT=`command -v git`
 PYTHON=`command -v python`
 if [ -n "$YUM" ]; then
     printf "$YE$YUM_PACK$N\n"
-    sudo yum -y -q install $YUM_PACK && printf "$OK\n" || ( printf " $FL" ; exit -1 ) 
+    sudo yum -y -q install $YUM_PACK && printf "$OK\n" || ( printf " $FL" ; exit -1 )
 elif  [ -n "$APT" ];  then
-    printf "$YE$APT_PACK$N\n"   
-    sudo apt-get -y -q install $APT_PACK && printf "$OK\n" || ( printf " $FL" ; exit -1 ) 
+    printf "$YE$APT_PACK$N\n"
+    sudo apt-get -y -q install $APT_PACK && printf "$OK\n" || ( printf " $FL" ; exit -1 )
 else
-    printf "Unable to detect packet manager (no yum or apt-get)." 
-    ( [ ! -n $GIT ] || [ ! -f $PYTHON ] ) && 
+    printf "Unable to detect packet manager (no yum or apt-get)."
+    ( [ ! -n $GIT ] || [ ! -f $PYTHON ] ) &&
         (
         printf "Missing requirement(s), please install $YE$YUM_PACK$N and run me again." >&2 ;
-        printf " $FL" ; exit -1 
+        printf " $FL" ; exit -1
         )
-    printf "Assuming $YE$YUM_PACK$N are installed. $OK\n" 
+    printf "Assuming $YE$YUM_PACK$N are installed. $OK\n"
 fi
 
 set -e
 
 # If an .zshrc file already exists, rename it
-[[ -f $ZSHRC ]] && 
-    ( printf "$YE`pwd`$ZSHRC$N already exists, renaming yours to $YE`pwd`$ZSHRC.save$N " ; 
+[[ -f $ZSHRC ]] &&
+    ( printf "$YE`pwd`$ZSHRC$N already exists, renaming yours to $YE`pwd`$ZSHRC.save$N " ;
       mv $ZSHRC $ZSHRC.save && printf " $OK" || ( printf " $FL" ; exit 3 ) )
 
 # Cloning dotfiles repo
 printf ""$BD"\nCloning "$YE"dotfiles"$N$BD" into "$YE"~/.dotfiles"$N"\n"
-git clone https://github.com/hannesbe/dotfiles.git ~/.dotfiles && printf "$OK\n" || ( printf " $FL" ; exit 1 ) 
+git clone https://github.com/Connexeon/dotfiles.git ~/.dotfiles && printf "$OK\n" || ( printf " $FL" ; exit 3 )
 
 # Installing using dotbot
 printf ""$BD"\nInstalling using "$YE"dotbot"$N"\n"
-cd .dotfiles && ./install && cd ~ && printf "$OK\n" || ( printf " $WA" ) 
+cd .dotfiles && ./install && cd ~ && printf "$OK\n" || ( printf " $WA" )
 
 # Changing shell
 
@@ -70,7 +80,9 @@ if [ "$TEST_CURRENT_SHELL" != "zsh" ]; then
 fi
 
 # Copying valueable bash history
-printf ""$BD"Copying "$YE".bash_history"$N" to "$YE".zsh_history"$N"\n"
-cat ~/.bash_history > ~/.zsh_history && printf "$OK\n" || ( printf " $FL" ; exit 1 ) 
-printf "$BD""FINISHED ^^\n\nPlease reconnect your session now to complete installation.\n" || ( printf " $FL" ; exit 1 ) 
+[[ -f $BASH_HISTORY ]] &&
+  ( printf ""$BD"Copying existing "$YE$BASH_HISTORY$N" to "$YE$ZSH_HISTORY$N"\n" ;
+    cat $BASH_HISTORY >> $ZSH_HISTORY && printf "$OK\n" || ( printf " $FL" ; exit 3 ) )
+
+printf "$BD""FINISHED ^^\n\nPlease reconnect your session now to complete installation.\n" || ( printf " $FL" ; exit 1 )
 printf "$BD""SSH terminal session encoding should be set to UTF-8, recommended font is DejaVu Sans Mono for Powerline.\n$N"
