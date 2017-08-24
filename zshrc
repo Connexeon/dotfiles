@@ -14,9 +14,6 @@ export HISTTIMEFORMAT="[%d.%m.%y] %T   "
 export TERM=xterm-256color
 export CLICOLOR=1
 export PATH=$PATH:$HOME/bin
-# Enable color in grep
-export GREP_OPTIONS='--color=auto'
-export GREP_COLOR='3;33'
 
 export LESS='--ignore-case --raw-control-chars'
 export PAGER='less'
@@ -55,6 +52,10 @@ alias rwx='chmod 700'
 alias r--='chmod 644'
 alias r-x='chmod 755'
 
+# grep
+alias grep="grep --color=auto"
+alias fgrep="fgrep --color=auto"
+alias egrep="egrep --color=auto"
 
 ## FUNCTIONS
 function console {
