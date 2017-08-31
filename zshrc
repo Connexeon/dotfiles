@@ -23,7 +23,7 @@ export PAGER='less'
 export EDITOR='nano'
 
 ## ALIAS
-alias updot="cd ~/.dotfiles && git pull origin master && ./install"
+alias updot="cd ~/.dotfiles && git remote set-url origin https://github.com/Connexeon/dotfiles.git && git pull origin master && ./install"
 
 alias top2="glances"
 alias nn="nano"
