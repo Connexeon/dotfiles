@@ -102,6 +102,7 @@ antigen bundles <<EOBUNDLES
     redis-cli
     supercrabtree/k
     extract
+zsh-navigation-tools
     ubuntu
 EOBUNDLES
 
