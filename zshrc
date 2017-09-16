@@ -21,6 +21,7 @@ export EDITOR='nano'
 
 ## ALIAS
 alias updot="cd ~/.dotfiles && git remote set-url origin https://github.com/Connexeon/dotfiles.git && git pull origin master && ./install && source ~/.zshrc"
+alias sudo="sudo "
 
 alias top2="glances"
 alias nn="nano"
