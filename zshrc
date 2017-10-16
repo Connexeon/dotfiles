@@ -68,9 +68,12 @@ function console {
   fi
 }
 
+
+
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
 
+antigen theme https://github.com/denysdovhan/spaceship-zsh-theme spaceship
 # Bundles from the default repo declared above.
 antigen bundles <<EOBUNDLES
     oldratlee/hacker-quotes
@@ -103,7 +106,7 @@ antigen bundles <<EOBUNDLES
     redis-cli
     supercrabtree/k
     extract
-zsh-navigation-tools
+    zsh-navigation-tools
     ubuntu
 EOBUNDLES
 
@@ -138,7 +141,6 @@ antigen bundle zsh-users/zaw
 #antigen theme https://github.com/denysdovhan/spaceship-zsh-theme spaceship
 
 antigen bundle mafredri/zsh-async
-antigen bundle sindresorhus/pure
 
 # Tell antigen that you're done.
 antigen apply
@@ -147,6 +149,9 @@ source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down)
+
+# Workaround https://github.com/denysdovhan/spaceship-zsh-theme/issues/228
+SPACESHIP_KUBECONTEXT_SHOW="${SPACESHIP_KUBECONTEXT_SHOW:=false}"
 
 # KEYBINDING
 
