@@ -23,8 +23,8 @@ cd ~/
 
 # Installing requirements
 printf ""$BD"\nInstalling requirements"$N"\n"
-YUM_PACK="zsh git python python-yaml python-argparse"
-APT_PACK="zsh git python python-yaml python-argparse"
+YUM_PACK="git python python-yaml python-argparse"
+APT_PACK="git python python-yaml python-argparse"
 
 # Package
 APT=`command -v apt-get`
