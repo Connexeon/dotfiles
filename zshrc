@@ -58,6 +58,16 @@ alias grep="grep --color=auto"
 alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
 
+# neofetch
+alias neofetch2="neofetch \
+--config off \
+--block_range 1 8 \
+--bold off \
+--uptime_shorthand on \
+--gtk_shorthand on \
+--colors 4 1 8 8 8 7 \
+"
+
 ## FUNCTIONS
 function console {
   if [[ $# > 0 ]]; then
@@ -103,8 +113,13 @@ antigen bundles <<EOBUNDLES
     redis-cli
     supercrabtree/k
     extract
-zsh-navigation-tools
+    zsh-navigation-tools
     ubuntu
+    zsh-users/zsh-completions
+    zsh-completions
+    zsh-better-npm-completion
+    gcloud-zsh-completion
+    docker-zsh-completion
 EOBUNDLES
 
 # OS specific plugins
