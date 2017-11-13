@@ -1,12 +1,36 @@
 source ~/.antigen/antigen.zsh
 
 if [ -z ${ZSH_CACHE_DIR} ]; then
-    ZSH_CACHE_DIR="${HOME}/.cache"
+  ZSH_CACHE_DIR="${HOME}/.cache"
 fi
+
+####################################################################
+# Get System Info
+####################################################################
+# Determine OS platform
+UNAME=$(uname | tr "[:upper:]" "[:lower:]")
+# If Linux, try to determine specific distribution
+if [ "$UNAME" = "linux" ]; then
+  # If available, use LSB to identify distribution
+  if [ -f /etc/lsb-release -o -d /etc/lsb-release.d ]; then
+    export DISTRO=$(lsb_release -i | cut -d: -f2 | sed s/'^\t'//)
+    # Otherwise, use release info file
+  else
+    export DISTRO=$(ls -d /etc/[A-Za-z]*[_-][rv]e[lr]* | grep -v "lsb" | cut -d'/' -f3 | cut -d'-' -f1 | cut -d'_' -f1)
+  fi
+fi
+# For everything else (or if above failed), just use generic identifier
+[ "$DISTRO" = "" ] && export DISTRO=$UNAME
+unset UNAME
+
+echo $DISTRO
 
 setopt HIST_IGNORE_DUPS
 
+####################################################################
 ## EXPORT
+####################################################################
+
 # change the size of history files
 export HISTSIZE=32768;
 export HISTFILESIZE=$HISTSIZE;
@@ -19,7 +43,10 @@ export LESS='--ignore-case --raw-control-chars'
 export PAGER='less'
 export EDITOR='nano'
 
+####################################################################
 ## ALIAS
+####################################################################
+
 alias updot="cd ~/.dotfiles && git remote set-url origin https://github.com/Connexeon/dotfiles.git && git pull origin master && ./install && source ~/.zshrc"
 alias sudo="sudo "
 
@@ -58,7 +85,23 @@ alias grep="grep --color=auto"
 alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
 
+# neofetch
+alias neofetch2="neofetch \
+  --config off \
+  --block_range 1 8 \
+  --bold off \
+  --uptime_shorthand on \
+  --gtk_shorthand on \
+  --colors 4 1 8 8 8 7 \
+  "
+
+# Public key to clipboard
+alias pubkey="xclip -sel clip < ~/.ssh/id_rsa.pub"
+
+####################################################################
 ## FUNCTIONS
+####################################################################
+
 function console {
   if [[ $# > 0 ]]; then
     query=$(echo "$*" | tr -s ' ' '|')
@@ -67,6 +110,10 @@ function console {
     tail -f /var/log/messages
   fi
 }
+
+####################################################################
+## BUNDLES
+####################################################################
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
@@ -100,7 +147,7 @@ antigen bundles <<EOBUNDLES
     rsync
     cp
     command-not-found
-    autojump
+    autojump-zsh
     colorize
     common-aliases
     redis-cli
@@ -109,23 +156,35 @@ antigen bundles <<EOBUNDLES
     extract
     zsh-navigation-tools
     ubuntu
+<<<<<<< HEAD
     MichaelAquilina/zsh-autoswitch-virtualenv
+=======
+    zsh-users/zsh-completions
+    zsh-completions
+    zsh-better-npm-completion
+    zsh-pip-completion
+    gcloud-zsh-completion
+    docker-zsh-completion
+    aws_manager_plugin
+    ssh-agent
+    zsh-ssh-agent
+>>>>>>> 45b0a8ee31826b64cea13274cd8db2261aae20a3
 EOBUNDLES
 
 # OS specific plugins
-if [[ $CURRENT_OS == 'OS X' ]]; then
+if [[ $DISTRO == 'OS X' ]]; then
     antigen bundle brew
     antigen bundle brew-cask
     antigen bundle gem
     antigen bundle osx
-elif [[ $CURRENT_OS == 'Linux' ]]; then
+elif [[ $DISTRO == 'Linux' ]]; then
     # None so far...
     if [[ $DISTRO == 'CentOS' ]]; then
         antigen bundle centos
     elif [[ $DISTRO == 'Ubuntu' ]]; then
         antigen bundle ubuntu
     fi
-elif [[ $CURRENT_OS == 'Cygwin' ]]; then
+elif [[ $DISTRO == 'Cygwin' ]]; then
     antigen bundle cygwin
 fi
 
