@@ -73,6 +73,9 @@ antigen use oh-my-zsh
 
 # Bundles from the default repo declared above.
 antigen bundles <<EOBUNDLES
+    zsh-users/zsh-completions
+    desyncr/auto-ls
+    Tarrasch/zsh-autoenv
     oldratlee/hacker-quotes
     git
     pip
@@ -101,10 +104,12 @@ antigen bundles <<EOBUNDLES
     colorize
     common-aliases
     redis-cli
+    docker
     supercrabtree/k
     extract
-zsh-navigation-tools
+    zsh-navigation-tools
     ubuntu
+    MichaelAquilina/zsh-autoswitch-virtualenv
 EOBUNDLES
 
 # OS specific plugins
@@ -130,6 +135,7 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 #antigen bundle zsh-users/zsh-history-substring-search
 #antigen bundle tarruda/zsh-autosuggestions
 
+antigen bundle termoshtt/zaw-systemd 
 antigen bundle zsh-users/zaw
 
 # Load the theme.
@@ -150,10 +156,6 @@ ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-se
 
 # KEYBINDING
 
-# use ctrl+t to toggle autosuggestions(hopefully this wont be needed as
-# zsh-autosuggestions is designed to be unobtrusive
-bindkey '^T' autosuggest-toggle
-
 # Keybindings home/end/...
 bindkey '\e[1~'   beginning-of-line  # Linux console
 bindkey '\e[H'    beginning-of-line  # xterm
@@ -169,8 +171,37 @@ zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
 
+# Use CTRl+T to toggle autosuggestions(hopefully this wont be needed as
+# zsh-autosuggestions is designed to be unobtrusive
+bindkey '^T' autosuggest-toggle
+
+# Use CTRL+R to search history, CTRL-E to accept selected line from search without entering command yet
 bindkey '^R' zaw-history
+bindkey -M filterselect '^R' down-line-or-history
+bindkey -M filterselect '^S' up-line-or-history
+bindkey -M filterselect '^E' accept-search
+
+zstyle ':filter-select' rotate-list yes # enable rotation for filter-select
+zstyle ':filter-select' case-insensitive yes # enable case-insensitive search
+zstyle ':filter-select' extended-search yes # see below
+zstyle ':filter-select' hist-find-no-dups yes # ignore duplicates in history source
+zstyle ':filter-select' escape-descriptions no # display literal newlines, not \n, etc
+
+# extended-search:
+#     If this style set to be true value, the searching bahavior will be
+#     extended as follows:
+# 
+#     ^ Match the beginning of the line if the word begins with ^
+#     $ Match the end of the line if the word ends with $
+#     ! Match anything except the word following it if the word begins with !
+#     so-called smartcase searching
+# 
+#     If you want to search these metacharacters, please doubly escape them.
+
+# Use CTRL+X to select from other sources than history first (screen sessions, executables, ...) 
 bindkey '^X' zaw
+
+
 
 # Source a local zshrc if it exists.
 if [ -f ~/.zshrc_local ]; then
