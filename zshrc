@@ -23,7 +23,7 @@ fi
 [ "$DISTRO" = "" ] && export DISTRO=$UNAME
 unset UNAME
 
-echo $DISTRO
+echo "I magically detected you are on: $DISTRO"
 
 setopt HIST_IGNORE_DUPS
 
@@ -156,19 +156,15 @@ antigen bundles <<EOBUNDLES
     extract
     zsh-navigation-tools
     ubuntu
-<<<<<<< HEAD
     MichaelAquilina/zsh-autoswitch-virtualenv
-=======
-    zsh-users/zsh-completions
     zsh-completions
     zsh-better-npm-completion
     zsh-pip-completion
     gcloud-zsh-completion
     docker-zsh-completion
     aws_manager_plugin
-    ssh-agent
+    #ssh-agent
     zsh-ssh-agent
->>>>>>> 45b0a8ee31826b64cea13274cd8db2261aae20a3
 EOBUNDLES
 
 # OS specific plugins
