@@ -10,6 +10,7 @@
     ~/.zsh/zsh-autosuggestions:          zsh-autosuggestions
     /etc/cron.daily/updot:               cron.updot
     ~/.config/neofetch/config.conf:      config/neofetch/config.conf
+    ~/.config/neofetch/config:           config/neofetch/config.conf
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
   - [git submodule foreach git fetch origin --tags && git pull && git submodule update --init --recursive, Updating submodules]
