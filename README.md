@@ -1,10 +1,9 @@
 # dotfiles
-dotfiles zsh + antigen for (CentOS) sysadmins
+dotfiles zsh + antigen for sysadmins
 
 # Installation
 ```
-cd ~
-git clone https://github.com/Connexeon/dotfiles.git .dotfiles
+cd && git clone https://github.com/Connexeon/dotfiles.git .dotfiles
 cd .dotfiles
 ./install
 ```
