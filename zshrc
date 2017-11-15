@@ -1,3 +1,7 @@
+####################################################################
+# Load Antigen
+####################################################################
+
 source ~/.antigen/antigen.zsh
 
 if [ -z ${ZSH_CACHE_DIR} ]; then
@@ -7,6 +11,7 @@ fi
 ####################################################################
 # Get System Info
 ####################################################################
+
 # Determine OS platform
 UNAME=$(uname | tr "[:upper:]" "[:lower:]")
 # If Linux, try to determine specific distribution
@@ -23,14 +28,11 @@ fi
 [ "$DISTRO" = "" ] && export DISTRO=$UNAME
 unset UNAME
 
-echo "I magically detected you are on: $DISTRO"
-
-setopt HIST_IGNORE_DUPS
-
 ####################################################################
 ## EXPORT
 ####################################################################
 
+setopt HIST_IGNORE_DUPS
 # change the size of history files
 export HISTSIZE=32768;
 export HISTFILESIZE=$HISTSIZE;
@@ -164,29 +166,25 @@ antigen bundles <<EOBUNDLES
 EOBUNDLES
 
 # OS specific plugins
-if [[ $DISTRO == 'OS X' ]]; then
-    antigen bundle brew
-    antigen bundle brew-cask
-    antigen bundle gem
-    antigen bundle osx
-elif [[ $DISTRO == 'Linux' ]]; then
-    # None so far...
-    if [[ $DISTRO == 'CentOS' ]]; then
-        antigen bundle centos
-    elif [[ $DISTRO == 'Ubuntu' ]]; then
-        antigen bundle ubuntu
-    fi
+if [[ $DISTRO == 'Darwin' ]]; then
+  antigen bundle brew
+  antigen bundle brew-cask
+  antigen bundle gem
+  antigen bundle osx
+elif [[ $DISTRO == 'centos' ]]; then
+  antigen bundle centos
+elif [[ $DISTRO == 'Ubuntu' ]]; then
+  antigen bundle ubuntu
 elif [[ $DISTRO == 'Cygwin' ]]; then
-    antigen bundle cygwin
+  antigen bundle cygwin
 fi
-
 
 # Fish-like suggestions bundle
 antigen bundle zsh-users/zsh-syntax-highlighting
 #antigen bundle zsh-users/zsh-history-substring-search
 #antigen bundle tarruda/zsh-autosuggestions
 
-antigen bundle termoshtt/zaw-systemd 
+antigen bundle termoshtt/zaw-systemd
 antigen bundle zsh-users/zaw
 
 # Load the theme.
@@ -205,7 +203,9 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down)
 
+####################################################################
 # KEYBINDING
+####################################################################
 
 # Keybindings home/end/...
 bindkey '\e[1~'   beginning-of-line  # Linux console
@@ -241,26 +241,43 @@ zstyle ':filter-select' escape-descriptions no # display literal newlines, not \
 # extended-search:
 #     If this style set to be true value, the searching bahavior will be
 #     extended as follows:
-# 
+#
 #     ^ Match the beginning of the line if the word begins with ^
 #     $ Match the end of the line if the word ends with $
 #     ! Match anything except the word following it if the word begins with !
 #     so-called smartcase searching
-# 
+#
 #     If you want to search these metacharacters, please doubly escape them.
 
-# Use CTRL+X to select from other sources than history first (screen sessions, executables, ...) 
+# Use CTRL+X to select from other sources than history first (screen sessions, executables, ...)
 bindkey '^X' zaw
 
 ####################################################################
 # Show system info & some ASCII art
 ####################################################################
+if ! type "neofetch" > /dev/null; then
+  # install foobar here
+  yum install yum-plugins-core -y
+  yum install epel-release -y
+  curl -o /etc/yum.repos.d/konimex-neofetch-epel-7.repo https://copr.fedorainfracloud.org/coprs/konimex/neofetch/repo/epel-7/konimex-neofetch-epel-7.repo
+  yum install neofetch -y
+fi
 neofetch
+
+####################################################################
+# Local zshrc
+####################################################################
 
 # Source a local zshrc if it exists.
 if [ -f ~/.zshrc_local ]; then
     source ~/.zshrc_local
 fi
+
+
+####################################################################
+# Additional
+####################################################################
+
 # The following lines were added by compinstall
 
 zstyle ':completion:*' completer _list _oldlist _expand _complete _ignored _match _correct _approximate _prefix
