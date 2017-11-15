@@ -256,7 +256,7 @@ bindkey '^X' zaw
 # Show system info & some ASCII art
 ####################################################################
 if ! type "neofetch" > /dev/null; then
-  # OS specific plugins
+  # OS specific installation steps
   if [[ $DISTRO == 'Darwin' ]]; then
   elif [[ $DISTRO == 'centos' ]]; then
     sudo yum install epel-release -y
