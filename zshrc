@@ -256,11 +256,18 @@ bindkey '^X' zaw
 # Show system info & some ASCII art
 ####################################################################
 if ! type "neofetch" > /dev/null; then
-  # install foobar here
-  yum install yum-plugins-core -y
-  yum install epel-release -y
-  curl -o /etc/yum.repos.d/konimex-neofetch-epel-7.repo https://copr.fedorainfracloud.org/coprs/konimex/neofetch/repo/epel-7/konimex-neofetch-epel-7.repo
-  yum install neofetch -y
+  # OS specific plugins
+  if [[ $DISTRO == 'Darwin' ]]; then
+  elif [[ $DISTRO == 'centos' ]]; then
+    sudo yum install epel-release -y
+    sudo curl -o /etc/yum.repos.d/konimex-neofetch-epel-7.repo https://copr.fedorainfracloud.org/coprs/konimex/neofetch/repo/epel-7/konimex-neofetch-epel-7.repo
+    sudo yum install neofetch -y
+  elif [[ $DISTRO == 'Ubuntu' ]]; then
+    sudo apt-get install neofetch
+  elif [[ $DISTRO == 'Cygwin' ]]; then
+  else
+    sudo apt-get install neofetch
+  fi
 fi
 neofetch
 
