@@ -1,4 +1,4 @@
-#
+#!/bin/bash
 # Shell script to bootstrap Connexeon dotfiles config, dotbot & requirements
 #    attempts to install missing dependencies, so you can sit back & relax ^^
 #
@@ -32,19 +32,19 @@ YUM=`command -v yum`
 GIT=`command -v git`
 PYTHON=`command -v python`
 if [ -n "$YUM" ]; then
-    printf "$YE$YUM_PACK$N\n"
-    sudo yum -y -q install $YUM_PACK && printf "$OK\n" || ( printf " $FL" ; exit -1 )
+  printf "$YE$YUM_PACK$N\n"
+  sudo yum -y -q install $YUM_PACK && printf "$OK\n" || ( printf " $FL" ; exit -1 )
 elif  [ -n "$APT" ];  then
-    printf "$YE$APT_PACK$N\n"
-    sudo apt-get -y -q install $APT_PACK && printf "$OK\n" || ( printf " $FL" ; exit -1 )
+  printf "$YE$APT_PACK$N\n"
+  sudo apt-get -y -q install $APT_PACK && printf "$OK\n" || ( printf " $FL" ; exit -1 )
 else
-    printf "Unable to detect packet manager (no yum or apt-get)."
-    ( [ ! -n $GIT ] || [ ! -f $PYTHON ] ) &&
-    (
-        printf "Missing requirement(s), please install $YE$YUM_PACK$N and run me again." >&2 ;
-        printf " $FL" ; exit -1
-    )
-    printf "Assuming $YE$YUM_PACK$N are installed. $OK\n"
+  printf "Unable to detect packet manager (no yum or apt-get)."
+  ( [ ! -n $GIT ] || [ ! -f $PYTHON ] ) &&
+  (
+    printf "Missing requirement(s), please install $YE$YUM_PACK$N and run me again." >&2 ;
+    printf " $FL" ; exit -1
+  )
+  printf "Assuming $YE$YUM_PACK$N are installed. $OK\n"
 fi
 
 set -e
@@ -67,16 +67,16 @@ cd .dotfiles && ./install && cd ~ && printf "$OK\n" || ( printf " $WA" )
 # If this user's login shell is not already "zsh", attempt to switch.
 TEST_CURRENT_SHELL=$(expr "$SHELL" : '.*/\(.*\)')
 if [ "$TEST_CURRENT_SHELL" != "zsh" ]; then
-    # If this platform provides a "chsh" command (not Cygwin), do it, man!
-    if hash chsh >/dev/null 2>&1; then
-        printf ""$BD"Changing shell to "$YE"zsh"$N"\n"
-        sudo chsh -s $(grep /zsh$ /etc/shells | tail -1)
-        printf "$OK\n"
-        # Else, suggest the user do so manually.
-    else
-        printf ""$WA"I can't change your shell automatically because this system does not have "$YE"chsh"$N."\n"
-        printf ""$BD"Please manually change your default shell to zsh!$N\n"
-    fi
+  # If this platform provides a "chsh" command (not Cygwin), do it, man!
+  if hash chsh >/dev/null 2>&1; then
+    printf ""$BD"Changing shell to "$YE"zsh"$N"\n"
+    chsh -s $(grep /zsh$ /etc/shells | tail -1)
+    printf "$OK\n"
+    # Else, suggest the user do so manually.
+  else
+    printf ""$WA"I can't change your shell automatically because this system does not have "$YE"chsh"$N."\n"
+    printf ""$BD"Please manually change your default shell to zsh!$N\n"
+  fi
 fi
 
 # Copying valueable bash history
