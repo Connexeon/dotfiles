@@ -2,6 +2,7 @@
 
 - shell:
   - [mkdir -p ~/.zsh, Creating .zsh directory]
+  - [mkdir -p ~/.config/neofetch, Creating neofetch directory]
 - link:
     ~/.zshrc:                            zshrc
     ~/.antigen:                          antigen
