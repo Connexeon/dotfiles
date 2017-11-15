@@ -123,7 +123,6 @@ antigen bundles <<EOBUNDLES
     zsh-users/zsh-completions
     desyncr/auto-ls
     Tarrasch/zsh-autoenv
-    oldratlee/hacker-quotes
     git
     pip
     compleat
@@ -155,16 +154,13 @@ antigen bundles <<EOBUNDLES
     supercrabtree/k
     extract
     zsh-navigation-tools
-    ubuntu
     MichaelAquilina/zsh-autoswitch-virtualenv
-    zsh-completions
-    zsh-better-npm-completion
-    zsh-pip-completion
-    gcloud-zsh-completion
-    docker-zsh-completion
-    aws_manager_plugin
-    #ssh-agent
-    zsh-ssh-agent
+    lukechilds/zsh-better-npm-completion
+    srijanshetty/zsh-pip-completion
+    greymd/docker-zsh-completion
+    EslamElHusseiny/aws_manager_plugin
+    bobthecow/git-flow-completion
+    bobsoppe/zsh-ssh-agent
 EOBUNDLES
 
 # OS specific plugins
@@ -256,7 +252,10 @@ zstyle ':filter-select' escape-descriptions no # display literal newlines, not \
 # Use CTRL+X to select from other sources than history first (screen sessions, executables, ...) 
 bindkey '^X' zaw
 
-
+####################################################################
+# Show system info & some ASCII art
+####################################################################
+neofetch
 
 # Source a local zshrc if it exists.
 if [ -f ~/.zshrc_local ]; then
