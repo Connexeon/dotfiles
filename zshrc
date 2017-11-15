@@ -184,8 +184,8 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 #antigen bundle zsh-users/zsh-history-substring-search
 #antigen bundle tarruda/zsh-autosuggestions
 
-antigen bundle termoshtt/zaw-systemd
 antigen bundle zsh-users/zaw
+antigen bundle termoshtt/zaw-systemd
 
 # Load the theme.
 #antigen theme bhilburn/powerlevel9k powerlevel9k
