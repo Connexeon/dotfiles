@@ -261,3 +261,11 @@ neofetch
 if [ -f ~/.zshrc_local ]; then
     source ~/.zshrc_local
 fi
+# The following lines were added by compinstall
+
+zstyle ':completion:*' completer _list _oldlist _expand _complete _ignored _match _correct _approximate _prefix
+zstyle :compinstall filename '/root/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
