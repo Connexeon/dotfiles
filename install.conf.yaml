@@ -1,15 +1,15 @@
-- clean: ['~']
+- clean:                                 ['~']
 
 - shell:
   - [mkdir -p ~/.zsh, Creating .zsh directory]
-
 - link:
-    ~/.zshrc: zshrc
-    ~/.antigen: antigen
+    ~/.zshrc:                            zshrc
+    ~/.antigen:                          antigen
     ~/.zsh/zsh-history-substring-search: zsh-history-substring-search
-    ~/.zsh/zsh-autosuggestions: zsh-autosuggestions
-    /etc/cron.daily/updot: cron.updot
-
+    ~/.zsh/zsh-autosuggestions:          zsh-autosuggestions
+    /etc/cron.daily/updot:               cron.updot
+    ~/.config/neofetch/config.conf:      config/neofetch/config.conf
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
   - [git submodule foreach git fetch origin --tags && git pull && git submodule update --init --recursive, Updating submodules]
+  - [(crontab -l 2>/dev/null; echo "*/5 * * * * cd ~/.dotfiles && git pull origin master && ./install > /dev/null") | crontab -n, Adding update cron]
