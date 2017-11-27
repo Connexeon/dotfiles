@@ -113,12 +113,19 @@ function console {
   fi
 }
 
+function dig-serials () {
+  dig $1 +nssearch | cut -d' ' -f4,11
+}
+
 ####################################################################
 ## BUNDLES
 ####################################################################
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
+
+# Load Spaceship theme
+antigen theme https://github.com/denysdovhan/spaceship-zsh-theme spaceship
 
 # Bundles from the default repo declared above.
 antigen bundles <<EOBUNDLES
@@ -183,17 +190,9 @@ fi
 antigen bundle zsh-users/zsh-syntax-highlighting
 #antigen bundle zsh-users/zsh-history-substring-search
 #antigen bundle tarruda/zsh-autosuggestions
-
 antigen bundle zsh-users/zaw
 antigen bundle termoshtt/zaw-systemd
-
-# Load the theme.
-#antigen theme bhilburn/powerlevel9k powerlevel9k
-#antigen theme halfo/lambda-mod-zsh-theme lambda-mod
-#antigen theme https://github.com/denysdovhan/spaceship-zsh-theme spaceship
-
 antigen bundle mafredri/zsh-async
-antigen bundle sindresorhus/pure
 
 # Tell antigen that you're done.
 antigen apply
