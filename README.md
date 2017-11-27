@@ -1,6 +1,6 @@
 # dotfiles
 
-dotfiles zsh + antigen for sysadmins
+dotfiles zsh + antigen for DevOps
 
 # Installation
 
