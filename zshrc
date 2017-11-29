@@ -222,7 +222,6 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 #antigen bundle tarruda/zsh-autosuggestions
 antigen bundle zsh-users/zaw
 antigen bundle termoshtt/zaw-systemd
-antigen bundle mafredri/zsh-async
 
 # Tell antigen that you're done.
 antigen apply
@@ -282,6 +281,15 @@ zstyle ':filter-select' escape-descriptions no # display literal newlines, not \
 bindkey '^X' zaw
 
 ####################################################################
+# Load theme & apply Antigen
+####################################################################
+#antigen theme https://github.com/denysdovhan/spaceship-zsh-theme spaceship
+antigen theme bhilburn/powerlevel9k powerlevel9k
+antigen apply
+
+ZSH_THEME=''
+
+####################################################################
 # Show system info & some ASCII art
 ####################################################################
 if ! type "neofetch" > /dev/null; then
@@ -300,10 +308,6 @@ if ! type "neofetch" > /dev/null; then
 fi
 neofetch
 
-# Load Spaceship theme
-#antigen theme https://github.com/denysdovhan/spaceship-zsh-theme spaceship
-antigen theme bhilburn/powerlevel9k powerlevel9k
-
 
 ####################################################################
 # Local zshrc
@@ -313,7 +317,6 @@ antigen theme bhilburn/powerlevel9k powerlevel9k
 if [ -f ~/.zshrc_local ]; then
     source ~/.zshrc_local
 fi
-
 
 ####################################################################
 # Additional
