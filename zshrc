@@ -67,6 +67,7 @@ if [ "$UNAME" = "linux" ]; then
     export DISTRO=$(ls -d /etc/[A-Za-z]*[_-][rv]e[lr]* | grep -v "lsb" | cut -d'/' -f3 | cut -d'-' -f1 | cut -d'_' -f1 | tr "[:upper:]" "[:lower:]")
   fi
 fi
+
 # For everything else (or if above failed), just use generic identifier
 [ "$DISTRO" = "" ] && export DISTRO=$UNAME
 unset UNAME
@@ -75,10 +76,12 @@ unset UNAME
 ## EXPORT
 ####################################################################
 
-setopt HIST_IGNORE_DUPS
+setopt histignorealldups sharehistory
+
 # change the size of history files
 export HISTSIZE=32768;
 export HISTFILESIZE=$HISTSIZE;
+export SAVEHIST=$HISTSIZE;
 export HISTTIMEFORMAT="[%d.%m.%y] %T   "
 export TERM="xterm-256color"
 export CLICOLOR=1
@@ -206,19 +209,22 @@ antigen bundles <<EOBUNDLES
     EslamElHusseiny/aws_manager_plugin
     bobthecow/git-flow-completion
     bobsoppe/zsh-ssh-agent
+    trapd00r/zsh-syntax-highlighting-filetypes
 EOBUNDLES
 
 # OS specific plugins
-if [[ $DISTRO == 'Darwin' ]]; then
+if [[ $DISTRO == 'darwin' ]]; then
   antigen bundle brew
   antigen bundle brew-cask
   antigen bundle gem
   antigen bundle osx
 elif [[ $DISTRO == 'centos' ]]; then
   antigen bundle centos
-elif [[ $DISTRO == 'Ubuntu' ]]; then
+elif [[ $DISTRO == 'ubuntu' ]]; then
   antigen bundle ubuntu
-elif [[ $DISTRO == 'Cygwin' ]]; then
+elif [[ $DISTRO == 'debian' ]]; then
+  antigen bundle ubuntu
+elif [[ $DISTRO == 'cygwin' ]]; then
   antigen bundle cygwin
 fi
 
@@ -252,6 +258,7 @@ bindkey "$terminfo[kcud1]" history-substring-search-down
 # Use CTRl+T to toggle autosuggestions(hopefully this wont be needed as
 # zsh-autosuggestions is designed to be unobtrusive
 bindkey '^T' autosuggest-toggle
+bindkey '^ ' autosuggest-accept
 
 # Use CTRL+R to search history, CTRL-E to accept selected line from search without entering command yet
 bindkey '^R' zaw-history
@@ -293,18 +300,19 @@ antigen apply
 ####################################################################
 if ! type "neofetch" > /dev/null; then
   # OS specific installation steps
-  if [[ $DISTRO == 'Darwin' ]]; then
+  if [[ $DISTRO == 'darwin' ]]; then
   elif [[ $DISTRO == 'centos' ]]; then
     sudo yum install epel-release -y
     sudo curl -o /etc/yum.repos.d/konimex-neofetch-epel-7.repo https://copr.fedorainfracloud.org/coprs/konimex/neofetch/repo/epel-7/konimex-neofetch-epel-7.repo
     sudo yum install neofetch -y
-  elif [[ $DISTRO == 'Ubuntu' ]]; then
+  elif [[ $DISTRO == 'ubuntu' ]]; then
     sudo apt-get install neofetch
-  elif [[ $DISTRO == 'Cygwin' ]]; then
+  elif [[ $DISTRO == 'cygwin' ]]; then
   else
     sudo apt-get install neofetch
   fi
 fi
+
 neofetch
 
 
