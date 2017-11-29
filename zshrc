@@ -221,7 +221,7 @@ if [[ $DISTRO == 'darwin' ]]; then
   antigen bundle brew-cask
   antigen bundle gem
   antigen bundle osx
-elif [[ $DISTRO == 'centos' ]]; then
+elif [[ $DISTRO == 'centos' || $DISTRO == 'centminmod' ]]; then
   antigen bundle centos
 elif [[ $DISTRO == 'ubuntu' ]]; then
   antigen bundle ubuntu
@@ -236,7 +236,7 @@ antigen bundle termoshtt/zaw-systemd
 
 source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+source ~DIS
 
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down)
 ZSH_AUTOSUGGEST_USE_ASYNC=true
@@ -304,7 +304,7 @@ antigen apply
 if ! type "neofetch" > /dev/null; then
   # OS specific installation steps
   if [[ $DISTRO == 'darwin' ]]; then
-  elif [[ $DISTRO == 'centos' ]]; then
+  elif [[ $DISTRO == 'centos' || $DISTRO == 'centminmod' ]]; then
     sudo yum install epel-release -y
     sudo curl -o /etc/yum.repos.d/konimex-neofetch-epel-7.repo https://copr.fedorainfracloud.org/coprs/konimex/neofetch/repo/epel-7/konimex-neofetch-epel-7.repo
     sudo yum install neofetch -y
