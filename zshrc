@@ -4,7 +4,7 @@
 #set -xe
 
 #POWERLEVEL9K_STATUS_VERBOSE="true"
-POWERLEVEL9K_MODE='awesome-patched'
+POWERLEVEL9K_MODE='awesome-fontconfig'
 
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
@@ -76,7 +76,7 @@ unset UNAME
 ## EXPORT
 ####################################################################
 
-setopt histignorealldups sharehistory
+setopt HIST_IGNORE_ALL_DUPS SHARE_HISTORY
 
 # change the size of history files
 export HISTSIZE=32768;
@@ -168,7 +168,8 @@ function dig-serials () {
 ####################################################################
 # Bundles from the default repo declared above.
 #
-#
+##    trapd00r/zsh-syntax-highlighting-filetypes
+
 antigen bundles <<EOBUNDLES
     chrissicool/zsh-256color
     zsh-users/zsh-completions
@@ -212,7 +213,6 @@ antigen bundles <<EOBUNDLES
     EslamElHusseiny/aws_manager_plugin
     bobthecow/git-flow-completion
     bobsoppe/zsh-ssh-agent
-#    trapd00r/zsh-syntax-highlighting-filetypes
 EOBUNDLES
 
 # OS specific plugins
@@ -239,7 +239,7 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down)
-
+ZSH_AUTOSUGGEST_USE_ASYNC=true
 ####################################################################
 # KEYBINDING
 ####################################################################
@@ -315,9 +315,7 @@ if ! type "neofetch" > /dev/null; then
     sudo apt-get install neofetch
   fi
 fi
-
 neofetch
-
 
 ####################################################################
 # Local zshrc
