@@ -1,7 +1,7 @@
 ####################################################################
 # Load Antigen
 ####################################################################
-# set -xe
+#set -xe
 
 #POWERLEVEL9K_STATUS_VERBOSE="true"
 POWERLEVEL9K_MODE='awesome-patched'
@@ -170,6 +170,7 @@ function dig-serials () {
 # supercrabtree/k
 #
 antigen bundles <<EOBUNDLES
+    chrissicool/zsh-256color
     zsh-users/zsh-completions
     Tarrasch/zsh-autoenv
     git
@@ -192,6 +193,7 @@ antigen bundles <<EOBUNDLES
     yum
     systemd
     systemadmin
+    skx/sysadmin-util
     rsync
     cp
     command-not-found
@@ -209,7 +211,7 @@ antigen bundles <<EOBUNDLES
     EslamElHusseiny/aws_manager_plugin
     bobthecow/git-flow-completion
     bobsoppe/zsh-ssh-agent
-    trapd00r/zsh-syntax-highlighting-filetypes
+#    trapd00r/zsh-syntax-highlighting-filetypes
 EOBUNDLES
 
 # OS specific plugins
@@ -340,6 +342,7 @@ zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
 eval "$(dircolors -b)"
+#eval $( dircolors -b $HOME/LS_COLORS )
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
