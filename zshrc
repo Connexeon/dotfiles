@@ -2,10 +2,12 @@
 # Load Antigen
 ####################################################################
 # set -xe
-POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
 
-POWERLEVEL9K_STATUS_VERBOSE="true"
+#POWERLEVEL9K_STATUS_VERBOSE="true"
 POWERLEVEL9K_MODE='awesome-patched'
+
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
 
 # Disable dir/git icons
 POWERLEVEL9K_HOME_ICON=''
@@ -33,11 +35,14 @@ POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
 
 POWERLEVEL9K_TIME_FORMAT="%D{%H:%M \uE868  %d.%m.%y}"
 
+POWERLEVEL9K_VPN_IP_INTERFACE="zt0"
+
 POWERLEVEL9K_STATUS_VERBOSE=false
 export DEFAULT_USER="$USER"
 
-
 source ~/.antigen/antigen.zsh
+
+POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
 
 if [ -z ${ZSH_CACHE_DIR} ]; then
   ZSH_CACHE_DIR="${HOME}/.cache"
@@ -159,6 +164,8 @@ function dig-serials () {
 ## BUNDLES
 ####################################################################
 # Bundles from the default repo declared above.
+# supercrabtree/k
+#
 antigen bundles <<EOBUNDLES
     zsh-users/zsh-completions
     Tarrasch/zsh-autoenv
@@ -170,27 +177,26 @@ antigen bundles <<EOBUNDLES
     web-search
     n98-magerun
     voronkovich/mysql.plugin.zsh
-    tugboat
+    DimitriSteyaert/Zsh-tugboat
     mafredri/zsh-async
     unixorn/autoupdate-antigen.zshplugin
     laravel
     laravel5
     symfony2
-    systemd
     history
     djui/alias-tips
     z
     yum
+    systemd
     systemadmin
     rsync
     cp
     command-not-found
-    autojump-zsh
+    autojump
     colorize
     common-aliases
     redis-cli
     docker
-    supercrabtree/k
     extract
     zsh-navigation-tools
     MichaelAquilina/zsh-autoswitch-virtualenv
@@ -216,25 +222,18 @@ elif [[ $DISTRO == 'Cygwin' ]]; then
   antigen bundle cygwin
 fi
 
-# Fish-like suggestions bundle
-antigen bundle zsh-users/zsh-syntax-highlighting
-#antigen bundle zsh-users/zsh-history-substring-search
-#antigen bundle tarruda/zsh-autosuggestions
 antigen bundle zsh-users/zaw
 antigen bundle termoshtt/zaw-systemd
 
-# Tell antigen that you're done.
-antigen apply
-
 source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down)
 
 ####################################################################
 # KEYBINDING
 ####################################################################
-
 # Keybindings home/end/...
 bindkey '\e[1~'   beginning-of-line  # Linux console
 bindkey '\e[H'    beginning-of-line  # xterm
@@ -260,6 +259,7 @@ bindkey -M filterselect '^R' down-line-or-history
 bindkey -M filterselect '^S' up-line-or-history
 bindkey -M filterselect '^E' accept-search
 
+zstyle ':filter-select:highlight' matched fg=red
 zstyle ':filter-select' rotate-list yes # enable rotation for filter-select
 zstyle ':filter-select' case-insensitive yes # enable case-insensitive search
 zstyle ':filter-select' extended-search yes # see below
@@ -283,11 +283,10 @@ bindkey '^X' zaw
 ####################################################################
 # Load theme & apply Antigen
 ####################################################################
-#antigen theme https://github.com/denysdovhan/spaceship-zsh-theme spaceship
+# Load theme
 antigen theme bhilburn/powerlevel9k powerlevel9k
+# Tell antigen that you're done.
 antigen apply
-
-ZSH_THEME=''
 
 ####################################################################
 # Show system info & some ASCII art
@@ -319,14 +318,28 @@ if [ -f ~/.zshrc_local ]; then
 fi
 
 ####################################################################
-# Additional
+# Use modern completion system
 ####################################################################
 
-# The following lines were added by compinstall
-
-zstyle ':completion:*' completer _list _oldlist _expand _complete _ignored _match _correct _approximate _prefix
-zstyle :compinstall filename '/root/.zshrc'
+export ANTIGEN_COMPDUMP=~/.antigen/.zcompdump
 
 autoload -Uz compinit
 compinit
-# End of lines added by compinstall
+
+zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' completer _expand _complete _correct _approximate
+zstyle ':completion:*' format 'Completing %d'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' menu select=2
+eval "$(dircolors -b)"
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
+zstyle ':completion:*' menu select=long
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' use-compctl false
+zstyle ':completion:*' verbose trueg
+
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
