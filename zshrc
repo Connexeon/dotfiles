@@ -167,7 +167,7 @@ function dig-serials () {
 ## BUNDLES
 ####################################################################
 # Bundles from the default repo declared above.
-# supercrabtree/k
+#
 #
 antigen bundles <<EOBUNDLES
     chrissicool/zsh-256color
@@ -190,6 +190,7 @@ antigen bundles <<EOBUNDLES
     history
     djui/alias-tips
     z
+    supercrabtree/k
     yum
     systemd
     systemadmin
