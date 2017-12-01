@@ -231,8 +231,8 @@ elif [[ $DISTRO == 'cygwin' ]]; then
   antigen bundle cygwin
 fi
 
-antigen bundle zsh-users/zaw
 antigen bundle termoshtt/zaw-systemd
+antigen bundle zsh-users/zaw
 
 source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
@@ -269,12 +269,17 @@ bindkey -M filterselect '^R' down-line-or-history
 bindkey -M filterselect '^S' up-line-or-history
 bindkey -M filterselect '^E' accept-search
 
-zstyle ':filter-select:highlight' matched fg=red
-zstyle ':filter-select' rotate-list yes # enable rotation for filter-select
-zstyle ':filter-select' case-insensitive yes # enable case-insensitive search
+zstyle ':filter-select:highlight' matched fg=green,standout
+#zstyle ':filter-select' max-lines 3
+zstyle ':filter-select' case-insensitive yes # enable case-insensitive
 zstyle ':filter-select' extended-search yes # see below
-zstyle ':filter-select' hist-find-no-dups yes # ignore duplicates in history source
-zstyle ':filter-select' escape-descriptions no # display literal newlines, not \n, etc
+
+# zstyle ':filter-select:highlight' matched fg=red
+# zstyle ':filter-select' rotate-list yes # enable rotation for filter-select
+# zstyle ':filter-select' case-insensitive yes # enable case-insensitive search
+# zstyle ':filter-select' extended-search yes # see below
+# zstyle ':filter-select' hist-find-no-dups yes # ignore duplicates in history source
+# zstyle ':filter-select' escape-descriptions no # display literal newlines, not \n, etc
 
 # extended-search:
 #     If this style set to be true value, the searching bahavior will be
