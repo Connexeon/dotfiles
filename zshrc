@@ -234,9 +234,9 @@ fi
 antigen bundle zsh-users/zaw
 antigen bundle termoshtt/zaw-systemd
 
-source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
+source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
-source ~DIS
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down)
 ZSH_AUTOSUGGEST_USE_ASYNC=true
