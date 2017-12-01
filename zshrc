@@ -231,8 +231,9 @@ elif [[ $DISTRO == 'cygwin' ]]; then
   antigen bundle cygwin
 fi
 
-antigen bundle zsh-users/zaw
 antigen bundle termoshtt/zaw-systemd
+antigen byndke willghatch/zsh-cdr
+antigen bundle zsh-users/zaw
 
 source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
