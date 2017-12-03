@@ -176,6 +176,8 @@ antigen bundles <<EOBUNDLES
     Tarrasch/zsh-autoenv
     git
     pip
+    npm
+    vagrant
     compleat
     git-extras
     git-flow
@@ -232,31 +234,22 @@ elif [[ $DISTRO == 'cygwin' ]]; then
 fi
 
 antigen bundle termoshtt/zaw-systemd
+<<<<<<< HEAD
+=======
+antigen bundle willghatch/zsh-cdr
+>>>>>>> 30d30e38f37ae947e0a1daf54d1d5db3b006dcfe
 antigen bundle zsh-users/zaw
 
-source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
+source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
-source ~DIS
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down)
 ZSH_AUTOSUGGEST_USE_ASYNC=true
+
 ####################################################################
 # KEYBINDING
 ####################################################################
-# Keybindings home/end/...
-bindkey '\e[1~'   beginning-of-line  # Linux console
-bindkey '\e[H'    beginning-of-line  # xterm
-bindkey '\eOH'    beginning-of-line  # gnome-terminal
-bindkey '\e[2~'   overwrite-mode     # Linux console, xterm, gnome-terminal
-bindkey '\e[3~'   delete-char        # Linux console, xterm, gnome-terminal
-bindkey '\e[4~'   end-of-line        # Linux console
-bindkey '\e[F'    end-of-line        # xterm
-bindkey '\eOF'    end-of-line        # gnome-terminal
-
-# Bind UP and DOWN arrow keys
-zmodload zsh/terminfo
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
 
 # Use CTRl+T to toggle autosuggestions(hopefully this wont be needed as
 # zsh-autosuggestions is designed to be unobtrusive
@@ -294,6 +287,21 @@ zstyle ':filter-select' extended-search yes # see below
 
 # Use CTRL+X to select from other sources than history first (screen sessions, executables, ...)
 bindkey '^X' zaw
+
+# Keybindings home/end/...
+bindkey '\e[1~'   beginning-of-line  # Linux console
+bindkey '\e[H'    beginning-of-line  # xterm
+bindkey '\eOH'    beginning-of-line  # gnome-terminal
+bindkey '\e[2~'   overwrite-mode     # Linux console, xterm, gnome-terminal
+bindkey '\e[3~'   delete-char        # Linux console, xterm, gnome-terminal
+bindkey '\e[4~'   end-of-line        # Linux console
+bindkey '\e[F'    end-of-line        # xterm
+bindkey '\eOF'    end-of-line        # gnome-terminal
+
+# Bind UP and DOWN arrow keys
+zmodload zsh/terminfo
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
 
 ####################################################################
 # Load theme & apply Antigen
