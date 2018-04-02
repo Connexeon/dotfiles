@@ -31,12 +31,20 @@ APT=`command -v apt-get`
 YUM=`command -v yum`
 GIT=`command -v git`
 PYTHON=`command -v python`
+ZSH=`command -v zsh`
+
 if [ -n "$YUM" ]; then
   printf "$YE$YUM_PACK$N\n"
   sudo yum -y -q install $YUM_PACK && printf "$OK\n" || ( printf " $FL" ; exit -1 )
+  if [ -n "$ZSH" ]; then
+    sudo yum -y -q install zsh && printf "$OK\n" || ( printf " $FL" ; exit -1 )
+  fi
 elif  [ -n "$APT" ];  then
   printf "$YE$APT_PACK$N\n"
   sudo apt-get -y -q install $APT_PACK && printf "$OK\n" || ( printf " $FL" ; exit -1 )
+  if [ -n "$ZSH" ]; then
+    sudo apt-get -y -q install zsh && printf "$OK\n" || ( printf " $FL" ; exit -1 )
+  fi
 else
   printf "Unable to detect packet manager (no yum or apt-get)."
   ( [ ! -n $GIT ] || [ ! -f $PYTHON ] ) &&
@@ -61,8 +69,6 @@ git clone https://github.com/Connexeon/dotfiles.git ~/.dotfiles && printf "$OK\n
 # Installing using dotbot
 printf ""$BD"\nInstalling using "$YE"dotbot"$N"\n"
 cd .dotfiles && ./install && cd ~ && printf "$OK\n" || ( printf " $WA" )
-
-# Changing shell
 
 # If this user's login shell is not already "zsh", attempt to switch.
 TEST_CURRENT_SHELL=$(expr "$SHELL" : '.*/\(.*\)')
