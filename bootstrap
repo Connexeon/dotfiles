@@ -9,7 +9,7 @@
 #    shell lightningfast and more accurate as ever before, with minimal typing
 #    efforts.  Stop typing your ass all day & run this right now:
 #
-#         sudo curl -sSL http://connexeon.link/dotfiles-bootstrap | bash -s
+#         bash <(curl -sSL http://connexeon.link/dotfiles-bootstrap)
 #
 
 # Some output definitions
