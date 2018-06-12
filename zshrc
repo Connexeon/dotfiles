@@ -45,12 +45,12 @@ source ~/.antigen/antigen.zsh
 POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
 
 if [ -z ${ZSH_CACHE_DIR} ]; then
-  ZSH_CACHE_DIR="${HOME}/.cache"
+    ZSH_CACHE_DIR="${HOME}/.cache"
 fi
 
 # Set PATH so it includes user's private python-pip bin if it exists
 if [ -d "$HOME/.local/bin" ] ; then
-  PATH="$HOME/.local/bin:$PATH"
+    PATH="$HOME/.local/bin:$PATH"
 fi
 
 emulate sh -c 'source /etc/profile'
@@ -66,13 +66,13 @@ antigen use oh-my-zsh
 UNAME=$(uname | tr "[:upper:]" "[:lower:]")
 # If Linux, try to determine specific distribution
 if [ "$UNAME" = "linux" ]; then
-  # If available, use LSB to identify distribution
-  if [ -f /etc/lsb-release -o -d /etc/lsb-release.d ]; then
-    export DISTRO=$(lsb_release -i | cut -d: -f2 | sed s/'^\t'// | tr "[:upper:]" "[:lower:]")
-    # Otherwise, use release de file
-  else
-    export DISTRO=$(ls -d /etc/[A-Za-z]*[_-][rv]e[lr]* | grep -v "lsb" | cut -d'/' -f3 | cut -d'-' -f1 | cut -d'_' -f1 | tr "[:upper:]" "[:lower:]")
-  fi
+    # If available, use LSB to identify distribution
+    if [ -f /etc/lsb-release -o -d /etc/lsb-release.d ]; then
+        export DISTRO=$(lsb_release -i | cut -d: -f2 | sed s/'^\t'// | tr "[:upper:]" "[:lower:]")
+        # Otherwise, use release de file
+    else
+        export DISTRO=$(ls -d /etc/[A-Za-z]*[_-][rv]e[lr]* | grep -v "lsb" | cut -d'/' -f3 | cut -d'-' -f1 | cut -d'_' -f1 | tr "[:upper:]" "[:lower:]")
+    fi
 fi
 
 # For everything else (or if above failed), just use generic identifier
@@ -142,13 +142,13 @@ alias egrep="egrep --color=auto"
 
 # neofetch
 alias neofetch2="neofetch \
-  --config off \
-  --block_range 1 8 \
-  --bold off \
-  --uptime_shorthand on \
-  --gtk_shorthand on \
-  --colors 4 1 8 8 8 7 \
-  "
+    --config off \
+    --block_range 1 8 \
+    --bold off \
+    --uptime_shorthand on \
+    --gtk_shorthand on \
+    --colors 4 1 8 8 8 7 \
+    "
 
 # Public key to clipboard
 alias pubkey="xclip -sel clip < ~/.ssh/id_rsa.pub"
@@ -216,13 +216,13 @@ antigen bundles <<EOBUNDLES
     docker
     extract
     zsh-navigation-tools
-    MichaelAquilina/zsh-autoswitch-virtualenv
     lukechilds/zsh-better-npm-completion
     srijanshetty/zsh-pip-completion
     greymd/docker-zsh-completion
     EslamElHusseiny/aws_manager_plugin
     bobthecow/git-flow-completion
     bobsoppe/zsh-ssh-agent
+    soimort/translate-shell
 EOBUNDLES
 
 # OS specific plugins
@@ -243,7 +243,7 @@ fi
 
 # antigen bundle willghatch/zsh-cdr
 antigen bundle zsh-users/zaw
-# antigen bundle termoshtt/zaw-systemd
+antigen bundle termoshtt/zaw-systemd
 
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
@@ -317,6 +317,11 @@ bindkey -M emacs '^N' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
+
+####################################################################
+# Bundle pre-load requirements
+####################################################################
+
 ####################################################################
 # Load theme & apply Antigen
 ####################################################################
@@ -381,3 +386,7 @@ zstyle ':completion:*' verbose true
 
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+
+####################################################################
+# Various
+####################################################################
