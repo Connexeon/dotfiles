@@ -146,9 +146,6 @@ alias neofetch2="neofetch \
 # Public key to clipboard
 alias pubkey="xclip -sel clip < ~/.ssh/id_rsa.pub"
 
-# Active Python virtual environent
-alias activate=". ../.env/bin/activate"
-
 ####################################################################
 ## FUNCTIONS
 ####################################################################
