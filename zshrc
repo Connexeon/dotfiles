@@ -335,10 +335,11 @@ bindkey -M vicmd 'j' history-substring-search-down
 
 export NNN_COMPLETION=~"/Projects/Life/nnn/scripts/auto-completion/zsh"
 if [ -f $NNN_COMPLETION ]; then
-
-fpath=(
-  $fpath
-)
+  fpath=(
+    $NNN_COMPLETION
+    $fpath
+  )
+fi
 
 ####################################################################
 # Load theme & apply Antigen
