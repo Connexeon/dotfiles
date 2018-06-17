@@ -10,7 +10,7 @@ dotfiles zsh + antigen for DevOps
 
 Or even better, run this oneliner, it checks & installs requirements first.
 
-    curl -sSL https://raw.githubusercontent.com/Connexeon/dotfiles/master/bootstrap | bash -s
+    bash <(curl -sSL http://connexeon.link/dotfiles-bootstrap)
 
 # Requirements
 
