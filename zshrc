@@ -376,9 +376,7 @@ if ! type "nnn" > /dev/null; then
   # OS specific installation steps
   if [[ $DISTRO == 'darwin' ]]; then
   elif [[ $DISTRO == 'centos' || $DISTRO == 'centminmod' ]]; then
-    sudo yum install epel-release -y
-    sudo curl -o /etc/yum.repos.d/konimex-neofetch-epel-7.repo https://copr.fedorainfracloud.org/coprs/konimex/neofetch/repo/epel-7/konimex-neofetch-epel-7.repo
-    sudo yum install nnn -y
+    sudo rpm -i https://github.com/jarun/nnn/releases/download/v1.8/nnn-1.8-1.el7.3.centos.x86_64.rpm
   elif [[ $DISTRO == 'ubuntu' ]]; then
     sudo add-apt-repository ppa:twodopeshaggy/jarun
     sudo apt-get update && sudo apt-get install nnn
