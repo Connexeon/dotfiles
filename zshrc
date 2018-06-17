@@ -45,8 +45,15 @@ source ~/.antigen/antigen.zsh
 POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
 
 if [ -z ${ZSH_CACHE_DIR} ]; then
-  ZSH_CACHE_DIR="${HOME}/.cache"
+    ZSH_CACHE_DIR="${HOME}/.cache"
 fi
+
+# Set PATH so it includes user's private python-pip bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+emulate sh -c 'source /etc/profile'
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
@@ -59,13 +66,13 @@ antigen use oh-my-zsh
 UNAME=$(uname | tr "[:upper:]" "[:lower:]")
 # If Linux, try to determine specific distribution
 if [ "$UNAME" = "linux" ]; then
-  # If available, use LSB to identify distribution
-  if [ -f /etc/lsb-release -o -d /etc/lsb-release.d ]; then
-    export DISTRO=$(lsb_release -i | cut -d: -f2 | sed s/'^\t'// | tr "[:upper:]" "[:lower:]")
-    # Otherwise, use release de file
-  else
-    export DISTRO=$(ls -d /etc/[A-Za-z]*[_-][rv]e[lr]* | grep -v "lsb" | cut -d'/' -f3 | cut -d'-' -f1 | cut -d'_' -f1 | tr "[:upper:]" "[:lower:]")
-  fi
+    # If available, use LSB to identify distribution
+    if [ -f /etc/lsb-release -o -d /etc/lsb-release.d ]; then
+        export DISTRO=$(lsb_release -i | cut -d: -f2 | sed s/'^\t'// | tr "[:upper:]" "[:lower:]")
+        # Otherwise, use release de file
+    else
+        export DISTRO=$(ls -d /etc/[A-Za-z]*[_-][rv]e[lr]* | grep -v "lsb" | cut -d'/' -f3 | cut -d'-' -f1 | cut -d'_' -f1 | tr "[:upper:]" "[:lower:]")
+    fi
 fi
 
 # For everything else (or if above failed), just use generic identifier
@@ -135,13 +142,13 @@ alias egrep="egrep --color=auto"
 
 # neofetch
 alias neofetch2="neofetch \
-  --config off \
-  --block_range 1 8 \
-  --bold off \
-  --uptime_shorthand on \
-  --gtk_shorthand on \
-  --colors 4 1 8 8 8 7 \
-  "
+    --config off \
+    --block_range 1 8 \
+    --bold off \
+    --uptime_shorthand on \
+    --gtk_shorthand on \
+    --colors 4 1 8 8 8 7 \
+    "
 
 # Public key to clipboard
 alias pubkey="xclip -sel clip < ~/.ssh/id_rsa.pub"
@@ -202,19 +209,20 @@ antigen bundles <<EOBUNDLES
     cp
     command-not-found
     autojump
+    dirhistory
     colorize
     common-aliases
     redis-cli
     docker
     extract
     zsh-navigation-tools
-    MichaelAquilina/zsh-autoswitch-virtualenv
     lukechilds/zsh-better-npm-completion
     srijanshetty/zsh-pip-completion
     greymd/docker-zsh-completion
     EslamElHusseiny/aws_manager_plugin
     bobthecow/git-flow-completion
     bobsoppe/zsh-ssh-agent
+    soimort/translate-shell
 EOBUNDLES
 
 # OS specific plugins
@@ -233,44 +241,35 @@ elif [[ $DISTRO == 'cygwin' ]]; then
   antigen bundle cygwin
 fi
 
-antigen bundle willghatch/zsh-cdr
+# antigen bundle willghatch/zsh-cdr
 antigen bundle zsh-users/zaw
 antigen bundle termoshtt/zaw-systemd
 
-source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
 
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down)
-ZSH_AUTOSUGGEST_USE_ASYNC=true
+#ZSH_AUTOSUGGEST_USE_ASYNC=true
 
 ####################################################################
 # KEYBINDING
 ####################################################################
 
-# Use CTRl+T to toggle autosuggestions(hopefully this wont be needed as
-# zsh-autosuggestions is designed to be unobtrusive
-bindkey '^T' autosuggest-toggle
-bindkey '^ ' autosuggest-accept
-
 # Use CTRL+R to search history, CTRL-E to accept selected line from search without entering command yet
 bindkey '^R' zaw-history
-bindkey -M filterselect '^R' down-line-or-history
-bindkey -M filterselect '^S' up-line-or-history
-bindkey -M filterselect '^E' accept-search
-
+zstyle ':filter-select' max-lines 3
 zstyle ':filter-select:highlight' matched fg=green,standout
-#zstyle ':filter-select' max-lines 3
 zstyle ':filter-select' case-insensitive yes # enable case-insensitive
 zstyle ':filter-select' extended-search yes # see below
+zstyle ':filter-select' rotate-list yes # enable rotation for filter-select
+zstyle ':filter-select' hist-find-no-dups yes # ignore duplicates in history source
+zstyle ':filter-select' escape-descriptions no # display literal newlines, not \n, etc
 
-# zstyle ':filter-select:highlight' matched fg=red
-# zstyle ':filter-select' rotate-list yes # enable rotation for filter-select
-# zstyle ':filter-select' case-insensitive yes # enable case-insensitive search
-# zstyle ':filter-select' extended-search yes # see below
-# zstyle ':filter-select' hist-find-no-dups yes # ignore duplicates in history source
-# zstyle ':filter-select' escape-descriptions no # display literal newlines, not \n, etc
-
+#bindkey -M filterselect '^R' down-line-or-history
+#bindkey -M filterselect '^S' up-line-or-history
+#bindkey -M filterselect '^E' accept-search
+#
 # extended-search:
 #     If this style set to be true value, the searching bahavior will be
 #     extended as follows:
@@ -282,8 +281,13 @@ zstyle ':filter-select' extended-search yes # see below
 #
 #     If you want to search these metacharacters, please doubly escape them.
 
+
 # Use CTRL+X to select from other sources than history first (screen sessions, executables, ...)
 bindkey '^X' zaw
+# Use CTRl+T to toggle autosuggestions(hopefully this wont be needed as
+# zsh-autosuggestions is designed to be unobtrusive
+bindkey '^T' autosuggest-toggle
+bindkey '^ ' autosuggest-accept
 
 # Keybindings home/end/...
 bindkey '\e[1~'   beginning-of-line  # Linux console
@@ -299,6 +303,24 @@ bindkey '\eOF'    end-of-line        # gnome-terminal
 zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
+
+# bind UP and DOWN arrow keys (compatibility fallback
+# for Ubuntu 12.04, Fedora 21, and MacOSX 10.9 users)
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+# bind P and N for EMACS mode
+bindkey -M emacs '^P' history-substring-search-up
+bindkey -M emacs '^N' history-substring-search-down
+
+# bind k and j for VI mode
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+
+
+####################################################################
+# Bundle pre-load requirements
+####################################################################
 
 ####################################################################
 # Load theme & apply Antigen
@@ -324,8 +346,9 @@ if ! type "neofetch" > /dev/null; then
   else
     sudo apt-get install neofetch
   fi
+else
+  neofetch
 fi
-neofetch
 
 ####################################################################
 # Local zshrc
@@ -363,3 +386,7 @@ zstyle ':completion:*' verbose true
 
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+
+####################################################################
+# Various
+####################################################################
