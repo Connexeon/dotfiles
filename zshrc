@@ -45,12 +45,12 @@ source ~/.antigen/antigen.zsh
 POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
 
 if [ -z ${ZSH_CACHE_DIR} ]; then
-    ZSH_CACHE_DIR="${HOME}/.cache"
+  ZSH_CACHE_DIR="${HOME}/.cache"
 fi
 
 # Set PATH so it includes user's private python-pip bin if it exists
 if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
+  PATH="$HOME/.local/bin:$PATH"
 fi
 
 emulate sh -c 'source /etc/profile'
@@ -66,13 +66,13 @@ antigen use oh-my-zsh
 UNAME=$(uname | tr "[:upper:]" "[:lower:]")
 # If Linux, try to determine specific distribution
 if [ "$UNAME" = "linux" ]; then
-    # If available, use LSB to identify distribution
-    if [ -f /etc/lsb-release -o -d /etc/lsb-release.d ]; then
-        export DISTRO=$(lsb_release -i | cut -d: -f2 | sed s/'^\t'// | tr "[:upper:]" "[:lower:]")
-        # Otherwise, use release de file
-    else
-        export DISTRO=$(ls -d /etc/[A-Za-z]*[_-][rv]e[lr]* | grep -v "lsb" | cut -d'/' -f3 | cut -d'-' -f1 | cut -d'_' -f1 | tr "[:upper:]" "[:lower:]")
-    fi
+  # If available, use LSB to identify distribution
+  if [ -f /etc/lsb-release -o -d /etc/lsb-release.d ]; then
+    export DISTRO=$(lsb_release -i | cut -d: -f2 | sed s/'^\t'// | tr "[:upper:]" "[:lower:]")
+    # Otherwise, use release de file
+  else
+    export DISTRO=$(ls -d /etc/[A-Za-z]*[_-][rv]e[lr]* | grep -v "lsb" | cut -d'/' -f3 | cut -d'-' -f1 | cut -d'_' -f1 | tr "[:upper:]" "[:lower:]")
+  fi
 fi
 
 # For everything else (or if above failed), just use generic identifier
@@ -97,6 +97,14 @@ export PATH=$PATH:$HOME/bin
 export LESS='--ignore-case --raw-control-chars'
 export PAGER='less'
 export EDITOR='nano'
+
+export NNN_OPENER=xdg-open
+export NNN_OPENER="gio open"
+export NNN_OPENER=gvfs-open
+
+export NNN_USE_EDITOR=1
+export NNN_DE_FILE_MANAGER=nautilus
+export NNN_BMS='doc:~/Documents;D:~/Downloads/'
 
 ####################################################################
 ## ALIAS
@@ -142,16 +150,19 @@ alias egrep="egrep --color=auto"
 
 # neofetch
 alias neofetch2="neofetch \
-    --config off \
-    --block_range 1 8 \
-    --bold off \
-    --uptime_shorthand on \
-    --gtk_shorthand on \
-    --colors 4 1 8 8 8 7 \
-    "
+  --config off \
+  --block_range 1 8 \
+  --bold off \
+  --uptime_shorthand on \
+  --gtk_shorthand on \
+  --colors 4 1 8 8 8 7 \
+  "
 
 # Public key to clipboard
 alias pubkey="xclip -sel clip < ~/.ssh/id_rsa.pub"
+
+# nnn terminal explorer must-have
+alias n='nnn -d'
 
 ####################################################################
 ## FUNCTIONS
@@ -322,6 +333,13 @@ bindkey -M vicmd 'j' history-substring-search-down
 # Bundle pre-load requirements
 ####################################################################
 
+export NNN_COMPLETION=~"/Projects/Life/nnn/scripts/auto-completion/zsh"
+if [ -f $NNN_COMPLETION ]; then
+
+fpath=(
+  $fpath
+)
+
 ####################################################################
 # Load theme & apply Antigen
 ####################################################################
@@ -348,6 +366,25 @@ if ! type "neofetch" > /dev/null; then
   fi
 else
   neofetch
+fi
+
+####################################################################
+# Install nnn
+####################################################################
+if ! type "nnn" > /dev/null; then
+  # OS specific installation steps
+  if [[ $DISTRO == 'darwin' ]]; then
+  elif [[ $DISTRO == 'centos' || $DISTRO == 'centminmod' ]]; then
+    sudo yum install epel-release -y
+    sudo curl -o /etc/yum.repos.d/konimex-neofetch-epel-7.repo https://copr.fedorainfracloud.org/coprs/konimex/neofetch/repo/epel-7/konimex-neofetch-epel-7.repo
+    sudo yum install nnn -y
+  elif [[ $DISTRO == 'ubuntu' ]]; then
+    sudo add-apt-repository ppa:twodopeshaggy/jarun
+    sudo apt-get update && sudo apt-get install nnn
+  elif [[ $DISTRO == 'cygwin' ]]; then
+  else
+    sudo apt-get update && sudo apt-get install nnn
+  fi
 fi
 
 ####################################################################
