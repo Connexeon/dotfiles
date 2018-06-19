@@ -14,5 +14,4 @@
     ~/.config/neofetch/config:            config/neofetch/config.conf
 - shell:
   - ["git submodule update --init --recursive", "Installing/updating submodules"]
-  - ["git submodule update --remote", "Updating remote tracking submodules"]
-  - [(crontab -l 2>/dev/null; echo "0 0 * * * cd ~/.dotfiles && git pull origin master && ./install > /dev/null") | crontab -n, Adding update cron]
+  - ["git submodule foreach 'git checkout master && git pull origin master || :'", "Updating remote tracking submodules"]
