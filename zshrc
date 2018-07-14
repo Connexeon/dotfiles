@@ -110,7 +110,6 @@ export NNN_BMS='doc:~/Documents;D:~/Downloads/'
 ## ALIAS
 ####################################################################
 
-alias updot="cd ~/.dotfiles && git remote set-url origin https://github.com/Connexeon/dotfiles.git && git pull origin master && ./install && source ~/.zshrc"
 alias sudo="sudo "
 
 alias top2="glances"
@@ -179,6 +178,16 @@ function console {
 
 function dig-serials () {
   dig $1 +nssearch | cut -d' ' -f4,11
+}
+
+function updot () {
+  cd ~/.dotfiles
+  git remote set-url origin https://github.com/Connexeon/dotfiles.git
+  git pull origin master
+  ./install
+  upgrade_oh_my_zsh
+  update-submodules
+  source ~/.zshrc
 }
 
 ####################################################################
