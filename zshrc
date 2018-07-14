@@ -181,13 +181,14 @@ function dig-serials () {
 }
 
 function updot () {
-  cd ~/.dotfiles
+  pushd ~/.dotfiles
   git remote set-url origin https://github.com/Connexeon/dotfiles.git
   git pull origin master
   ./install
   upgrade_oh_my_zsh
   update-submodules
-  source ~/.zshrc
+  echo "Relogin or run 'exec zsh' to apply changes"
+  popd
 }
 
 function fix-history () {
