@@ -160,8 +160,8 @@ alias neofetch2="neofetch \
 # Public key to clipboard
 alias pubkey="xclip -sel clip < ~/.ssh/id_rsa.pub"
 
-# nnn terminal explorer must-have
-alias n='nnn -d'
+# alias to nnn terminal explorer in "navigate as you type" mode
+alias n='nnn -i'
 
 ####################################################################
 ## FUNCTIONS
