@@ -378,10 +378,16 @@ if ! type "neofetch" > /dev/null; then
     sudo curl -o /etc/yum.repos.d/konimex-neofetch-epel-7.repo https://copr.fedorainfracloud.org/coprs/konimex/neofetch/repo/epel-7/konimex-neofetch-epel-7.repo
     sudo yum install neofetch -y
   elif [[ $DISTRO == 'ubuntu' ]]; then
-    sudo apt-get install neofetch
+    sudo apt-get install neofetch -y
+    if ! type "neofetch" > /dev/null; then
+      sudo echo "deb http://dl.bintray.com/dawidd6/neofetch stretch main" | sudo tee -a /etc/apt/sources.list
+      sudo curl "https://bintray.com/user/downloadSubjectPublicKey?username=bintray" | sudo apt-key add -
+      sudo apt-get update
+      sudo apt-get install neofetch -y
+    fi
   elif [[ $DISTRO == 'cygwin' ]]; then
   else
-    sudo apt-get install neofetch
+    sudo apt-get install neofetch -y
   fi
 else
   neofetch
