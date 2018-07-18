@@ -377,7 +377,7 @@ if ! type "neofetch" > /dev/null; then
     sudo yum install epel-release -y
     sudo curl -o /etc/yum.repos.d/konimex-neofetch-epel-7.repo https://copr.fedorainfracloud.org/coprs/konimex/neofetch/repo/epel-7/konimex-neofetch-epel-7.repo
     sudo yum install neofetch -y
-  elif [[ $DISTRO == 'ubuntu' ]]; then
+  elif [[ $DISTRO == 'ubuntu' || $DISTRO == 'elementary' ]]; then
     sudo apt-get install neofetch -y
     if ! type "neofetch" > /dev/null; then
       sudo echo "deb http://dl.bintray.com/dawidd6/neofetch stretch main" | sudo tee -a /etc/apt/sources.list
@@ -401,7 +401,7 @@ if ! type "nnn" > /dev/null; then
   if [[ $DISTRO == 'darwin' ]]; then
   elif [[ $DISTRO == 'centos' || $DISTRO == 'centminmod' ]]; then
     sudo rpm -i https://github.com/jarun/nnn/releases/download/v1.8/nnn-1.8-1.el7.3.centos.x86_64.rpm
-  elif [[ $DISTRO == 'ubuntu' ]]; then
+  elif [[ $DISTRO == 'ubuntu' || $DISTRO == 'elementary' ]]; then
     sudo add-apt-repository ppa:twodopeshaggy/jarun
     sudo apt-get update && sudo apt-get install nnn
   elif [[ $DISTRO == 'cygwin' ]]; then
