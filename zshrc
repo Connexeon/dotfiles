@@ -262,7 +262,7 @@ if [[ $DISTRO == 'darwin' ]]; then
   antigen bundle osx
 elif [[ $DISTRO == 'centos' || $DISTRO == 'centminmod' ]]; then
   antigen bundle centos
-elif [[ $DISTRO == 'ubuntu' ]]; then
+elif [[ $DISTRO == 'ubuntu' || $DISTRO == 'elementary' ]]; then
   antigen bundle ubuntu
 elif [[ $DISTRO == 'debian' ]]; then
   antigen bundle ubuntu
