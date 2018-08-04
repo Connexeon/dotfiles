@@ -351,7 +351,7 @@ bindkey -M vicmd 'j' history-substring-search-down
 # Bundle pre-load requirements
 ####################################################################
 
-export NNN_COMPLETION="~/src/nnn/scripts/auto-completion/zsh/_nnn"
+export NNN_COMPLETION="~/src/nnn/scripts/auto-completion/zsh"
 if [ -f $NNN_COMPLETION ]; then
   fpath=(
     $NNN_COMPLETION
