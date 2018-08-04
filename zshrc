@@ -403,10 +403,18 @@ if ! type "nnn" > /dev/null; then
     sudo rpm -i https://github.com/jarun/nnn/releases/download/v1.8/nnn-1.8-1.el7.3.centos.x86_64.rpm
   elif [[ $DISTRO == 'ubuntu' || $DISTRO == 'elementary' ]]; then
     sudo add-apt-repository ppa:twodopeshaggy/jarun
-    sudo apt-get update && sudo apt-get install nnn
-  elif [[ $DISTRO == 'cygwin' ]]; then
+    sudo apt-get update && sudo apt-get -y install nnn
   else
-    sudo apt-get update && sudo apt-get install nnn
+    mkdir -p ~/src
+    sudo apt-get -y install jq libncursesw5-dev libreadline-dev
+    NNN_TARBALL=$( curl -s "https://api.github.com/repos/jarun/nnn/releases/latest" \
+      | jq -r '.assets[] | select(.name | contains(".tar.gz")) | .browser_download_url' )
+    curl -L "$NNN_TARBALL" -o ~/src/nnn.tar.gz
+    pushd ~/src
+    tar xzf nnn.tar.gz && cd nnn
+    make
+    sudo make install
+    popd
   fi
 fi
 
