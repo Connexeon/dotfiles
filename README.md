@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # dotfiles
 
 dotfiles zsh + antigen for DevOps
