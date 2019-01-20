@@ -9,7 +9,6 @@
     ~/.zsh/zsh-history-substring-search:  zsh-history-substring-search
     ~/.zsh/zsh-autosuggestions:           zsh-autosuggestions
     ~/.zsh/zsh-syntax-highlighting:       zsh-syntax-highlighting
-#    /etc/cron.daily/updot:               cron.updot
     ~/.config/neofetch/config.conf:       config/neofetch/config.conf
     ~/.config/neofetch/config:            config/neofetch/config.conf
 - shell:

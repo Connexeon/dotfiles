@@ -163,6 +163,18 @@ alias pubkey="xclip -sel clip < ~/.ssh/id_rsa.pub"
 # alias to nnn terminal explorer in "navigate as you type" mode
 alias n='nnn -i'
 
+# dir aliases
+d='dirs -v | head -10'
+1='cd -'
+2='cd -2'
+3='cd -3'
+4='cd -4'
+5='cd -5'
+6='cd -6'
+7='cd -7'
+8='cd -8'
+9='cd -9'
+
 ####################################################################
 ## FUNCTIONS
 ####################################################################
@@ -351,12 +363,12 @@ bindkey -M vicmd 'j' history-substring-search-down
 # Bundle pre-load requirements
 ####################################################################
 
-export NNN_COMPLETION="~/src/nnn/scripts/auto-completion/zsh"
-if [ -f $NNN_COMPLETION ]; then
-  fpath=(
-    $NNN_COMPLETION
-    $fpath
-  )
+NNN_COMPLETION="~/src/nnn/scripts/auto-completion/zsh"
+if [ -d "$NNN_COMPLETION" ] ; then
+  fpath=($NNN_COMPLETION $fpath)
+  echo "OK"
+else
+  echo "NOPE - $NNN_COMPLETION"
 fi
 
 ####################################################################
@@ -405,15 +417,23 @@ if ! type "nnn" > /dev/null; then
     sudo add-apt-repository ppa:twodopeshaggy/jarun
     sudo apt-get update && sudo apt-get -y install nnn
   else
-    mkdir -p ~/src
+    SRC_DIR="~/src"
+    NNN_TARBALL="nnn.tar.gz"
+    NNN_REPO="jarun/nnn"
+
     sudo apt-get -y install jq libncursesw5-dev libreadline-dev
-    NNN_TARBALL=$( curl -s "https://api.github.com/repos/jarun/nnn/releases/latest" \
+    mkdir -p $SRC_DIR/nnn
+    cd $SRC_DIR
+
+    NNN_TARBALL_LATEST_URL=$( curl -s "https://api.github.com/repos/$NNN_REPO/releases/latest" \
       | jq -r '.assets[] | select(.name | contains(".tar.gz")) | .browser_download_url' )
-    curl -L "$NNN_TARBALL" -o ~/src/nnn.tar.gz
-    pushd ~/src
-    tar xzf nnn.tar.gz && cd nnn
+    curl -L $NNN_TARBALL_LATEST_URL -o $NNN_TARBALL
+    tar xzf $NNN_TARBALL && cd nnn
+
     make
     sudo make install
+
+    popd
     popd
   fi
 fi
