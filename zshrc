@@ -153,7 +153,7 @@ alias neofetch2="neofetch \
   --uptime_shorthand on \
   --gtk_shorthand on \
   --colors 4 1 8 8 8 7 \
-  "
+"
 
 # Public key to clipboard
 alias pubkey="xclip -sel clip < ~/.ssh/id_rsa.pub"
@@ -364,9 +364,9 @@ bindkey -M vicmd 'j' history-substring-search-down
 NNN_COMPLETION="~/src/nnn/scripts/auto-completion/zsh"
 if [ -d "$NNN_COMPLETION" ] ; then
   fpath=($NNN_COMPLETION $fpath)
-  echo "OK"
+  echo "OK added $NNN_COMPLETION"
 else
-  echo "NOPE - $NNN_COMPLETION"
+  # echo "NOPE - $NNN_COMPLETION"
 fi
 
 ####################################################################
