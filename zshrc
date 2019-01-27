@@ -53,8 +53,6 @@ if [ -d "$HOME/.local/bin" ] ; then
   PATH="$HOME/.local/bin:$PATH"
 fi
 
-emulate sh -c 'source /etc/profile'
-
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
 

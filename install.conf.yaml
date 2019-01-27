@@ -5,6 +5,7 @@
   - [mkdir -p ~/.config/neofetch, Creating neofetch directory]
 - link:
     ~/.zshrc:                             zshrc
+    ~/.zprofile:                          zprofile
     ~/.antigen:                           antigen
     ~/.zsh/zsh-history-substring-search:  zsh-history-substring-search
     ~/.zsh/zsh-autosuggestions:           zsh-autosuggestions
