@@ -449,7 +449,7 @@ elif [[ $DISTRO == 'centos' || $DISTRO == 'centminmod' ]]; then
   antigen bundle centos
 elif [[ $DISTRO == 'ubuntu' || $DISTRO == 'elementary' ]]; then
   antigen bundle ubuntu
-elif [[ $DISTRO == 'debian' ]]; then
+elif [[ "${DISTRO#*debian}" != "$DISTRO" ]]; then
   antigen bundle ubuntu
 elif [[ $DISTRO == 'cygwin' ]]; then
   antigen bundle cygwin
