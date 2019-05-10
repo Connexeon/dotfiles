@@ -103,7 +103,6 @@ export NNN_OPENER=gvfs-open
 
 export NNN_USE_EDITOR=1
 export NNN_DE_FILE_MANAGER=nautilus
-export NNN_BMS='doc:~/Documents;D:~/Downloads/'
 
 ####################################################################
 ## ALIAS
