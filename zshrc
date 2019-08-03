@@ -421,7 +421,6 @@ antigen bundles <<EOBUNDLES
     rsync
     cp
     command-not-found
-    autojump
     dirhistory
     colorize
     common-aliases
@@ -436,6 +435,9 @@ antigen bundles <<EOBUNDLES
     bobthecow/git-flow-completion
     bobsoppe/zsh-ssh-agent
     soimort/translate-shell
+    autoupdate-zsh-plugin
+    seletskiy/zsh-git-smart-commands
+    peterhurford/up.zsh
 EOBUNDLES
 
 # OS specific plugins
