@@ -1,18 +1,18 @@
-- clean:                                  ['~']
+- clean: ['~']
 
 - shell:
   - [mkdir -p ~/.zsh, Creating .zsh Directory]
   - [mkdir -p ~/.config/neofetch, Creating neofetch Directory]
 - link:
-    ~/.dotfiles:                          ""
-    ~/.zshrc:                             zshrc
-    ~/.zprofile:                          zprofile
-    ~/.antigen:                           antigen
-    ~/.zsh/zsh-history-substring-search:  zsh-history-substring-search
-    ~/.zsh/zsh-autosuggestions:           zsh-autosuggestions
-    ~/.zsh/zsh-syntax-highlighting:       zsh-syntax-highlighting
-    ~/.config/neofetch/config.conf:       config/neofetch/config.conf
-    ~/.config/neofetch/config:            config/neofetch/config.conf
+    ~/.zshenv: zshenv
+    ~/.zprofile: zprofile
+    ~/.zsh: zsh/
+    ~/.zsh/zsh-history-substring-search: zsh/zsh-history-substring-search
+    ~/.zsh/zsh-autosuggestions: zsh/zsh-autosuggestions
+    ~/.zsh/zsh-syntax-highlighting: zsh/zsh-syntax-highlighting
+    ~/.antigen: antigen
+    ~/.config/neofetch/config.conf: config/neofetch/config.conf
+    ~/.config/neofetch/config: config/neofetch/config.conf
 - shell:
   - ["git submodule update --init --recursive", "Installing/updating submodules"]
   - ["git submodule foreach 'git checkout master && git pull origin master || :'", "Updating remote tracking submodules"]
