@@ -1,9 +1,10 @@
 - clean:                                  ['~']
 
 - shell:
-  - [mkdir -p ~/.zsh, Creating .zsh directory]
-  - [mkdir -p ~/.config/neofetch, Creating neofetch directory]
+  - [mkdir -p ~/.zsh, Creating .zsh Directory]
+  - [mkdir -p ~/.config/neofetch, Creating neofetch Directory]
 - link:
+    ~/.dotfiles:                          ""
     ~/.zshrc:                             zshrc
     ~/.zprofile:                          zprofile
     ~/.antigen:                           antigen
@@ -15,3 +16,4 @@
 - shell:
   - ["git submodule update --init --recursive", "Installing/updating submodules"]
   - ["git submodule foreach 'git checkout master && git pull origin master || :'", "Updating remote tracking submodules"]
+  - ["rm -f ~/.antigen/.zcompdump && rm -f ~/.zcompdump", "ZSH Completions Reset"]

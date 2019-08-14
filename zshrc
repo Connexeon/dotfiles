@@ -81,14 +81,20 @@ unset UNAME
 ####################################################################
 ## EXPORT
 ####################################################################
+## History file configuration
+[ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
+HISTSIZE=50000
+SAVEHIST=10000
 
-setopt HIST_IGNORE_ALL_DUPS
+## History command configuration
+setopt extended_history       # record timestamp of command in HISTFILE
+setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
+setopt hist_ignore_dups       # ignore duplicated commands history list
+setopt hist_ignore_space      # ignore commands that start with space
+setopt hist_verify            # show command with history expansion to user before running it
+setopt inc_append_history     # add commands to HISTFILE in order of execution
+setopt share_history          # share command history data
 
-# change the size of history files
-export HISTSIZE=32768;
-export HISTFILESIZE=$HISTSIZE;
-export SAVEHIST=$HISTSIZE;
-export HISTTIMEFORMAT="[%d.%m.%y] %T   "
 export TERM="xterm-256color"
 export CLICOLOR=1
 export PATH=$PATH:$HOME/bin
@@ -625,7 +631,6 @@ fi
 # Use modern completion system
 ####################################################################
 
-export ANTIGEN_COMPDUMP=~/.antigen/.zcompdump
 
 autoload -Uz compinit
 compinit
@@ -636,7 +641,6 @@ zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
 eval "$(dircolors -b)"
-#eval $( dircolors -b $HOME/LS_COLORS )
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
