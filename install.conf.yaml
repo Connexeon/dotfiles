@@ -15,6 +15,7 @@
       path: zsh/*
       relink: true
     ~/.antigen:
+    ~/.oh-my-zsh:
     ~/.fzf:
     ~/.fzf.zsh: zsh/fzf.zsh
     ~/.config/neofetch/config.conf: config/neofetch/config.conf
