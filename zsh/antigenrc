@@ -1,0 +1,95 @@
+####################################################################
+## Antigen
+####################################################################
+
+antigen use oh-my-zsh
+
+antigen bundles <<EOBUNDLES
+  # DimitriSteyaert/Zsh-tugboat
+  # laravel
+  # laravel5
+  # symfony2
+  autoupdate-zsh-plugin
+  bobsoppe/zsh-ssh-agent
+  bobthecow/git-flow-completion
+  chrissicool/zsh-256color
+  colorize
+  command-not-found
+  common-aliases
+  compleat
+  cp
+  dirhistory
+  djui/alias-tips
+  docker
+  EslamElHusseiny/aws_manager_plugin
+  extract
+  git
+  git-extras
+  git-flow
+  greymd/docker-zsh-completion
+  history
+  lukechilds/zsh-better-npm-completion
+  mafredri/zsh-async
+  n98-magerun
+  nmap
+  npm
+  peterhurford/up.zsh
+  pip
+  redis-cli
+  rsync
+  seletskiy/zsh-git-smart-commands
+  skx/sysadmin-util
+  soimort/translate-shell
+  srijanshetty/zsh-pip-completion
+  supercrabtree/k
+  systemadmin
+  systemd
+  Tarrasch/zsh-autoenv
+  thefuck
+  unixorn/autoupdate-antigen.zshplugin
+  vagrant
+  voronkovich/mysql.plugin.zsh
+  web-search
+  z
+  zsh-navigation-tools
+  zsh-users/zsh-completions
+  # xgarrido/zsh-utilities
+EOBUNDLES
+
+# antigen bundle trapd00r/zsh-syntax-highlighting-filetypes
+
+# OS specific plugins
+if [[ $DISTRO == 'darwin' ]]; then
+  antigen bundle brew
+  antigen bundle brew-cask
+  antigen bundle gem
+  antigen bundle osx
+elif [[ $DISTRO == 'centos' || $DISTRO == 'centminmod' ]]; then
+  antigen bundle centos
+  antigen bundle yum
+elif [[ $DISTRO == 'ubuntu' || $DISTRO == 'elementary' ]]; then
+  antigen bundle ubuntu
+elif [[ $DISTRO == 'debian' ]]; then
+  antigen bundle ubuntu
+elif [[ $DISTRO == 'cygwin' ]]; then
+  antigen bundle cygwin
+fi
+
+# antigen bundle willghatch/zsh-cdr
+antigen bundle zsh-users/zaw
+antigen bundle termoshtt/zaw-systemd
+
+# source ~/.zsh/submodules/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+# source ~/.zsh/submodules/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+# source ~/.zsh/submodules/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
+#
+# ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down)
+# #ZSH_AUTOSUGGEST_USE_ASYNC=true
+
+####################################################################
+# Load theme & apply Antigen
+####################################################################
+# Load theme
+antigen theme bhilburn/powerlevel9k powerlevel9k
+# Tell antigen that you're done.
+antigen apply

@@ -4,16 +4,21 @@
   - [mkdir -p ~/.zsh, Creating .zsh Directory]
   - [mkdir -p ~/.config/neofetch, Creating neofetch Directory]
 - link:
-    ~/.zshenv: zshenv
-    ~/.zprofile: zprofile
-    ~/.zsh: zsh/
-    ~/.zsh/zsh-history-substring-search: zsh/zsh-history-substring-search
-    ~/.zsh/zsh-autosuggestions: zsh/zsh-autosuggestions
-    ~/.zsh/zsh-syntax-highlighting: zsh/zsh-syntax-highlighting
-    ~/.antigen: antigen
+    ~/.zshenv: zsh/zshenv
+    ~/.zprofile: zsh/zprofile
+    ~/.antigenrc: zsh/antigenrc
+    ~/.zshrc:
+      force: true
+      path: zsh/zshrc
+    ~/.zsh/:
+      glob: true
+      path: zsh/*
+      relink: true
+    ~/.antigen:
     ~/.config/neofetch/config.conf: config/neofetch/config.conf
     ~/.config/neofetch/config: config/neofetch/config.conf
 - shell:
   - ["git submodule update --init --recursive", "Installing/updating submodules"]
   - ["git submodule foreach 'git checkout master && git pull origin master || :'", "Updating remote tracking submodules"]
-  - ["rm -f ~/.antigen/.zcompdump && rm -f ~/.zcompdump", "ZSH Completions Reset"]
+  - ["rm -f ~/.zcompdump*", "ZSH Completions Reset"]
+  - ["rm -f ~/.antigen/.zcompdump*", "ZSH Completions Reset (Antigen)"]
