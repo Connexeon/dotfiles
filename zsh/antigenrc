@@ -23,6 +23,7 @@ antigen bundles <<EOBUNDLES
   docker
   EslamElHusseiny/aws_manager_plugin
   extract
+  fzf
   git
   git-extras
   git-flow
