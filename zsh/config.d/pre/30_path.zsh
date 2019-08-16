@@ -3,14 +3,11 @@
 ####################################################################
 
 ## Include these dirs in $PATH if they exist
-if [ -d "$HOME/bin" ]; then
-  export PATH="$HOME/bin:$PATH"
-fi
+_path_include=($HOME/bin $HOME/.local/bin $HOME/.dotfiles/bin)
 
-if [ -d "$HOME/.local/bin" ] ; then
-  export PATH="$HOME/.local/bin:$PATH"
-fi
+for _path in $_path_include ; do
 
-if [ -d "$HOME/.dotfiles/bin" ]; then
-  export PATH="$HOME/.dotfiles/bin:$PATH"
-fi
+  if [ -e $_path ]; then
+    path+=$_path
+  fi
+done
