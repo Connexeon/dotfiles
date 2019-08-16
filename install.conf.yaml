@@ -19,11 +19,13 @@
     ~/.oh-my-zsh:
       force: true
     ~/.fzf:
+      force: true
     ~/.fzf.zsh: zsh/fzf.zsh
+      force: true
     ~/.config/neofetch/config.conf: config/neofetch/config.conf
     ~/.config/neofetch/config: config/neofetch/config.conf
 - shell:
   - ["git submodule update --init --recursive", "Installing/updating submodules"]
   - ["git submodule foreach 'git checkout master && git pull origin master || :'", "Updating remote tracking submodules"]
   - ["rm -f ~/.zcompdump*", "ZSH Completions Reset"]
-  - ["rm -f ~/.antigen/.zcompdump*", "ZSH Completions Reset (Antigen)"]
+
