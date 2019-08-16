@@ -1,8 +1,11 @@
 ####################################################################
 # Install exa - A modern version of ‘ls’
 ####################################################################
-if !(( $+commands[exa] )); then
-  echo "Installing exa - a modern version of 'ls'"
+CMD=exa
+CMDTITLE="A modern version of ‘ls’"
+
+if !(( $+commands[$CMD] )); then
+  echo "Installing $CMD - $CMDTITLE"
 
   # OS specific installation steps
   case "$DISTRO" in
@@ -11,7 +14,7 @@ if !(( $+commands[exa] )); then
       echo " OK"
       ;;
     *)
-      echo "No install procedure for your OS available."
+      echo "No install procedure for $CMD for your OS/distro available, please install manually."
       ;;
   esac
 fi

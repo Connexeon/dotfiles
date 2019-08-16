@@ -1,8 +1,11 @@
 ####################################################################
 # Install fd - A simple, fast and user-friendly alternative to 'find'
 ####################################################################
-if !(( $+commands[fdfind] )); then
-  echo "Installing fd"
+CMD=fdfind
+CMDTITLE="A simple, fast and user-friendly alternative to 'find'"
+
+if !(( $+commands[$CMD] )); then
+  echo "Installing $CMD - $CMDTITLE"  echo "Installing fd"
 
   # OS specific installation steps
   case "$DISTRO" in
