@@ -1,44 +1,32 @@
 ####################################################################
-# Get System Info
+# Detect OS & distribution
 ####################################################################
-#
-# # Determine OS platform
-# UNAME=$(uname | tr "[:upper:]" "[:lower:]")
-# # If Linux, try to determine specific distribution
-# if [ "$UNAME" = "linux" ]; then
-#   # If available, use LSB to identify distribution
-#   if [ -f /etc/lsb-release -o -d /etc/lsb-release.d ]; then
-#     export DISTRO=$(lsb_release -i | cut -d: -f2 | sed s/'^\t'// | tr "[:upper:]" "[:lower:]")
-#     # Otherwise, use release de file
-#   else
-#     export DISTRO=$(ls -d /etc/[A-Za-z]*[_-][rv]e[lr]* | grep -v "lsb" | cut -d'/' -f3 | cut -d'-' -f1 | cut -d'_' -f1 | tr "[:upper:]" "[:lower:]")
-#   fi
-# fi
-#
-# # For everything else (or if above failed), just use generic identifier
-# [ "$DISTRO" = "" ] && export DISTRO=$UNAME
-# unset UNAME
-
 
 # OS detection
 case $(uname) in
     Darwin)
       OS='OSX'
+      DISTRO='osx'
       ;;
     CYGWIN_NT-* | MSYS_NT-*)
       OS='Windows'
+      DISTRO='windows'
       ;;
     FreeBSD)
       OS='BSD'
+      DISTRO='freebsd'
       ;;
     OpenBSD)
       OS='BSD'
+      DISTRO='openbsd'
       ;;
     DragonFly)
       OS='BSD'
+      DISTRO='dragonfly'
       ;;
     Linux)
       OS='Linux'
+      # Detect distribution
       if [ -f /etc/os-release ]; then
         [[ ${(f)"$((</etc/os-release) 2>/dev/null)"} =~ "ID=([A-Za-z]+)" ]] && os_release_id="${match[1]}"
       fi
