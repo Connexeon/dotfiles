@@ -4,7 +4,7 @@
 
 # Setup fzf
 if [[ ! "$PATH" == *$HOMR/.fzf/bin* ]]; then
-  export PATH="${PATH:+${PATH}:}~/.fzf/bin"
+  export PATH="${PATH:+${PATH}:}$HOME/.fzf/bin"
 fi
 
 # Auto-completion
