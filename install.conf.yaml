@@ -19,7 +19,9 @@
     ~/.oh-my-zsh:
       force: true
     ~/.fzf:
+      force: true
     ~/.fzf.zsh: zsh/fzf.zsh
+      force: true
     ~/.config/neofetch/config.conf: config/neofetch/config.conf
     ~/.config/neofetch/config: config/neofetch/config.conf
 - shell:
