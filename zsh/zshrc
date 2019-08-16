@@ -38,9 +38,7 @@ _load_config() {
           ;;
       esac
     done
-    # Initialize antigen
-    . ~/.antigen/antigen.zsh
-    antigen init ~/.antigenrc
+
     if [ -d "$_dir/post" ]; then
       for config in "$_dir"/post/**/*~*.zwc(N-.); do
         . $config
@@ -50,9 +48,11 @@ _load_config() {
 }
 _load_config "$HOME/.dotfiles/zsh/configs"
 
-
+# Initialize antigen
+. ~/.antigen/antigen.zsh
+antigen init ~/.antigenrc
 
 # Local config
-[[ -f ~/.zshrc_local ]] && . ~/.zshrc_local
+[ -f ~/.zshrc_local ] && . ~/.zshrc_local
 
-[ -e ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -e ~/.fzf.zsh ] && . ~/.fzf.zsh
