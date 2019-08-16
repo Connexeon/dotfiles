@@ -31,8 +31,9 @@ for _dir in $_dir_functiond $_dir_aliasd $_dir_configd/pre $_dir_configd $_dir_c
 
 done
 
-# Load local zshc config
-[ -f $HOME/.zshrc_local ] && . $HOME/.zshrc_local
+_conf_zshrc_local = $HOME/.zshrc_local
+_conf_fzf = $HOME/.fzf.zsh
 
-# Load fzf config
-[ -e $HOME/.fzf.zsh ] && . $HOME/.fzf.zsh
+for _conf in $_conf_zshrc_local $_conf_fzf; do
+  [ -e $_conf ] && . $_conf
+done
