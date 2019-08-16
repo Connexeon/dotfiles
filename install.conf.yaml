@@ -28,4 +28,3 @@
   - ["git submodule update --init --recursive", "Installing/updating submodules"]
   - ["git submodule foreach 'git checkout master && git pull origin master || :'", "Updating remote tracking submodules"]
   - ["rm -f ~/.zcompdump*", "ZSH Completions Reset"]
-

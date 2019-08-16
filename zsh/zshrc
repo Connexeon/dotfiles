@@ -17,6 +17,10 @@ done
 export ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
+# Initialize antigen
+. ~/.antigen/antigen.zsh
+antigen init ~/.antigenrc
+
 # Loads config files present in ~/.zsh/configs/pre, ~/.zsh/configs, and ~/.zsh/configs/post
 # These are loaded first, second, and third, respectively.
 _load_config() {
@@ -47,10 +51,6 @@ _load_config() {
   fi
 }
 _load_config "$HOME/.dotfiles/zsh/configs"
-
-# Initialize antigen
-. ~/.antigen/antigen.zsh
-antigen init ~/.antigenrc
 
 # Local config
 [ -f ~/.zshrc_local ] && . ~/.zshrc_local
