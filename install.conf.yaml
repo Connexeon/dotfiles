@@ -1,30 +1,37 @@
-- clean: ['~']
+- clean: ["~"]
 
 - shell:
-  - [mkdir -p ~/.zsh, Creating .zsh Directory]
-  - [mkdir -p ~/.config/neofetch, Creating neofetch Directory]
+        - [mkdir -p ~/.zsh, Creating .zsh Directory]
+        - [mkdir -p ~/.config/neofetch, Creating neofetch Directory]
 - link:
-    ~/.zshenv: zsh/zshenv
-    ~/.zprofile: zsh/zprofile
-    ~/.antigenrc: zsh/antigenrc
-    ~/.zshrc:
-      force: true
-      path: zsh/zshrc
-    ~/.zsh/:
-      glob: true
-      path: zsh/*
-      relink: true
-    ~/.antigen:
-      force: true
-    ~/.oh-my-zsh:
-      force: true
-    ~/.fzf:
-      force: true
-    ~/.fzf.zsh: zsh/fzf.zsh
-      force: true
-    ~/.config/neofetch/config.conf: config/neofetch/config.conf
-    ~/.config/neofetch/config: config/neofetch/config.conf
+        ~/.zshenv: zsh/zshenv
+        ~/.zprofile: zsh/zprofile
+        ~/.antigenrc: zsh/antigenrc
+        ~/.zshrc:
+              force: true
+              path: zsh/zshrc
+        ~/.zsh/:
+              glob: true
+              path: zsh/*
+              relink: true
+        ~/.antigen:
+              force: true
+        ~/.oh-my-zsh:
+              force: true
+        ~/.fzf:
+              force: true
+        ~/.fzf.zsh:
+              force: true
+              path: zsh/fzf.zsh
+        ~/.config/neofetch/config.conf: config/neofetch/config.conf
+        ~/.config/neofetch/config: config/neofetch/config.conf
 - shell:
-  - ["git submodule update --init --recursive", "Installing/updating submodules"]
-  - ["git submodule foreach 'git checkout master && git pull origin master || :'", "Updating remote tracking submodules"]
-  - ["rm -f ~/.zcompdump*", "ZSH Completions Reset"]
+        - [
+                "git submodule update --init --recursive",
+                "Installing/updating submodules",
+          ]
+        - [
+                "git submodule foreach 'git checkout master && git pull origin master || :'",
+                "Updating remote tracking submodules",
+          ]
+        - ["rm -f ~/.zcompdump*", "ZSH Completions Reset"]

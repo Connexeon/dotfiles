@@ -1,14 +1,13 @@
 ####################################################################
-# Install thefuck - A modern version of ‘ls’
+# Install exa - A modern version of ‘ls’
 ####################################################################
-if ! (( $+commands[fuck] )); then
-  echo "Installing thefuck"
+if !(( $+commands[exa] )); then
+  echo "Installing exa - a modern version of 'ls'"
 
   # OS specific installation steps
   case "$DISTRO" in
     debian|ubuntu|elementary|mint)
-    sudo apt install -y python3-dev python3-pip python3-setuptools >/dev/null 2>&1
-    sudo -H pip3 install thefuck >/dev/null 2>&1
+    sudo apt-get -y install exa librust-exa+git\*-dev >/dev/null 2>&1
     echo " OK"
     ;;
     *)

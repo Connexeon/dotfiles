@@ -30,7 +30,6 @@ if ! (( $+commands[nnn] )); then
     sudo make install
 
     popd
-    popd
     ;;
 
   esac

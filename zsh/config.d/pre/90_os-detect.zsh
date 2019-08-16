@@ -1,6 +1,14 @@
+# set -x
+
 ####################################################################
 # Detect OS & distribution
 ####################################################################
+
+# echo "Detect os/distro/arch"
+
+# Architecture
+ARCH=$(uname -m)
+ARCH2=$(dpkg --print-architecture)
 
 # OS detection
 case $(uname) in
@@ -108,3 +116,5 @@ case $(uname) in
       DISTRO=''
       ;;
 esac
+
+echo "OS: $OS / DISTRO: $DISTRO / ARCH: $ARCH|$ARCH2"
