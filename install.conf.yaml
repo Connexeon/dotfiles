@@ -2,6 +2,7 @@
 
 - shell:
         - [mkdir -p ~/.zsh, Creating .zsh Directory]
+        - [mkdir -p ~/bin, Creating bin Directory]
         - [mkdir -p ~/.config/neofetch, Creating neofetch Directory]
 - link:
         ~/.zshenv: zsh/zshenv
@@ -10,6 +11,10 @@
         ~/.zshrc:
               force: true
               path: zsh/zshrc
+        ~/bin/:
+              glob: true
+              path: bin/*
+              relink: true
         ~/.zsh/:
               glob: true
               path: zsh/*

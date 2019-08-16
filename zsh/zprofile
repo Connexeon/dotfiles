@@ -1,2 +1,2 @@
-emulate sh -c '. ~/.profile'
+emulate sh -c '. $HOME/.profile'
 #emulate sh -c 'source /etc/profile'

@@ -51,7 +51,8 @@ if [[ !(( $+commands[$CMD] )) && !($DOTFILES_NEOFETCH_DISABLED) ]]; then
 fi
 
 ## If command exists: run it
-if (( $+commands[$CMD] )) ; then
+if (( $+commands[neofetch] )) ; then
+  echo " " # line spacer
   neofetch
 else
   export DOTFILES_NEOFETCH_DISABLED=1
