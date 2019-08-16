@@ -7,11 +7,18 @@ if !(( $+commands[exa] )); then
   # OS specific installation steps
   case "$DISTRO" in
     debian|ubuntu|elementary|mint)
-    sudo apt-get -y install exa librust-exa+git\*-dev >/dev/null 2>&1
-    echo " OK"
-    ;;
+      sudo apt-get -y install exa librust-exa+git\*-dev >/dev/null 2>&1
+      echo " OK"
+      ;;
     *)
-    echo "No install procedure for your OS available."
-    ;;
+      echo "No install procedure for your OS available."
+      ;;
   esac
+fi
+
+# Load if command exists
+if (( $+commands[$CMD] )); then
+
+else
+
 fi

@@ -1,7 +1,11 @@
 ####################################################################
-# Install nnn
+# Install nnn - The missing terminal file manager for X
 ####################################################################
-if ! (( $+commands[nnn] )); then
+CMD=nnn
+CMDTITLE="The missing terminal file manager for X"
+
+if !(( $+commands[$CMD] )); then
+  echo "Installing $CMD - $CMDTITLE"
   # OS specific installation steps
   case "$DISTRO" in
     ubuntu|elementary)
@@ -31,6 +35,19 @@ if ! (( $+commands[nnn] )); then
 
     popd
     ;;
-
   esac
+fi
+
+# Load if command exists
+if (( $+commands[$CMD] )); then
+
+  export NNN_OPENER=xdg-open
+  export NNN_OPENER="gio open"
+  export NNN_OPENER=gvfs-open
+
+  export NNN_USE_EDITOR=1
+  export NNN_DE_FILE_MANAGER=nautilus
+
+else
+
 fi

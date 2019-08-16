@@ -11,15 +11,22 @@ if !(( $+commands[$CMD] )); then
   # OS specific installation steps
   case "$DISTRO" in
     debian|ubuntu|elementary|mint)
-    BAT_FILE_NAME=bat_$LATEST_BAT_VERSION'_'$ARCH2'.deb'
-    echo $BAT_FILE_NAME
-    wget https://github.com/sharkdp/bat/releases/download/v$LATEST_BAT_VERSION/$BAT_FILE_NAME >/dev/null 2>&1
-    sudo dpkg -i $BAT_FILE_NAME >/dev/null 2>&1
-    rm -f $BAT_FILE_NAME >/dev/null 2>&1
-    echo " OK"
-    ;;
+      BAT_FILE_NAME=bat_$LATEST_BAT_VERSION'_'$ARCH2'.deb'
+      echo $BAT_FILE_NAME
+      wget https://github.com/sharkdp/bat/releases/download/v$LATEST_BAT_VERSION/$BAT_FILE_NAME >/dev/null 2>&1
+      sudo dpkg -i $BAT_FILE_NAME >/dev/null 2>&1
+      rm -f $BAT_FILE_NAME >/dev/null 2>&1
+      echo " OK"
+      ;;
     *)
-    echo "No install procedure for $CMD for your OS/distro available, please install manually."
-    ;;
+      echo "No install procedure for $CMD for your OS/distro available, please install manually."
+      ;;
   esac
+fi
+
+# Load if command exists
+if (( $+commands[$CMD] )); then
+
+else
+
 fi

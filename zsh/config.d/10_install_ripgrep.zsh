@@ -1,8 +1,12 @@
 ####################################################################
 # Install ripgrep - A fast command-line search tool
 ####################################################################
+CMD=ripgrep
+CMDTITLE="A fast command-line search tool"
+
+if !(( $+commands[$CMD] )); then
 if !(( $+commands[rg] )); then
-  echo "Installing ripgrep - A fast command-line search tool"
+  echo "Installing $CMD - $CMDTITLE"
 
   # OS specific installation steps
   case "$DISTRO" in
@@ -11,7 +15,13 @@ if !(( $+commands[rg] )); then
     echo " OK"
     ;;
     *)
-    echo "No install procedure for your OS available."
+    echo "No install procedure for $CMD for your OS/distro available, please install manually."
     ;;
   esac
+fi
+
+
+# Load if command exists
+if (( $+commands[$CMD] )); then
+
 fi
