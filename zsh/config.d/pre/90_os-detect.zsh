@@ -1,16 +1,14 @@
-# set -x
-
 ####################################################################
 # Detect OS & distribution
 ####################################################################
 
-# echo "Detect os/distro/arch"
+# set -x
 
 # Architecture
 ARCH=$(uname -m)
 ARCH2=$(dpkg --print-architecture)
 
-# OS detection
+# OS/distro detection
 case $(uname) in
     Darwin)
       OS='OSX'
@@ -117,4 +115,4 @@ case $(uname) in
       ;;
 esac
 
-echo "OS: $OS / DISTRO: $DISTRO / ARCH: $ARCH|$ARCH2"
+# echo "OS: $OS / DISTRO: $DISTRO / ARCH: $ARCH|$ARCH2"

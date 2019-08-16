@@ -1,22 +1,12 @@
 # Uncomment to activate debugging from here
+# set -x
 
 if [ -z $ZSH_CACHE_DIR ]; then
   ZSH_CACHE_DIR=~/.cache
 fi
-#
-# # Load functions from all present files in ~/.zsh/functions
-# for function in /.zsh/functions/*; do
-#   . $function
-# done
-#
-# # Load aliases from all present files in ~/.zsh/aliases
-# for alias in ~/.zsh/aliases/*; do
-#   . $alias
-# done
 
-# Path to oh-my-zsh
-export ZSH=$HOME/.oh-my-zsh
 # Load oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 . $ZSH/oh-my-zsh.sh
 
 # Load antigen
@@ -26,26 +16,18 @@ antigen init $HOME/.antigenrc
 # Loads config files present in ~/.zsh/configs/pre, ~/.zsh/configs, and ~/.zsh/configs/post
 # These are loaded first, second, and third, respectively.
 
-# set -e
-
 _dir_functiond=$HOME/.zsh/function.d
 _dir_aliasd=$HOME/.zsh/alias.d
 _dir_configd=$HOME/.zsh/config.d
 
 for _dir in $_dir_functiond $_dir_aliasd $_dir_configd/pre $_dir_configd $_dir_configd/post; do
-  # set -e
 
-  echo "loading $_dir"
-  read KEY\?"Hit any key to load next"
-
-  # if [ -d $_dir ]; then
-  echo "OK $_dir"
-  # Load each .zsh file in $_dir, if $_dir exists or is symbolic link
-  for config in $_dir/*.zsh; do
-    . $config
-    echo "file $config loaded"
-  done
-# fi
+  if [ -d $_dir ]; then
+    # Load each .zsh file in $_dir, if $_dir exists or is symbolic link
+    for config in $_dir/*.zsh; do
+      . $config
+    done
+  fi
 
 done
 
