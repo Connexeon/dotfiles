@@ -55,4 +55,4 @@ _load_config "$HOME/.dotfiles/zsh/configs"
 # Local config
 [[ -f ~/.zshrc_local ]] && . ~/.zshrc_local
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -e ~/.fzf.zsh ] && source ~/.fzf.zsh

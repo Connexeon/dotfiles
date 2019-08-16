@@ -1,7 +1,7 @@
 ####################################################################
 # Install fzf - a general-purpose command-line fuzzy finder
 ####################################################################
-if ! type "fzf" > /dev/null; then
+if ! (( $+commands[fzf] )); then
   echo "Installing fzf - a general-purpose command-line fuzzy finder"
-  ~/.fzf/install 2>&1
+  ~/.fzf/install --no-key-bindings --no-completion --no-update-rc 2>&1
 fi
