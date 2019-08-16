@@ -1,5 +1,3 @@
-
-
 # Awesome cd movements from zshkit
 setopt AUTO_CD
 setopt AUTO_PUSHD
@@ -11,7 +9,6 @@ DIRSTACKSIZE=5
 
 # Enable extended globbing
 setopt EXTENDED_GLOB
-setopt extendedglob
 
 # Allow [ or ] whereever you want
 unsetopt NOMATCH
