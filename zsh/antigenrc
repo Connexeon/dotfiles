@@ -80,11 +80,11 @@ fi
 antigen bundle zsh-users/zaw
 antigen bundle termoshtt/zaw-systemd
 
-# source ~/.zsh/submodules/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
-# source ~/.zsh/submodules/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
-# source ~/.zsh/submodules/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
-#
-# ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down)
+source ~/.zsh/submodules/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+source ~/.zsh/submodules/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+source ~/.zsh/submodules/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
+
+ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down)
 # #ZSH_AUTOSUGGEST_USE_ASYNC=true
 
 ####################################################################
