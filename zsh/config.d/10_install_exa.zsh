@@ -11,7 +11,6 @@ if (( ! $+commands[$CMD] )); then
   case "$DISTRO" in
     debian|raspbian|ubuntu|elementary|mint)
       sudo apt-get -y install exa librust-exa+git\*-dev >/dev/null 2>&1 && printf "$OK" || ( printf " $FL" ; exit -1 )
-      echo " OK"
       ;;
     *)
       echo "No install procedure for $CMD for your OS/distro available, please install manually."

@@ -2,7 +2,7 @@
 # Install fd - A simple, fast and user-friendly alternative to 'find'
 ####################################################################
 CMD="fdfind"
-CMDTITLE="A simple, fast and user-friendly alternative to 'find''"
+CMDTITLE="A simple, fast and user-friendly alternative to 'find'"
 
 if (( ! $+commands[$CMD] )); then
   echo "Installing $CMD - $CMDTITLE"
