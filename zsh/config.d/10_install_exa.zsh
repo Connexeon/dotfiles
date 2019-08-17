@@ -1,16 +1,16 @@
 ####################################################################
 # Install exa - A modern version of ‘ls’
 ####################################################################
-CMD=exa
-CMDTITLE="A modern version of ‘ls’"
+CMD="exa"
+CMDTITLE="A modern version of 'ls'"
 
-if !(( $+commands[$CMD] )); then
+if (( ! $+commands[$CMD] )); then
   echo "Installing $CMD - $CMDTITLE"
 
   # OS specific installation steps
   case "$DISTRO" in
     debian|ubuntu|elementary|mint)
-      sudo apt-get -y install exa librust-exa+git\*-dev >/dev/null 2>&1
+      sudo apt-get -y install exa librust-exa+git\*-dev >/dev/null 2>&1 && printf "$OK" || ( printf " $FL" ; exit -1 )
       echo " OK"
       ;;
     *)

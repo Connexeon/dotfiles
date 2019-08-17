@@ -1,13 +1,13 @@
 ####################################################################
 # Install fzf - a general-purpose command-line fuzzy finder
 ####################################################################
-CMD=fzf
+CMD="fzf"
 CMDTITLE="Installing fzf - a general-purpose command-line fuzzy finder"
 
-if !(( $+commands[$CMD] )); then
+if (( ! $+commands[$CMD] )); then
   echo "Installing $CMD - $CMDTITLE"
-  $HOME/.fzf/install --no-key-bindings --no-completion --no-update-rc && echo " OK"
-  # >/dev/null 2>&1
+
+  $HOME/.fzf/install --no-key-bindings --no-completion --no-update-rc >/dev/null 2>&1 && printf "$OK" || ( printf " $FL" ; exit -1 )
 
 fi
 

@@ -1,10 +1,10 @@
 ####################################################################
 # Install ripgrep - A fast command-line search tool
 ####################################################################
-CMD=ripgrep
-CMDTITLE="A fast command-line search tool"
+CMD="rg"
+CMDTITLE="ripgrep, a fast command-line search tool"
 
-if !(( $+commands[$CMD] )); then
+if (( ! $+commands[$CMD] )); then
   echo "Installing $CMD - $CMDTITLE"
 
   # OS specific installation steps
