@@ -40,3 +40,4 @@
                 "Updating remote tracking submodules",
           ]
         - ["rm -f ~/.zcompdump*", "ZSH Completions Reset"]
+        - ["rm -rf ~/.zsh-autosuggestions ~/.zsh-history-substring-search ~/.zsh-syntax-highlighting", "Remove Obsolete Submodules"]
