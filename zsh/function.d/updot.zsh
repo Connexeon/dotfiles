@@ -6,6 +6,6 @@ function updot () {
   upgrade_oh_my_zsh >/dev/null 2>&1 ; \
   antigen selfupdate >/dev/null 2>&1 ; \
   update-submodules >/dev/null 2>&1 ; \
-  ./install >/dev/null 2>&1 && printf "$OK Reconnect session or run 'exec zsh' to apply\n" || ( printf " $FL" ; exit -1 )
+  ./install >/dev/null 2>&1 && printf "$OK Reconnect session or run 'exec zsh' to apply\n" || ( printf "$FL" ; exit -1 )
   popd
 }

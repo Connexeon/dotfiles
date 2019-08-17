@@ -9,9 +9,9 @@ if (( ! $+commands[$CMD] )); then
 
   # OS specific installation steps
   case "$DISTRO" in
-    # debian|ubuntu|elementary|mint)
-    #   sudo apt-get -y install exa librust-exa+git\*-dev >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
-    #   ;;
+    debian|ubuntu|elementary|mint)
+      sudo apt-get -y install exa librust-exa+git\*-dev >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
+      ;;
     osx)
       brew install exa >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
       ;;
@@ -32,13 +32,12 @@ if (( ! $+commands[$CMD] )); then
       ;;
     *)
       if [[ $OS = "Linux" ]] ; then
-        # Download Linux binary and move it into /usr/local/bin
+        # Download Linux binary and copy it into /usr/local/bin
         TMP_DIR=$(mktemp -d)
         EXA_ZIP="exa-linux-x86_64-latest.zip"
         EXA_REPO="ogham/exa"
         EXA_ZIP_LATEST_URL=$( curl -s "https://api.github.com/repos/$EXA_REPO/releases/latest" \
           | jq -r '.assets[] | select(.name | contains("exa-linux-x86_64")) | .browser_download_url' ) ; \
-
         curl -L $EXA_ZIP_LATEST_URL -o $TMP_DIR/$EXA_ZIP >/dev/null 2>&1 ; \
         unzip $TMP_DIR/$EXA_ZIP -d $TMP_DIR && sudo cp $TMP_DIR/exa-linux-x86_64 /usr/local/bin/exa >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
       fi

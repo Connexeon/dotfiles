@@ -33,16 +33,16 @@ GIT=`command -v git`
 PYTHON=`command -v python`
 if [ -n "$YUM" ]; then
   printf "$YE$YUM_PACK$N\n"
-  sudo yum -y -q install $YUM_PACK && printf "$OK\n" || ( printf " $FL" ; exit -1 )
+  sudo yum -y -q install $YUM_PACK && printf "$OK\n" || ( printf "$FL" ; exit -1 )
 elif  [ -n "$APT" ];  then
   printf "$YE$APT_PACK$N\n"
-  sudo apt-get -y -q install $APT_PACK && printf "$OK\n" || ( printf " $FL" ; exit -1 )
+  sudo apt-get -y -q install $APT_PACK && printf "$OK\n" || ( printf "$FL" ; exit -1 )
 else
   printf "Unable to detect packet manager (no yum or apt-get)."
   ( [ ! -n $GIT ] || [ ! -f $PYTHON ] ) &&
   (
     printf "Missing requirement(s), please install $YE$YUM_PACK$N and run me again." >&2 ;
-    printf " $FL" ; exit -1
+    printf "$FL" ; exit -1
   )
   printf "Assuming $YE$YUM_PACK$N are installed. $OK\n"
 fi
@@ -52,11 +52,11 @@ set -e
 # If an .zshrc file already exists, rename it
 [[ -f $ZSHRC ]] &&
 ( printf "$YE`pwd`$ZSHRC$N already exists, renaming yours to $YE`pwd`$ZSHRC.save$N " ;
-mv $ZSHRC $ZSHRC.save && printf " $OK" || ( printf " $FL" ; exit 3 ) )
+mv $ZSHRC $ZSHRC.save && printf " $OK" || ( printf "$FL" ; exit 3 ) )
 
 # Cloning dotfiles repo
 printf ""$BD"\nCloning "$YE"dotfiles"$N$BD" into "$YE"~/.dotfiles"$N"\n"
-git clone https://github.com/Connexeon/dotfiles.git ~/.dotfiles && printf "$OK\n" || ( printf " $FL" ; exit 3 )
+git clone https://github.com/Connexeon/dotfiles.git ~/.dotfiles && printf "$OK\n" || ( printf "$FL" ; exit 3 )
 
 # Installing using dotbot
 printf ""$BD"\nInstalling using "$YE"dotbot"$N"\n"
@@ -82,7 +82,7 @@ fi
 # Copying valueable bash history
 [[ -f $BASH_HISTORY ]] &&
 ( printf ""$BD"Copying existing "$YE$BASH_HISTORY$N" to "$YE$ZSH_HISTORY$N"\n" ;
-cat $BASH_HISTORY >> $ZSH_HISTORY && printf "$OK\n" || ( printf " $FL" ; exit 3 ) )
+cat $BASH_HISTORY >> $ZSH_HISTORY && printf "$OK\n" || ( printf "$FL" ; exit 3 ) )
 
-printf "$BD""FINISHED ^^\n\nPlease reconnect your session now to complete installation.\n" || ( printf " $FL" ; exit 1 )
+printf "$BD""FINISHED ^^\n\nPlease reconnect your session now to complete installation.\n" || ( printf "$FL" ; exit 1 )
 printf "$BD""SSH terminal session encoding should be set to UTF-8, recommended font is DejaVu Sans Mono for Powerline.\n$N"

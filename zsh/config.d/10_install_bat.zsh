@@ -14,7 +14,7 @@ if (( ! $+commands[$CMD] )); then
       BAT_FILE_NAME=bat_$LATEST_BAT_VERSION'_'$ARCH2'.deb'
       wget https://github.com/sharkdp/bat/releases/download/v$LATEST_BAT_VERSION/$BAT_FILE_NAME >/dev/null 2>&1 ; \
       sudo dpkg -i $BAT_FILE_NAME >/dev/null 2>&1 ; \
-      rm -f $BAT_FILE_NAME >/dev/null 2>&1 && printf "$OK" || ( printf " $FL" ; exit -1 )
+      rm -f $BAT_FILE_NAME >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
       ;;
     *)
       echo "No install procedure for $CMD for your OS/distro available, please install manually."

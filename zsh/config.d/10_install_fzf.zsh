@@ -7,7 +7,7 @@ CMDTITLE="Installing fzf - a general-purpose command-line fuzzy finder"
 if (( ! $+commands[$CMD] )); then
   echo "Installing $CMD - $CMDTITLE"
 
-  $HOME/.fzf/install --no-key-bindings --no-completion --no-update-rc >/dev/null 2>&1 && printf "$OK" || ( printf " $FL" ; exit -1 )
+  $HOME/.fzf/install --no-key-bindings --no-completion --no-update-rc >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
 
 fi
 
