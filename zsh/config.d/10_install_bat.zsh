@@ -10,7 +10,7 @@ if (( ! $+commands[$CMD] )); then
 
   # OS specific installation steps
   case "$DISTRO" in
-    debian|ubuntu|elementary|mint)
+    debian|raspbian|ubuntu|elementary|mint)
       BAT_FILE_NAME=bat_$LATEST_BAT_VERSION'_'$ARCH2'.deb'
       wget https://github.com/sharkdp/bat/releases/download/v$LATEST_BAT_VERSION/$BAT_FILE_NAME >/dev/null 2>&1 ; \
       sudo dpkg -i $BAT_FILE_NAME >/dev/null 2>&1 ; \

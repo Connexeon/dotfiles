@@ -43,6 +43,9 @@ case $(uname) in
         *debian*)
         DISTRO='debian'
         ;;
+        *raspbian*)
+        DISTRO='raspbian'
+        ;;
        *ubuntu*)
         DISTRO='ubuntu'
         ;;

@@ -15,7 +15,7 @@ if [[ (( ! $+commands[$CMD] )) && !($DOTFILES_NEOFETCH_DISABLED) ]]; then
       sudo yum install neofetch -y >/dev/null 2>&1 && printf "$OK" || ( printf " $FL" ; exit -1 )
       ;;
 
-    debian|ubuntu|elementary|mint)
+    debian|raspbian|ubuntu|elementary|mint)
       sudo apt-get update >/dev/null 2>&1 ; \
       sudo apt-get -y install neofetch >/dev/null 2>&1 && printf "$OK" || ( printf " $FL" ; exit -1 )
       ;;

@@ -9,7 +9,7 @@ if (( ! $+commands[$CMD] )); then
 
   # OS specific installation steps
   case "$DISTRO" in
-    debian|ubuntu|elementary|mint)
+    debian|raspbian|ubuntu|elementary|mint)
       sudo apt-get -y install fd-find >/dev/null 2>&1 && printf "$OK" || ( printf " $FL" ; exit -1 )
       ;;
     *)

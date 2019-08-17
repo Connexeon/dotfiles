@@ -9,7 +9,7 @@ if (( ! $+commands[$CMD] )); then
 
   # OS specific installation steps
   case "$DISTRO" in
-    debian|ubuntu|elementary|mint)
+    debian|raspbian|ubuntu|elementary|mint)
       sudo apt install -y python3-dev python3-pip python3-setuptools >/dev/null 2>&1 ; \
       sudo -H pip3 install thefuck >/dev/null 2>&1 && printf "$OK" || ( printf " $FL" ; exit -1 )
       ;;
