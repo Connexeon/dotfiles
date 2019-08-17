@@ -10,15 +10,13 @@ if (( ! $+commands[$CMD] )); then
   # OS specific installation steps
   case "$DISTRO" in
     debian|ubuntu|elementary|mint)
-      sudo apt -y install ripgrep > /dev/null 2>&1
-      echo " OK"
+      sudo apt -y install ripgrep > /dev/null 2>&1 && printf "$OK" || ( printf " $FL" ; exit -1 )
       ;;
     *)
       echo "No install procedure for $CMD for your OS/distro available, please install manually."
       ;;
   esac
 fi
-
 
 # Load if command exists
 if (( $+commands[$CMD] )); then
