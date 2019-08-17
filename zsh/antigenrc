@@ -60,21 +60,26 @@ EOBUNDLES
 # antigen bundle trapd00r/zsh-syntax-highlighting-filetypes
 
 # OS specific plugins
-if [[ $DISTRO == 'darwin' ]]; then
-  antigen bundle brew
-  antigen bundle brew-cask
-  antigen bundle gem
-  antigen bundle osx
-elif [[ $DISTRO == 'centos' || $DISTRO == 'centminmod' ]]; then
-  antigen bundle centos
-  antigen bundle yum
-elif [[ $DISTRO == 'ubuntu' || $DISTRO == 'elementary' ]]; then
-  antigen bundle ubuntu
-elif [[ $DISTRO == 'debian' ]]; then
-  antigen bundle ubuntu
-elif [[ $DISTRO == 'cygwin' ]]; then
-  antigen bundle cygwin
-fi
+case "$DISTRO" in
+  debian|raspbian|ubuntu|elementary|mint)
+    antigen bundle ubuntu
+    ;;
+  osx)
+    antigen bundle brew
+    antigen bundle brew-cask
+    antigen bundle gem
+    antigen bundle osx
+    ;;
+  centos|fedora)
+    antigen bundle centos
+    antigen bundle yum
+    ;;
+  windows)
+    antigen bundle cygwin
+    ;;
+  *)
+    ;;
+esac
 
 # antigen bundle willghatch/zsh-cdr
 antigen bundle zsh-users/zaw

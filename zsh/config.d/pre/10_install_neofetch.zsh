@@ -21,7 +21,7 @@ if [[ (( ! $+commands[$CMD] )) && !($DOTFILES_NEOFETCH_DISABLED) ]]; then
       ;;
 
     alpine)
-      apk update >/dev/null 2>&1 : \
+      apk update >/dev/null 2>&1 ; \
       apk add neofetch  >/dev/null 2>&1 && printf "$OK" || ( printf " $FL" ; exit -1 )
       ;;
 

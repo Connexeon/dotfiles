@@ -5,117 +5,117 @@
 # set -x
 
 # Architecture
-ARCH=$(uname -m)
-ARCH2=$(dpkg --print-architecture)
+export ARCH=$(uname -m)
+export ARCH2=$(dpkg --print-architecture)
 
 # OS/distro detection
 case $(uname) in
     Darwin)
-      OS='OSX'
-      DISTRO='osx'
+      export OS='OSX'
+      export DISTRO='osx'
       ;;
     CYGWIN_NT-* | MSYS_NT-*)
-      OS='Windows'
-      DISTRO='windows'
+      export OS='Windows'
+      export DISTRO='windows'
       ;;
     FreeBSD)
-      OS='BSD'
-      DISTRO='freebsd'
+      export OS='BSD'
+      export DISTRO='freebsd'
       ;;
     OpenBSD)
-      OS='BSD'
-      DISTRO='openbsd'
+      export OS='BSD'
+      export DISTRO='openbsd'
       ;;
     DragonFly)
-      OS='BSD'
-      DISTRO='dragonfly'
+      export OS='BSD'
+      export DISTRO='dragonfly'
       ;;
     Linux)
-      OS='Linux'
+      export OS='Linux'
       # Detect distribution
       if [ -f /etc/os-release ]; then
         [[ ${(f)"$((</etc/os-release) 2>/dev/null)"} =~ "ID=([A-Za-z]+)" ]] && os_release_id="${match[1]}"
       fi
       case "$os_release_id" in
         *arch*)
-        DISTRO='arch'
+        export DISTRO='arch'
         ;;
         *debian*)
-        DISTRO='debian'
+        export DISTRO='debian'
         ;;
         *raspbian*)
-        DISTRO='raspbian'
+        export DISTRO='raspbian'
         ;;
        *ubuntu*)
-        DISTRO='ubuntu'
+        export DISTRO='ubuntu'
         ;;
        *elementary*)
-        DISTRO='elementary'
+        export DISTRO='elementary'
         ;;
        *fedora*)
-        DISTRO='fedora'
+        export DISTRO='fedora'
         ;;
        *coreos*)
-        DISTRO='coreos'
+        export DISTRO='coreos'
         ;;
        *gentoo*)
-        DISTRO='gentoo'
+        export DISTRO='gentoo'
         ;;
        *mageia*)
-        DISTRO='mageia'
+        export DISTRO='mageia'
         ;;
        *centos*)
-        DISTRO='centos'
+        export DISTRO='centos'
         ;;
        *opensuse*|*tumbleweed*)
-        DISTRO='opensuse'
+        export DISTRO='opensuse'
         ;;
        *sabayon*)
-        DISTRO='sabayon'
+        export DISTRO='sabayon'
         ;;
        *slackware*)
-        DISTRO='slackware'
+        export DISTRO='slackware'
         ;;
        *linuxmint*)
-        DISTRO='mint'
+        export DISTRO='mint'
         ;;
        *alpine*)
-        DISTRO='alpine'
+        export DISTRO='alpine'
         ;;
        *aosc*)
-        DISTRO='aosc'
+        export DISTRO='aosc'
         ;;
        *nixos*)
-        DISTRO='nixos'
+        export DISTRO='nixos'
         ;;
        *devuan*)
-        DISTRO='devuan'
+        export DISTRO='devuan'
         ;;
        *manjaro*)
-        DISTRO='manjaro'
+        export DISTRO='manjaro'
         ;;
         *)
-        OS='Linux'
-        DISTRO='linux'
+        export OS='Linux'
+        export DISTRO='linux'
         ;;
       esac
 
       # Check if we're running on Android
       case $(uname -o 2>/dev/null) in
         Android)
-          OS='Android'
-          DISTRO='android'
+          export OS='Android'
+          export DISTRO='android'
           ;;
       esac
       ;;
     SunOS)
-      OS='Solaris'
-      DISTRO='sun'
+      export OS='Solaris'
+      export DISTRO='sun'
       ;;
     *)
-      OS=''
-      DISTRO=''
+      export OS=''
+      export DISTRO=''
       ;;
 esac
 
-# echo "OS: $OS / DISTRO: $DISTRO / ARCH: $ARCH|$ARCH2"
+# echo "OS: $OS / DISTRO: $DISTRO / ARCH: $ARCH|$export ARCH2"
