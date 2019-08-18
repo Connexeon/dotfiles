@@ -17,11 +17,10 @@ if (( ! $+commands[$CMD] )); then
       ;;
   esac
 fi
-alias fd=fdfind
+
 
 # Load if command exists
 if (( $+commands[$CMD] )); then
-
-else
+  alias fd=fdfind
 
 fi

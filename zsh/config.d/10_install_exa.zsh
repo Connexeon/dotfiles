@@ -46,12 +46,12 @@ if (( ! $+commands[$CMD] )); then
 
   # Download/Install shell completion definition
   COMPDEF="/usr/local/share/zsh/site-functions/_exa"
-  COMPDEFURL="https://raw.githubusercontent.com/ogham/exa/master/contrib/completions.zsh"
+  COMPDEF_URL="https://raw.githubusercontent.com/ogham/exa/master/contrib/completions.zsh"
   if [[ -e "$COMPDEF" ]]; then
     sudo rm -f $COMPDEF
   fi
   printf "Installing $CMD shell completion definitions"
-  sudo curl -o $COMPDEF $COMPDEFURL >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
+  sudo curl -o $COMPDEF $COMPDEF_URL >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
 
 fi
 
