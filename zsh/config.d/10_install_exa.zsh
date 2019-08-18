@@ -9,9 +9,6 @@ if (( ! $+commands[$CMD] )); then
 
   # OS specific installation steps
   case "$DISTRO" in
-    debian|ubuntu|elementary|mint)
-      sudo apt-get -y install exa librust-exa+git\*-dev >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
-      ;;
     osx)
       brew install exa >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
       ;;
