@@ -17,7 +17,7 @@ if (( ! $+commands[$CMD] )); then
     ;;
     *)
       # echo "No install procedure for $CMD for your OS/distro available, please install manually."
-      SRC_DIR=$(mktemp)
+      SRC_DIR=$(mktemp -d)
       NNN_TARBALL="nnn.tar.gz"
       NNN_REPO="jarun/nnn"
 
@@ -37,12 +37,12 @@ if (( ! $+commands[$CMD] )); then
 
   # Download/Install shell completion definition
   COMPDEF="/usr/local/share/zsh/site-functions/_nnn"
-  COMPDEFURL="https://raw.githubusercontent.com/jarun/nnn/master/misc/auto-completion/zsh/_nnn"
+  COMPDEF_URL="https://raw.githubusercontent.com/jarun/nnn/master/misc/auto-completion/zsh/_nnn"
   if [[ -e "$COMPDEF" ]]; then
     sudo rm -f $COMPDEF
   fi
   printf "Installing $CMD shell completion definitions"
-  sudo curl -o $COMPDEF $COMPDEFURL >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
+  sudo curl -o $COMPDEF $COMPDEF_URL >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
 
 fi
 
