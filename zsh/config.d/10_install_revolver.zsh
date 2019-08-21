@@ -10,7 +10,7 @@ _install_revolver () {
   chmod u+x $HOME/.zsh/submodules/revolver/revolver ; \
   path+=$HOME/.zsh/submodules/revolver >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
 
-  __curl_compdef $CMD "https://raw.githubusercontent.com/molovo/revolver/master/revolver.zsh-completion" # >/dev/null 2>&1
+  __curl_compdef $CMD "https://raw.githubusercontent.com/molovo/revolver/master/revolver.zsh-completion"
 }
 
 # If command does not exist (not yet installed)
@@ -21,7 +21,7 @@ fi
 
 # If command exists (has succeeded installation)
 if (( $+commands[$CMD] )); then
-  printf "$CMD exists - (re)installing anyway"
-  _install_revolver $CMD
+  # printf "$CMD exists - (re)installing anyway"
+  # _install_revolver $CMD
 else
 fi
