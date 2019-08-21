@@ -2,65 +2,79 @@
 ## Antigen
 ####################################################################
 
+####################################################################
+# Load oh-my-zsh
+####################################################################
+
 antigen use oh-my-zsh
 
+####################################################################
+# Load Antigen Bundles
+####################################################################
+
 antigen bundles <<EOBUNDLES
-  # DimitriSteyaert/Zsh-tugboat
-  # laravel
-  # laravel5
-  # symfony2
+  # xgarrido/pkgtools
+  # xgarrido/zsh-utilities
   autoupdate-zsh-plugin
   bobsoppe/zsh-ssh-agent
-  bobthecow/git-flow-completion
   chrissicool/zsh-256color
   colorize
+  colored-man-pages
   command-not-found
   common-aliases
   compleat
   cp
   dirhistory
   djui/alias-tips
-  docker
-  EslamElHusseiny/aws_manager_plugin
+  alias-finder
   extract
   fzf
-  git
-  git-extras
-  git-flow
-  greymd/docker-zsh-completion
   history
-  lukechilds/zsh-better-npm-completion
   mafredri/zsh-async
-  n98-magerun
   nmap
-  npm
   peterhurford/up.zsh
-  pip
-  redis-cli
   rsync
-  seletskiy/zsh-git-smart-commands
   skx/sysadmin-util
   soimort/translate-shell
-  srijanshetty/zsh-pip-completion
   supercrabtree/k
   systemadmin
   systemd
-  Tarrasch/zsh-autoenv
   thefuck
+  trapd00r/zsh-syntax-highlighting-filetypes
   unixorn/autoupdate-antigen.zshplugin
-  vagrant
-  voronkovich/mysql.plugin.zsh
   web-search
   z
   zsh-navigation-tools
   zsh-users/zsh-completions
-  # xgarrido/pkgtools
-  # xgarrido/zsh-utilities
 EOBUNDLES
 
-# antigen bundle trapd00r/zsh-syntax-highlighting-filetypes
+antigen bundles <<EODEVBUNDLES
+  # DimitriSteyaert/Zsh-tugboat
+  # laravel
+  # laravel5
+  # symfony2
+  bobthecow/git-flow-completion
+  docker
+  EslamElHusseiny/aws_manager_plugin
+  git
+  git-extras
+  git-flow
+  greymd/docker-zsh-completion
+  lukechilds/zsh-better-npm-completion
+  n98-magerun
+  npm
+  pip
+  redis-cli
+  seletskiy/zsh-git-smart-commands
+  srijanshetty/zsh-pip-completion
+  Tarrasch/zsh-autoenv
+  vagrant
+  voronkovich/mysql.plugin.zsh
+EODEVBUNDLES
 
-# OS specific plugins
+
+# OS/distri specific bundles
+
 case "$DISTRO" in
   debian|raspbian|ubuntu|elementary|mint)
     antigen bundle ubuntu
@@ -82,9 +96,13 @@ case "$DISTRO" in
     ;;
 esac
 
+# zaw Antigen bundles need to be loaded after the others
+
 # antigen bundle willghatch/zsh-cdr
 antigen bundle zsh-users/zaw
 antigen bundle termoshtt/zaw-systemd
+
+# Ditto these and sourced vs Antigen bundled
 
 source $HOME/.zsh/submodules/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 source $HOME/.zsh/submodules/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
@@ -94,9 +112,11 @@ ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-se
 # #ZSH_AUTOSUGGEST_USE_ASYNC=true
 
 ####################################################################
-# Load theme & apply Antigen
+# Load theme & Apply Antigen
 ####################################################################
+
 # Load theme
 antigen theme bhilburn/powerlevel9k powerlevel9k
-# Tell antigen that you're done.
+
+# Let's go Antigen
 antigen apply

@@ -9,4 +9,6 @@ alias neofetch2="neofetch \
 "
 # Centminmod
 alias cmdir='pushd /usr/local/src/centminmod'
+
+# Postfix mail log
 alias postfixlog='pflogsumm -d today --verbose_msg_detail /var/log/maillog'

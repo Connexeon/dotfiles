@@ -23,26 +23,20 @@ if (( ! $+commands[$CMD] )); then
 
       sudo apt -y install build-essential jq libncursesw5-dev libreadline-dev >/dev/null 2>&1
 
-      cd $SRC_DIR >/dev/null 2>&1
+      pushd $SRC_DIR
       NNN_TARBALL_LATEST_URL=$( curl -s "https://api.github.com/repos/$NNN_REPO/releases/latest" \
         | jq -r '.assets[] | select(.name | contains(".tar.gz")) | .browser_download_url' ) ; \
       curl -L $NNN_TARBALL_LATEST_URL -o $NNN_TARBALL >/dev/null 2>&1 ; \
       tar xzf $NNN_TARBALL && cd nnn >/dev/null 2>&1 ; \
       make >/dev/null 2>&1 ; \
       sudo make install >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
-
       popd
     ;;
   esac
 
   # Download/Install shell completion definition
-  COMPDEF="/usr/local/share/zsh/site-functions/_nnn"
-  COMPDEF_URL="https://raw.githubusercontent.com/jarun/nnn/master/misc/auto-completion/zsh/_nnn"
-  if [[ -e "$COMPDEF" ]]; then
-    sudo rm -f $COMPDEF
-  fi
-  printf "Installing $CMD shell completion definitions"
-  sudo curl -o $COMPDEF $COMPDEF_URL >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
+
+  __curl_compdef $CMD "https://raw.githubusercontent.com/jarun/nnn/master/misc/auto-completion/zsh/_nnn"
 
 fi
 

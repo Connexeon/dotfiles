@@ -1,6 +1,6 @@
 # Show all the names (CNs and SANs) listed in the SSL certificate
 # for a given domain
-function getcertnames() {
+function cert-names() {
   if [ -z "${1}" ]; then
     echo "ERROR: No domain specified.";
     return 1;
