@@ -1,50 +1,60 @@
 ####################################################################
 # Install neofetch - A command-line system information tool
 ####################################################################
+# echo_message information "Entering 10_install_neofetch.zsh"
+
 CMD="neofetch"
 CMDTITLE="A command-line system information tool"
 
-if [[ (( ! $+commands[$CMD] )) && !($DOTFILES_NEOFETCH_DISABLED) ]]; then
-  echo "Installing $CMD - $CMDTITLE"
+if [[ (( ! $+commands[$CMD] )) || (( ! $DOTFILES_NEOFETCH_DISABLED )) ]]; then
+  echo_message header "Installing $CMD - $CMDTITLE"
 
   # Distro specific installation steps
   case "$DISTRO" in
-    centos|fedora)
-      sudo yum install epel-release -y >/dev/null 2>&1 ; \
-      sudo curl -o /etc/yum.repos.d/konimex-neofetch-epel-7.repo https://copr.fedorainfracloud.org/coprs/konimex/neofetch/repo/epel-7/konimex-neofetch-epel-7.repo >/dev/null 2>&1 ; \
-      sudo yum install neofetch -y >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
+    centos)
+      superuser_do "yum install epel-release -y" ; \
+      superuser_do "curl -o /etc/yum.repos.d/konimex-neofetch-epel-7.repo https://copr.fedorainfracloud.org/coprs/konimex/neofetch/repo/epel-7/konimex-neofetch-epel-7.repo" ; \
+      superuser_do "yum install neofetch -y" >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
       ;;
 
+    fedora)
+      superuser_do "dnf install neofetch" >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
+      ;;
+
+    ubuntu|elementary)
+      superuser_do "add-apt-repository ppa:dawidd0811/neofetch-daily -y -u" >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
+      ;&
     debian|raspbian|ubuntu|elementary|mint)
-      sudo apt-get update >/dev/null 2>&1 ; \
-      sudo apt-get -y install neofetch >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
+      superuser_do "apt-get --silent update" ; \
+      superuser_do "apt-get --silent --yes install neofetch" >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
       ;;
 
     alpine)
-      apk update >/dev/null 2>&1 ; \
+      apk update ; \
       apk add neofetch  >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
       ;;
 
     android)
-      pkg update >/dev/null 2>&1 ; \
-      pkg install neofetch >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
+      pkg update ; \
+      pkg install neofetch  >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
       ;;
 
     arch)
-      pacman -S neofetch >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
+      superuser_do "pacman -S neofetch" >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
       ;;
 
     osx)
-      brew install neofetch >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
+      superuser_do "brew install neofetch" >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
       ;;
 
     solus)
-      brew install neofetch >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
+      superuser_do "eopkg it neofetch" >/dev/null 2>&1  >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
       ;;
 
     *)
-      echo "No install procedure for $CMD for your OS/distro available, please install manually."
-      export DOTFILES_NEOFETCH_DISABLED=1
+      echo "# Added by .dotfiles 10_install_neofetch.zsh" ; echo "export DOTFILES_NEOFETCH_DISABLED=1" >> $HOME/.zshrc_local
+
+      echo_message error "No install procedure for $CMD for your OS/distro available, please install manually. Install disabled in $HOME/.zshrc_local (DOTFILES_NEOFETCH_DISABLED)."
       ;;
 
   esac
@@ -52,8 +62,8 @@ fi
 
 ## If command exists: run it
 if (( $+commands[$CMD] )) ; then
-  echo " " # line spacer
+  echo "" # line spacer
   neofetch
 else
-  export DOTFILES_NEOFETCH_DISABLED=1
+  # export DOTFILES_NEOFETCH_DISABLED=1
 fi
