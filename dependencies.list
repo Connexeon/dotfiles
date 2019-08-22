@@ -7,3 +7,4 @@ python-yaml
 curl
 wget
 whiptail
+unzip
