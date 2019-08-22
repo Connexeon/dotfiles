@@ -22,8 +22,10 @@ if [[ (( ! $+commands[$CMD] )) || (( ! $DOTFILES_NEOFETCH_DISABLED )) ]]; then
       ;;
 
     ubuntu|elementary)
-      superuser_do "add-apt-repository ppa:dawidd0811/neofetch-daily -y -u" >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
-      ;&
+      superuser_do "add-apt-repository ppa:dawidd0811/neofetch-daily -y -u" ; \
+      superuser_do "apt-get --silent update" ; \
+      superuser_do "apt-get --silent --yes install neofetch" >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
+      ;;
     debian|raspbian|ubuntu|elementary|mint)
       superuser_do "apt-get --silent update" ; \
       superuser_do "apt-get --silent --yes install neofetch" >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
@@ -52,7 +54,7 @@ if [[ (( ! $+commands[$CMD] )) || (( ! $DOTFILES_NEOFETCH_DISABLED )) ]]; then
       ;;
 
     *)
-      echo "# Added by .dotfiles 10_install_neofetch.zsh" ; echo "export DOTFILES_NEOFETCH_DISABLED=1" >> $HOME/.zshrc_local
+      echo "# Added by .dotfiles 10_install_neofetch.zsh\nexport DOTFILES_NEOFETCH_DISABLED=1" >> $HOME/.zshrc_local
 
       echo_message error "No install procedure for $CMD for your OS/distro available, please install manually. Install disabled in $HOME/.zshrc_local (DOTFILES_NEOFETCH_DISABLED)."
       ;;
