@@ -38,6 +38,5 @@ if (( ! $+commands[$CMD] )); then
   fi
 # If command does exist: run it
 else
-  echo "" # line spacer
-  bat
+
 fi
