@@ -1,8 +1,6 @@
 ####################################################################
 # Install neofetch - A command-line system information tool
 ####################################################################
-# echo_message information "Entering 10_install_neofetch.zsh"
-
 CMD="neofetch"
 CMDTITLE="A command-line system information tool"
 
@@ -55,13 +53,11 @@ _install_neofetch () {
       ;;
 
     *)
-      # echo_message information "Distro unsupported"
-
-      echo_message warning "# Added by .dotfiles 10_install_neofetch.zsh\nexport DOTFILES_NEOFETCH_DISABLED=1" >> $HOME/.zshrc_local
+      echo "# Added by .dotfiles 10_install_neofetch.zsh\nexport DOTFILES_NEOFETCH_DISABLED=1" >> $HOME/.zshrc_local
 
       echo_message error "No install procedure for $1 for your OS/distro available, please install manually. Install disabled in $HOME/.zshrc_local (DOTFILES_NEOFETCH_DISABLED)."
 
-      exit 2
+      printf "$FL" ; exit 2
       ;;
 
   esac
