@@ -45,5 +45,5 @@ POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
 # Load local config
 [ -f ~/.zshenv_local ] && . ~/.zshenv_local
 
-direnv if exists
-[ -x "$(which direnv)" ] && eval "$(direnv hook zsh)"
+# direnv if exists
+# [ -x "$(which direnv)" ] && eval "$(direnv hook zsh)"
