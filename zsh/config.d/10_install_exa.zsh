@@ -10,22 +10,22 @@ if (( ! $+commands[$CMD] )); then
   # OS specific installation steps
   case "$DISTRO" in
     osx)
-      brew install exa >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
+      brew install exa >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
       ;;
     arch)
-      sudo pacman -S exa >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
+      sudo pacman -S exa >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
       ;;
     fedora)
-      sudo dnf install exa >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
+      sudo dnf install exa >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
       ;;
     opensuse)
-      sudo zypper install exa >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
+      sudo zypper install exa >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
       ;;
     nixos)
-      nix-env -i exa >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
+      nix-env -i exa >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
       ;;
     gentoo)
-      emerge sys-apps/exa >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
+      emerge sys-apps/exa >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
       ;;
     *)
       if [[ $OS = "Linux" ]] ; then
@@ -36,7 +36,7 @@ if (( ! $+commands[$CMD] )); then
         EXA_ZIP_LATEST_URL=$( curl -s "https://api.github.com/repos/$EXA_REPO/releases/latest" \
           | jq -r '.assets[] | select(.name | contains("exa-linux-x86_64")) | .browser_download_url' ) ; \
         curl -L $EXA_ZIP_LATEST_URL -o $TMP_DIR/$EXA_ZIP >/dev/null 2>&1 ; \
-        unzip $TMP_DIR/$EXA_ZIP -d $TMP_DIR && sudo cp $TMP_DIR/exa-linux-x86_64 /usr/local/bin/exa >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
+        unzip $TMP_DIR/$EXA_ZIP -d $TMP_DIR && sudo cp $TMP_DIR/exa-linux-x86_64 /usr/local/bin/exa >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
       fi
       ;;
   esac
@@ -48,7 +48,7 @@ if (( ! $+commands[$CMD] )); then
     sudo rm -f $COMPDEF
   fi
   printf "Installing $CMD shell completion definitions"
-  sudo curl -o $COMPDEF $COMPDEF_URL >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
+  sudo curl -o $COMPDEF $COMPDEF_URL >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
 
 fi
 

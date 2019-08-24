@@ -6,5 +6,5 @@ function __curl_compdef() {
     sudo rm -f $COMPDEF
   fi
   printf "Installing $1 (shell completion definitions)"
-  sudo curl -o $COMPDEF $COMPDEF_URL >/dev/null 2>&1 && ( printf "$OK" ) || ( printf "$FL" ; exit -1 )
+  sudo curl -o $COMPDEF $COMPDEF_URL >/dev/null 2>&1 && ( printf "$OK" ) || ( printf "$FL" ; exit 1 )
 }

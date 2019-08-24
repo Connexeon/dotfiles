@@ -10,7 +10,7 @@ if (( ! $+commands[$CMD] )); then
   # OS specific installation steps
   case "$DISTRO" in
     debian|raspbian|ubuntu|elementary|mint)
-      sudo apt-get -y install fd-find >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
+      sudo apt-get -y install fd-find >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
       ;;
     *)
       echo "No install procedure for $CMD for your OS/distro available, please install manually."

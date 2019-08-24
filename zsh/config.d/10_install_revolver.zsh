@@ -6,9 +6,8 @@ CMD="revolver"
 CMDTITLE="A progress spinner for ZSH scripts"
 
 _install_revolver () {
-  CMD=$1
   chmod u+x $HOME/.zsh/submodules/revolver/revolver ; \
-  path+=$HOME/.zsh/submodules/revolver >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit -1 )
+  path+=$HOME/.zsh/submodules/revolver >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
 
   __curl_compdef $CMD "https://raw.githubusercontent.com/molovo/revolver/master/revolver.zsh-completion"
 }

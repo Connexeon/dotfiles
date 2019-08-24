@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Shell script to bootstrap Connexeon dotfiles config, dotbot & requirements
 #    attempts to install missing dependencies, so you can sit back & relax ^^
 #
@@ -33,16 +34,16 @@ GIT=`command -v git`
 PYTHON=`command -v python`
 if [ -n "$YUM" ]; then
   printf "$YE$YUM_PACK$N\n"
-  sudo yum -y -q install $YUM_PACK && printf "$OK\n" || ( printf "$FL" ; exit -1 )
+  sudo yum -y -q install $YUM_PACK && printf "$OK\n" || ( printf "$FL" ; exit 1 )
 elif  [ -n "$APT" ];  then
   printf "$YE$APT_PACK$N\n"
-  sudo apt-get -y -q install $APT_PACK && printf "$OK\n" || ( printf "$FL" ; exit -1 )
+  sudo apt-get -y -q install $APT_PACK && printf "$OK\n" || ( printf "$FL" ; exit 1 )
 else
   printf "Unable to detect packet manager (no yum or apt-get)."
   ( [ ! -n $GIT ] || [ ! -f $PYTHON ] ) &&
   (
     printf "Missing requirement(s), please install $YE$YUM_PACK$N and run me again." >&2 ;
-    printf "$FL" ; exit -1
+    printf "$FL" ; exit 1
   )
   printf "Assuming $YE$YUM_PACK$N are installed. $OK\n"
 fi
