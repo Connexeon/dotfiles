@@ -3,7 +3,7 @@
 ####################################################################
 
 # Load our own completion functions
-fpath=(~/.zsh/completions /usr/local/share/zsh/site-functions $fpath)
+# fpath=(~/.zsh/completions /usr/local/share/zsh/site-functions $fpath)
 
 autoload -Uz compinit
 compinit

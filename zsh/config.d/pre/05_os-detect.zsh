@@ -124,4 +124,4 @@ case $(uname) in
       ;;
 esac
 
-echo "OS: $OS / DISTRO: $DISTRO / ARCH: $ARCH|$export ARCH2"
+echo "OS: $BD$YE$OS$N, Distro: $BD$YE$DISTRO$N, Architecture: $BD$YE$ARCH$N/$BD$YE$ARCH2$N"

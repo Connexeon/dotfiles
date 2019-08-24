@@ -1,9 +1,10 @@
 # Uncomment to activate debugging from here
-set -x
+# set -e
+# set -x
 
 # Set cache dir if empty
 if [ -z $ZSH_CACHE_DIR ]; then
-  if [ ! -d $ZSH_CACHE_DIR ] mkdir -p $HOME/.cache
+  if [ ! -d $ZSH_CACHE_DIR ]; mkdir -p $HOME/.cache
   ZSH_CACHE_DIR=$HOME/.cache
 fi
 

@@ -5,6 +5,6 @@ function __curl_compdef() {
   if [[ -e "$COMPDEF" ]]; then
     sudo rm -f $COMPDEF
   fi
-  printf "Installing $B$1$N (shell completion definitions)"
+  printf "$NX $BD$YE$1$N - Shell Completion Definitions"
   sudo curl -o $COMPDEF $COMPDEF_URL >/dev/null 2>&1 && ( printf "$OK" ) || ( printf "$FL" ; exit 1 )
 }

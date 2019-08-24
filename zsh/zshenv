@@ -30,22 +30,20 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time  status rvm time)#
 
 # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs virtualenv rbenv rvm time)
 #
-# POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
-# POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=8
 #
 POWERLEVEL9K_TIME_FORMAT="%D{%d/%m %H:%M}"
 #
 # POWERLEVEL9K_VPN_IP_INTERFACE="zt0"
-#
-# POWERLEVEL9K_STATUS_VERBOSE=false
-export DEFAULT_USER="$USER"
+POWERLEVEL9K_STATUS_VERBOSE=true
 
-## antigen loaded here
+export DEFAULT_USER="$USER"
 
 POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
 
 # Load local config
-[ -f ~/.zshenv_local ] && source ~/.zshenv_local
+[ -f ~/.zshenv_local ] && . ~/.zshenv_local
 
-# direnv if exists
+direnv if exists
 [ -x "$(which direnv)" ] && eval "$(direnv hook zsh)"

@@ -20,23 +20,17 @@ _install_fdfind () {
 
 }
 
-
 # If command does not exist (not yet installed)
 if (( ! $+commands[$CMD] )); then
   # Check for disabled flag overriding auto install
-  if (( $DOTFILES_FDFIND_DISABLED==0)) unset $DOTFILES_FDFIND_DISABLED
+  if [[ $DOTFILES_FDFIND_DISABLED=0 ]] unset DOTFILES_FDFIND_DISABLED
   if (( ! ${+DOTFILES_FDFIND_DISABLED} )); then
-    printf "Installing $B$CMD$N - $CMDTITLE"
-    _install_neofetch $CMD
+    printf "Installing $BD$YE$CMD$N - $CMDTITLE"
+    _install_fdfind $CMD
   else
     # TODO: log intended install skip somewhere?
   fi
 # If command does exist
 else
-  echo "" # line spacer
-  neofetch
-fi
-# Load if command exists
-if (( $+commands[$CMD] )); then
   alias fd=fdfind
 fi

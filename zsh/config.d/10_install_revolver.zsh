@@ -16,9 +16,9 @@ _install_revolver () {
 # If command does not exist (not yet installed)
 if (( ! $+commands[$CMD] )); then
   # Check for disabled flag overriding auto install
-  if (( $DOTFILES_REVOLVER_DISABLED==0)) unset $DOTFILES_REVOLVER_DISABLED
+  if [[ $DOTFILES_REVOLVER_DISABLED=0 ]]; unset DOTFILES_REVOLVER_DISABLED
   if (( ! ${+DOTFILES_REVOLVER_DISABLED} )); then
-    printf "Installing $B$CMD$N - $CMDTITLE"
+    printf "Installing $BD$YE$CMD$N - $CMDTITLE"
     _install_revolver $CMD
   else
     # TODO: log intended install skip somewhere?
