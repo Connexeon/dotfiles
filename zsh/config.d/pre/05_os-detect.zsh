@@ -35,6 +35,10 @@ case $(uname) in
       # Detect distribution
       if [ -f /etc/os-release ]; then
         [[ ${(f)"$((</etc/os-release) 2>/dev/null)"} =~ "ID=([A-Za-z]+)" ]] && os_release_id="${match[1]}"
+
+        if [ ! -v $os_release_id ]; then
+          [[ ${(f)"$((</etc/os-release) 2>/dev/null)"} =~ "ID=\"([A-Za-z]+)\"" ]] && os_release_id="${match[1]}"
+        fi
       fi
       case "$os_release_id" in
         *arch*)
