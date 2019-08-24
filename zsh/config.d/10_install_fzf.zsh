@@ -13,7 +13,7 @@ _install_fzf () {
 # If command does not exist (not yet installed)
 if (( ! $+commands[$CMD] )); then
   # Check for disabled flag overriding auto install
-  [ $DOTFILES_FZF_DISABLED == 0 ] && unset DOTFILES_FZF_DISABLED
+  [[ $DOTFILES_FZF_DISABLED == 0 ]] && unset DOTFILES_FZF_DISABLED
   if (( ! ${+DOTFILES_FZF_DISABLED} )); then
     printf "Installing $BD$YE$CMD$N - $CMDTITLE"
     _install_fzf $CMD

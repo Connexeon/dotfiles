@@ -29,7 +29,7 @@ _install_bat () {
 # If command does not exist (not yet installed)
 if (( ! $+commands[$CMD] )); then
   # Check for disabled flag overriding auto install
-  [ $DOTFILES_BAT_DISABLED == 0 ] && unset DOTFILES_BAT_DISABLED
+  [[ $DOTFILES_BAT_DISABLED == 0 ]] && unset DOTFILES_BAT_DISABLED
   if (( ! ${+DOTFILES_BAT_DISABLED} )); then
     printf "Installing $BD$YE$CMD$N - $CMDTITLE"
     _install_bat $CMD
