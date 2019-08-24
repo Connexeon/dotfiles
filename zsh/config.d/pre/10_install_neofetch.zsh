@@ -67,7 +67,7 @@ _install_neofetch () {
 # If command does not exist (not yet installed)
 if (( ! $+commands[$CMD] )); then
   # Check for disabled flag overriding auto install
-  if [[ $DOTFILES_NEOFETCH_DISABLED=0 ]];  unset DOTFILES_NEOFETCH_DISABLED
+  [ $DOTFILES_NEOFETCH_DISABLED == 0 ] && unset DOTFILES_NEOFETCH_DISABLED
   if (( ! ${+DOTFILES_NEOFETCH_DISABLED} )); then
     printf "Installing $BD$YE$CMD$N - $CMDTITLE"
     _install_neofetch $CMD

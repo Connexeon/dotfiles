@@ -42,7 +42,7 @@ _install_nnn () {
 # If command does not exist (not yet installed)
 if (( ! $+commands[$CMD] )); then
   # Check for disabled flag overriding auto install
-  if [[ $DOTFILES_NNN_DISABLED=0 ]];  unset DOTFILES_NNN_DISABLED
+  [ $DOTFILES_NNN_DISABLED == 0 ] && unset DOTFILES_NNN_DISABLED
   if (( ! ${+DOTFILES_NNN_DISABLED} )); then
     printf "Installing $BD$YE$CMD$N - $CMDTITLE"
     _install_nnn $CMD
