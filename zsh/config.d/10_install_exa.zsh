@@ -48,7 +48,7 @@ _install_exa () {
 # If command does not exist (not yet installed)
 if (( ! $+commands[$CMD] )); then
   # Check for disabled flag overriding auto install
-  if (( $DOTFILES_EXA_DISABLED=0)) unset $DOTFILES_EXA_DISABLED
+  if (( $DOTFILES_EXA_DISABLED==0)) unset $DOTFILES_EXA_DISABLED
   if (( ! ${+DOTFILES_EXA_DISABLED} )); then
     printf "Installing $B$CMD$N - $CMDTITLE"
     _install_exa $CMD
