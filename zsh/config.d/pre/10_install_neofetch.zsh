@@ -57,7 +57,7 @@ _install_neofetch () {
 
       echo_message error "No install procedure for $1 for your OS/distro available, please install manually. Install disabled in $HOME/.zshrc_local (DOTFILES_NEOFETCH_DISABLED)."
 
-      printf "$FL" ; exit 2
+      printf "$FL"
       ;;
 
   esac
