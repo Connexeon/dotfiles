@@ -19,7 +19,7 @@ function __check_deps {
             # Positive action
             [Yy]* )
             echo_message warning "Requires root privileges"
-            sudo apt install -y $PACKAGE && echo_message success "Package '$PACKAGE' installed." || echo_message error "Package '$PACKAGE' installation failed."
+            superuser_do "apt install -y -qq $PACKAGE" && echo_message success "Package '$PACKAGE' installed." || echo_message error "Package '$PACKAGE' installation failed."
             ;;
             # Negative action
             [Nn]* )

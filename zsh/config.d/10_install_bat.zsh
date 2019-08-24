@@ -13,13 +13,13 @@ _install_bat () {
     debian|raspbian|ubuntu|elementary|mint)
       BAT_FILE_NAME=bat_$LATEST_BAT_VERSION'_'$ARCH2'.deb'
       wget https://github.com/sharkdp/bat/releases/download/v$LATEST_BAT_VERSION/$BAT_FILE_NAME >/dev/null 2>&1 ; \
-      sudo dpkg -i $BAT_FILE_NAME >/dev/null 2>&1 ; \
+       "dpkg -i $BAT_FILE_NAME" >/dev/null 2>&1 ; \
       rm -f $BAT_FILE_NAME >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
       ;;
     *)
       echo "# Added by .dotfiles 10_install_bat.zsh\nexport DOTFILES_BAT_DISABLED=1" >> $HOME/.zshrc_local
 
-      echo_message error "No install procedure for $1 for your OS/distro available, please install manually. Install disabled in $HOME/.zshrc_local (DOTFILES_BAT_DISABLED)."
+      echo_message warning "No install procedure for $1 for your OS/distro available, please install manually. Install disabled in $HOME/.zshrc_local (DOTFILES_BAT_DISABLED)."
 
       printf "$FL"
       ;;

@@ -12,13 +12,13 @@ _install_exa () {
       brew install exa >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
       ;;
     arch)
-      sudo pacman -S exa >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
+      superuser_do "pacman -S exa" >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
       ;;
     fedora)
-      sudo dnf install exa >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
+      superuser_do "dnf install exa" >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
       ;;
     opensuse)
-      sudo zypper install exa >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
+      superuser_do "zypper install exa" >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
       ;;
     nixos)
       nix-env -i exa >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
@@ -35,7 +35,7 @@ _install_exa () {
         EXA_ZIP_LATEST_URL=$( curl -s "https://api.github.com/repos/$EXA_REPO/releases/latest" \
           | jq -r '.assets[] | select(.name | contains("exa-linux-$ARCH")) | .browser_download_url' ) ; \
         curl -L $EXA_ZIP_LATEST_URL -o $TMP_DIR/$EXA_ZIP >/dev/null 2>&1 ; \
-        unzip $TMP_DIR/$EXA_ZIP -d $TMP_DIR && sudo cp $TMP_DIR/exa-linux-$ARCH /usr/local/bin/exa >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
+        unzip $TMP_DIR/$EXA_ZIP -d $TMP_DIR && superuser_do "cp $TMP_DIR/exa-linux-$ARCH /usr/local/bin/exa" >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
       fi
       ;;
 
