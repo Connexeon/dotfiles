@@ -26,7 +26,7 @@ _install_thefuck () {
 # If command does not exist (not yet installed)
 if (( ! $+commands[$CMD] )); then
   # Check for disabled flag overriding auto install
-  if (( $DOTFILES_THEFUCK_DISABLED=0)) unset $DOTFILES_THEFUCK_DISABLED
+  if (( $DOTFILES_THEFUCK_DISABLED==0)) unset $DOTFILES_THEFUCK_DISABLED
   if (( ! ${+DOTFILES_THEFUCK_DISABLED} )); then
     printf "Installing $B$CMD$N - $CMDTITLE"
     _install_thefuck $CMD
