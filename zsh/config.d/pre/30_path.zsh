@@ -3,7 +3,7 @@
 ####################################################################
 
 ## Include these dirs in $PATH if they exist
-_path_include=($HOME/bin $HOME/.local/bin $HOME/.dotfiles/bin $HOME/.zsh/submodules/revolver)
+_path_include=($HOME/bin $HOME/.local/bin $HOME/.dotfiles/bin)
 
 for _path in $_path_include ; do
 

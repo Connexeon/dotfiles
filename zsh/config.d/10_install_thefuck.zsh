@@ -13,7 +13,7 @@ _install_thefuck () {
       sudo -H pip3 install thefuck >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
       ;;
     *)
-      echo "# Added by .dotfiles 10_install_thefuck.zsh\nexport DOTFILES_THEFUCK_DISABLED=1" >> $HOME/.zshrc_local
+      echo_message warning "# Added by .dotfiles 10_install_thefuck.zsh\nexport DOTFILES_THEFUCK_DISABLED=1" >> $HOME/.zshrc_local
 
       echo_message error "No install procedure for $1 for your OS/distro available, please install manually. Install disabled in $HOME/.zshrc_local (DOTFILES_THEFUCK_DISABLED)."
 
