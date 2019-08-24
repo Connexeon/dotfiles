@@ -1,5 +1,5 @@
 # Uncomment to activate debugging from here
-# set -x
+set -x
 
 # Set cache dir if empty
 if [ -z $ZSH_CACHE_DIR ]; then
