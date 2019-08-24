@@ -9,11 +9,11 @@ _install_nnn () {
   # OS specific installation steps
   case "$DISTRO" in
     ubuntu|elementary)
-      sudo add-apt-repository ppa:twodopeshaggy/jarun >/dev/null 2>&1 ; \
-      sudo apt update && sudo apt -y install nnn >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
+      superuser_do "add-apt-repository ppa:twodopeshaggy/jarun -y -u" >/dev/null 2>&1 ; \
+      superuser_do "apt -y -qq install nnn" >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
     ;;
     centos)
-      sudo rpm -i https://github.com/jarun/nnn/releases/download/v1.8/nnn-1.8-1.el7.3.centos.x86_64.rpm >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
+      superuser_do "rpm -i https://github.com/jarun/nnn/releases/download/v1.8/nnn-1.8-1.el7.3.centos.x86_64.rpm" >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
     ;;
     *)
       # echo "No install procedure for $CMD for your OS/distro available, please install manually."
@@ -21,7 +21,7 @@ _install_nnn () {
       NNN_TARBALL="nnn.tar.gz"
       NNN_REPO="jarun/nnn"
 
-      sudo apt -y install build-essential jq libncursesw5-dev libreadline-dev >/dev/null 2>&1
+      superuser_do "apt -y -qq install build-essential jq libncursesw5-dev libreadline-dev" >/dev/null 2>&1
 
       pushd $SRC_DIR
       NNN_TARBALL_LATEST_URL=$( curl -s "https://api.github.com/repos/$NNN_REPO/releases/latest" \
@@ -29,7 +29,7 @@ _install_nnn () {
       curl -L $NNN_TARBALL_LATEST_URL -o $NNN_TARBALL >/dev/null 2>&1 ; \
       tar xzf $NNN_TARBALL && cd nnn >/dev/null 2>&1 ; \
       make >/dev/null 2>&1 ; \
-      sudo make install >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
+      superuser_do "make install" >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
       popd
     ;;
   esac

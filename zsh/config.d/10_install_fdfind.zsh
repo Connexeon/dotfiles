@@ -9,12 +9,12 @@ _install_fdfind () {
   # OS specific installation steps
   case "$DISTRO" in
     debian|raspbian|ubuntu|elementary|mint)
-      sudo apt-get -y install fd-find >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
+      superuser_do "apt-get -y -qq install fd-find" >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
       ;;
     *)
       echo "# Added by .dotfiles 10_install_fdfind.zsh\nexport DOTFILES_FDFIND_DISABLED=1" >> $HOME/.zshrc_local
 
-      echo_message error "No install procedure for $1 for your OS/distro available, please install manually. Install disabled in $HOME/.zshrc_local (DOTFILES_FDFIND_DISABLED)."
+      echo_message warning "No install procedure for $1 for your OS/distro available, please install manually. Install disabled in $HOME/.zshrc_local (DOTFILES_FDFIND_DISABLED)."
       ;;
   esac
 
