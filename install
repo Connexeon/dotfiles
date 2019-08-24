@@ -14,4 +14,5 @@ git submodule update --init --recursive "${DOTBOT_DIR}"
 cd "${DOTBOT_DIR}"
 git submodule sync --quiet --recursive
 
+cd "${BASEDIR}"
 "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
