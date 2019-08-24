@@ -6,7 +6,6 @@
 
 # Architecture
 export ARCH=$(uname -m)
-export ARCH2=$(dpkg --print-architecture)
 
 # OS/distro detection
 case $(uname) in
@@ -35,9 +34,8 @@ case $(uname) in
       # Detect distribution
       if [ -f /etc/os-release ]; then
         [[ ${(f)"$((</etc/os-release) 2>/dev/null)"} =~ "ID=([A-Za-z]+)" ]] && os_release_id="${match[1]}"
-
-        if [ ! -v $os_release_id ]; then
-          [[ ${(f)"$((</etc/os-release) 2>/dev/null)"} =~ 'ID="([A-Za-z]+)"' ]] && os_release_id="${match[1]}"
+        if (( ! $os_release_id )); then
+          [[ ${(f)"$((</etc/os-release) 2>/dev/null)"} =~ "ID=\"([A-Za-z]+)\"" ]] && os_release_id="${match[1]}"
         fi
       fi
       case "$os_release_id" in
@@ -46,15 +44,19 @@ case $(uname) in
         ;;
         *debian*)
         export DISTRO='debian'
+        export ARCH2=$(dpkg --print-architecture)
         ;;
         *raspbian*)
         export DISTRO='raspbian'
+        export ARCH2=$(dpkg --print-architecture)
         ;;
        *ubuntu*)
         export DISTRO='ubuntu'
+        export ARCH2=$(dpkg --print-architecture)
         ;;
        *elementary*)
         export DISTRO='elementary'
+        export ARCH2=$(dpkg --print-architecture)
         ;;
        *fedora*)
         export DISTRO='fedora'
