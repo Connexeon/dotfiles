@@ -4,8 +4,7 @@
 CMD="fdfind"
 CMDTITLE="A simple, fast and user-friendly alternative to 'find'"
 
-if (( ! $+commands[$CMD] )); then
-  echo "Installing $CMD - $CMDTITLE"
+_install_fdfind () {
 
   # OS specific installation steps
   case "$DISTRO" in
@@ -13,14 +12,31 @@ if (( ! $+commands[$CMD] )); then
       sudo apt-get -y install fd-find >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
       ;;
     *)
-      echo "No install procedure for $CMD for your OS/distro available, please install manually."
+      echo "# Added by .dotfiles 10_install_fdfind.zsh\nexport DOTFILES_FDFIND_DISABLED=1" >> $HOME/.zshrc_local
+
+      echo_message error "No install procedure for $1 for your OS/distro available, please install manually. Install disabled in $HOME/.zshrc_local (DOTFILES_FDFIND_DISABLED)."
       ;;
   esac
+
+}
+
+
+# If command does not exist (not yet installed)
+if (( ! $+commands[$CMD] )); then
+  # Check for disabled flag overriding auto install
+  if (( $DOTFILES_FDFIND_DISABLED=0)) unset $DOTFILES_FDFIND_DISABLED
+  if (( ! ${+DOTFILES_FDFIND_DISABLED} )); then
+    printf "Installing $B$CMD$N - $CMDTITLE"
+    _install_neofetch $CMD
+  else
+    # TODO: log intended install skip somewhere?
+  fi
+# If command does exist
+else
+  echo "" # line spacer
+  neofetch
 fi
-
-
 # Load if command exists
 if (( $+commands[$CMD] )); then
   alias fd=fdfind
-
 fi

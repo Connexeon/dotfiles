@@ -4,8 +4,8 @@
 CMD="nnn"
 CMDTITLE="The missing terminal file manager for X"
 
-if (( ! $+commands[$CMD] )); then
-  echo "Installing $CMD - $CMDTITLE"
+_install_nnn () {
+
   # OS specific installation steps
   case "$DISTRO" in
     ubuntu|elementary)
@@ -35,21 +35,26 @@ if (( ! $+commands[$CMD] )); then
   esac
 
   # Download/Install shell completion definition
+  __curl_compdef $1 "https://raw.githubusercontent.com/jarun/nnn/master/misc/auto-completion/zsh/_nnn"
 
-  __curl_compdef $CMD "https://raw.githubusercontent.com/jarun/nnn/master/misc/auto-completion/zsh/_nnn"
+}
 
-fi
-
-# If command exists (has succeeded installation)
-if (( $+commands[$CMD] )); then
-
+# If command does not exist (not yet installed)
+if (( ! $+commands[$CMD] )); then
+  # Check for disabled flag overriding auto install
+  if (( $DOTFILES_NNN_DISABLED=0)) unset $DOTFILES_NNN_DISABLED
+  if (( ! ${+DOTFILES_NNN_DISABLED} )); then
+    printf "Installing $B$CMD$N - $CMDTITLE"
+    _install_nnn $CMD
+  else
+    # TODO: log intended install skip somewhere?
+  fi
+# If command does exist: run it
+else
   export NNN_OPENER=xdg-open
   export NNN_OPENER="gio open"
   export NNN_OPENER=gvfs-open
 
   export NNN_USE_EDITOR=1
   export NNN_DE_FILE_MANAGER=nautilus
-
-else
-
 fi

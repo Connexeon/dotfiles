@@ -60,6 +60,8 @@ _install_neofetch () {
       echo "# Added by .dotfiles 10_install_neofetch.zsh\nexport DOTFILES_NEOFETCH_DISABLED=1" >> $HOME/.zshrc_local
 
       echo_message error "No install procedure for $1 for your OS/distro available, please install manually. Install disabled in $HOME/.zshrc_local (DOTFILES_NEOFETCH_DISABLED)."
+
+      exit 2
       ;;
 
   esac
@@ -69,13 +71,14 @@ _install_neofetch () {
 # If command does not exist (not yet installed)
 if (( ! $+commands[$CMD] )); then
   # Check for disabled flag overriding auto install
-  if (( ! $DOTFILES_NEOFETCH_DISABLED )); then
-    printf "Installing $CMD - $CMDTITLE"
+  if (( $DOTFILES_NEOFETCH_DISABLED=0)) unset $DOTFILES_NEOFETCH_DISABLED
+  if (( ! ${+DOTFILES_NEOFETCH_DISABLED} )); then
+    printf "Installing $B$CMD$N - $CMDTITLE"
     _install_neofetch $CMD
   else
     # TODO: log intended install skip somewhere?
   fi
-# If commands does exist: run it
+# If command does exist: run it
 else
   echo "" # line spacer
   neofetch

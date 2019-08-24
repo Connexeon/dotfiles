@@ -4,8 +4,7 @@
 CMD="exa"
 CMDTITLE="A modern version of 'ls'"
 
-if (( ! $+commands[$CMD] )); then
-  printf "Installing $CMD - $CMDTITLE"
+_install_exa () {
 
   # OS specific installation steps
   case "$DISTRO" in
@@ -39,22 +38,25 @@ if (( ! $+commands[$CMD] )); then
         unzip $TMP_DIR/$EXA_ZIP -d $TMP_DIR && sudo cp $TMP_DIR/exa-linux-x86_64 /usr/local/bin/exa >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
       fi
       ;;
+
   esac
 
   # Download/Install shell completion definition
-  COMPDEF="/usr/local/share/zsh/site-functions/_exa"
-  COMPDEF_URL="https://raw.githubusercontent.com/ogham/exa/master/contrib/completions.zsh"
-  if [[ -e "$COMPDEF" ]]; then
-    sudo rm -f $COMPDEF
+  __curl_compdef $1 "https://raw.githubusercontent.com/ogham/exa/master/contrib/completions.zsh"
+}
+
+# If command does not exist (not yet installed)
+if (( ! $+commands[$CMD] )); then
+  # Check for disabled flag overriding auto install
+  if (( $DOTFILES_EXA_DISABLED=0)) unset $DOTFILES_EXA_DISABLED
+  if (( ! ${+DOTFILES_EXA_DISABLED} )); then
+    printf "Installing $B$CMD$N - $CMDTITLE"
+    _install_exa $CMD
+  else
+    # TODO: log intended install skip somewhere?
   fi
-  printf "Installing $CMD shell completion definitions"
-  sudo curl -o $COMPDEF $COMPDEF_URL >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
-
-fi
-
-# Load if command exists
-if (( $+commands[$CMD] )); then
-
+# If command does exist: run it
 else
-
+  echo "" # line spacer
+  exa
 fi

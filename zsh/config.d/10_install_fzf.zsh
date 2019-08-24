@@ -2,22 +2,27 @@
 # Install fzf - a general-purpose command-line fuzzy finder
 ####################################################################
 CMD="fzf"
-CMDTITLE="Installing fzf - a general-purpose command-line fuzzy finder"
+CMDTITLE="A general-purpose command-line fuzzy finder"
 
-if (( ! $+commands[$CMD] )); then
-  echo "Installing $CMD - $CMDTITLE"
+_install_fzf () {
 
   $HOME/.fzf/install --no-key-bindings --no-completion --no-update-rc >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
 
-fi
+}
 
-# Load if command exists
-if (( $+commands[$CMD] )); then
-
-  export FZF_DEFAULT_OPTS='--height=70% --preview="cat {}" --preview-window=right:60%:wrap'
-  export FZF_DEFAULT_COMMAND='rg --files'
-  export FZF_CTRL_T_COMMAND='$FZF_DEFAULT_COMMAND'
-
+# If command does not exist (not yet installed)
+if (( ! $+commands[$CMD] )); then
+  # Check for disabled flag overriding auto install
+  if (( $DOTFILES_FZF_DISABLED=0)) unset $DOTFILES_FZF_DISABLED
+  if (( ! ${+DOTFILES_FZF_DISABLED} )); then
+    printf "Installing $B$CMD$N - $CMDTITLE"
+    _install_fzf $CMD
+  else
+    # TODO: log intended install skip somewhere?
+  fi
+# If command does exist
 else
-
+    export FZF_DEFAULT_OPTS='--height=70% --preview="cat {}" --preview-window=right:60%:wrap'
+    export FZF_DEFAULT_COMMAND='rg --files'
+    export FZF_CTRL_T_COMMAND='$FZF_DEFAULT_COMMAND'
 fi
