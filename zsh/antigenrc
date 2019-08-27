@@ -15,7 +15,11 @@ antigen use oh-my-zsh
 antigen bundles <<EOBUNDLES
   # xgarrido/pkgtools
   # xgarrido/zsh-utilities
-  autoupdate-zsh-plugin
+  unixorn/autoupdate-antigen.zshplugin
+  # autoupdate
+  # git clone https://github.com/TamCore/autoupdate-oh-my-zsh-plugins ~/.oh-my-zsh/custom/plugins/autoupdate
+  ## or
+  # git clone https://git.pborn.eu/philipp/autoupdate-oh-my-zsh-plugins.git ~/.oh-my-zsh/custom/plugins/autoupdate
   bobsoppe/zsh-ssh-agent
   chrissicool/zsh-256color
   colorize
@@ -36,6 +40,7 @@ antigen bundles <<EOBUNDLES
   rsync
   skx/sysadmin-util
   soimort/translate-shell
+  sudo
   supercrabtree/k
   systemadmin
   systemd
@@ -46,30 +51,37 @@ antigen bundles <<EOBUNDLES
   z
   zsh-navigation-tools
   zsh-users/zsh-completions
+  lashoun/slugify
+  MichaelAquilina/zsh-you-should-use
 EOBUNDLES
+
+# antigen bundles <<EOTHEMEBUNDLES
+#   mafredri/zsh-async
+#   sindresorhus/pure
+# EOTHEMEBUNDLES
 
 antigen bundles <<EODEVBUNDLES
   # DimitriSteyaert/Zsh-tugboat
   # laravel
   # laravel5
   # symfony2
-  bobthecow/git-flow-completion
-  docker
   EslamElHusseiny/aws_manager_plugin
+  bobthecow/git-flow-completion
   git
   git-extras
   git-flow
+  seletskiy/zsh-git-smart-commands
+  docker
   greymd/docker-zsh-completion
   lukechilds/zsh-better-npm-completion
-  n98-magerun
   npm
   pip
-  redis-cli
-  seletskiy/zsh-git-smart-commands
   srijanshetty/zsh-pip-completion
   Tarrasch/zsh-autoenv
   vagrant
+  redis-cli
   voronkovich/mysql.plugin.zsh
+  n98-magerun
 EODEVBUNDLES
 
 
@@ -106,17 +118,18 @@ antigen bundle termoshtt/zaw-systemd
 
 source $HOME/.zsh/submodules/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 source $HOME/.zsh/submodules/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
-source $HOME/.zsh/submodules/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
+# source $HOME/.zsh/submodules/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
 
-ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down)
-# #ZSH_AUTOSUGGEST_USE_ASYNC=true
+ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down up-line-or-beginning-search down-line-or-beginning-search)
+ZSH_AUTOSUGGEST_USE_ASYNC=true
 
 ####################################################################
 # Load theme & Apply Antigen
 ####################################################################
 
 # Load theme
-antigen theme bhilburn/powerlevel9k powerlevel9k
+# antigen theme bhilburn/powerlevel9k powerlevel9k
+antigen theme denysdovhan/spaceship-prompt
 
 # Let's go Antigen
 antigen apply
