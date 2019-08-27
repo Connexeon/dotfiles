@@ -21,4 +21,4 @@
 	url = https://github.com/robbyrussell/oh-my-zsh
 [submodule "zsh/submodules/revolver"]
 	path = zsh/submodules/revolver
-	url = https://github.com/molovo/revolver.git
+	url = https://github.com/psprint/revolver.git
