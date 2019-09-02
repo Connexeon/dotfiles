@@ -39,5 +39,4 @@
                 "git submodule foreach 'git checkout master && git pull origin master || :'",
                 "Updating remote tracking submodules",
           ]
-        - ["antigen reset", "Reset Antigen"]
         - ["rm -rf ~/.zsh-autosuggestions ~/.zsh-history-substring-search ~/.zsh-syntax-highlighting", "Remove Obsolete Submodules"]
