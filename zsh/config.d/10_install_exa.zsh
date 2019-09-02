@@ -29,6 +29,9 @@ _install_exa () {
     *)
       if [[ $OS = "Linux" ]] ; then
         # Download Linux binary and copy it into /usr/local/bin
+        DEPS="jq unzip curl"
+        superuser_do "apt install -y -qq $DEPS" >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
+        
         TMP_DIR=$(mktemp -d)
         EXA_REPO="ogham/exa"
         EXA_ZIP="exa-linux-$ARCH-latest.zip"

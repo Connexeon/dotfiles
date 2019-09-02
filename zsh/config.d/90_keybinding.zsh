@@ -3,7 +3,7 @@
 ####################################################################
 
 # Use CTRL+R to search history, CTRL-E to accept selected line from search without entering command yet
-# bindkey '^R' zaw-history
+#bindkey '^R' zaw-history
 # zstyle ':filter-select' max-lines 3
 # zstyle ':filter-select:highlight' matched fg=green,standout
 # zstyle ':filter-select' case-insensitive yes # enable case-insensitive
@@ -12,9 +12,9 @@
 # zstyle ':filter-select' hist-find-no-dups yes # ignore duplicates in history source
 # zstyle ':filter-select' escape-descriptions no # display literal newlines, not \n, etc
 
-# bindkey -M filterselect '^R' down-line-or-history
-# bindkey -M filterselect '^S' up-line-or-history
-# bindkey -M filterselect '^E' accept-search
+bindkey -M filterselect '^R' down-line-or-history
+bindkey -M filterselect '^S' up-line-or-history
+bindkey -M filterselect '^E' accept-search
 
 # extended-search:
 #     If this style set to be true value, the searching bahavior will be

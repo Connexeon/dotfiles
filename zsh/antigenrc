@@ -118,7 +118,7 @@ antigen bundle termoshtt/zaw-systemd
 
 source $HOME/.zsh/submodules/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 source $HOME/.zsh/submodules/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
-# source $HOME/.zsh/submodules/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
+source $HOME/.zsh/submodules/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
 
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down up-line-or-beginning-search down-line-or-beginning-search)
 ZSH_AUTOSUGGEST_USE_ASYNC=true
