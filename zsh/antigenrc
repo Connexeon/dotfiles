@@ -46,7 +46,6 @@ antigen bundles <<EOBUNDLES
   systemd
   thefuck
   trapd00r/zsh-syntax-highlighting-filetypes
-  unixorn/autoupdate-antigen.zshplugin
   web-search
   z
   zsh-navigation-tools
