@@ -1,3 +1,4 @@
+
 ####################################################################
 ## Antigen
 ####################################################################
@@ -69,6 +70,7 @@ antigen bundles <<EODEVBUNDLES
   git
   git-extras
   git-flow
+  wfxr/forgit
   seletskiy/zsh-git-smart-commands
   docker
   greymd/docker-zsh-completion
