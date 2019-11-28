@@ -48,14 +48,14 @@ funtion _install_nerd_fonts () {
 #   popd
 }
 
-FONT_USER_DIR=$HOME/.fonts
-if [ -d $FONT_USER_DIR ]; then
-  # Load all .sh files in $HOME/.fonts
-  # for FONT_SH in $FONT_USER_DIR/*.sh; do
-  #   . $FONT_SH
-  # done
-  # Reload font cache
-  fc-cache -f >/dev/null 2>&1
-else
-  _install_nerd_fonts $FONT_USER_DIR
-fi
+# FONT_USER_DIR=$HOME/.fonts
+# if [ -d "$FONT_USER_DIR" ]; then
+#   # Load all .sh files in $HOME/.fonts
+#   # for FONT_SH in $FONT_USER_DIR/*.sh; do
+#   #   . $FONT_SH
+#   # done
+#   # Reload font cache
+#   fc-cache -f >/dev/null 2>&1
+# else
+#   _install_nerd_fonts $FONT_USER_DIR
+# fi
