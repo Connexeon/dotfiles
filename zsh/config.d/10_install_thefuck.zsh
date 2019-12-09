@@ -33,7 +33,7 @@ if (( ! $+commands[$CMD] )); then
   else
     # TODO: log intended install skip somewhere?
   fi
-# If command does exist: run it
+# If command does exist:
 else
   # eval $(thefuck --alias)
 fi
