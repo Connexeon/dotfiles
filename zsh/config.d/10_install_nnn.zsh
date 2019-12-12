@@ -8,10 +8,10 @@ _install_nnn () {
 
   # OS specific installation steps
   case "$DISTRO" in
-    ubuntu|elementary)
-      superuser_do "add-apt-repository ppa:twodopeshaggy/jarun -y -u" >/dev/null 2>&1 ; \
-      superuser_do "apt -y -qq install nnn" >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
-    ;;
+#    ubuntu|elementary)
+#      superuser_do "add-apt-repository ppa:twodopeshaggy/jarun -y -u" >/dev/null 2>&1 ; \
+#      superuser_do "apt -y -qq install nnn" >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
+#    ;;
     centos)
       superuser_do "rpm -i https://github.com/jarun/nnn/releases/download/v1.8/nnn-1.8-1.el7.3.centos.x86_64.rpm" >/dev/null 2>&1 && printf "$OK" || ( printf "$FL" ; exit 1 )
     ;;
