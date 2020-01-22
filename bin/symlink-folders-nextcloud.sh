@@ -62,6 +62,6 @@ add_deep_link() {
 for LNDIR in "${DIRS[@]}"
 do
   # Move all files from source to target directory, then
-  mkdir -p $TARGET/$LNDIR/ && mv $HOME/$LNDIR/*(DN) $TARGET/$LNDIR/ && rmdir $HOME$LNDIR && add_dir_link $LNDIR
+  mkdir -p $TARGET/$LNDIR/ && rsync -avz --progress -h --remove-source-files $HOME/$LNDIR/* $TARGET/$LNDIR/ && rmdir $HOME$LNDIR && add_dir_link $LNDIR
 
 done
