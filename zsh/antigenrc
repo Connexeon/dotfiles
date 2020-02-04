@@ -30,8 +30,8 @@ antigen bundles <<EOBUNDLES
   compleat
   cp
   dirhistory
-  djui/alias-tips
-  alias-finder
+#  djui/alias-tips
+#  alias-finder
   extract
   fzf
   history
